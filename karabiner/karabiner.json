@@ -54,6 +54,29 @@
                                 "type": "basic"
                             }
                         ]
+                    },
+                    {
+                        "description": "Clear Clipboard by Fn Fn",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "simultaneous": [
+                                        {
+                                            "key_code": "fn"
+                                        },
+                                        {
+                                            "key_code": "fn"
+                                        }
+                                    ]
+                                },
+                                "to_if_alone": [
+                                    {
+                                        "shell_command": "/usr/bin/env cat | /usr/bin/env pbcopy"
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
                     }
                 ]
             },
