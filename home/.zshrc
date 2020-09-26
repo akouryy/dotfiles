@@ -8,6 +8,7 @@ export LANG=ja_JP.UTF-8
 setopt auto_cd
 setopt auto_pushd
 setopt correct
+setopt notify
 
 left_down_prompt_preexec() {
     print -rn -- $terminfo[el]
@@ -33,7 +34,7 @@ zle -N zle-line-finish
 zle -N zle-keymap-select
 zle -N edit-command-line
 
-HISTFILE=${HOME}/.zsh_history
+HISTFILE="$HOME/.zsh_history"
 HISTSIZE=50000
 SAVEHIST=50000
 setopt hist_ignore_dups
@@ -54,9 +55,60 @@ bindkey '^W' backward-kill-word
 
 export LSCOLORS=exfxcxdxbxegedabagacad
 export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
-zstyle ':completion:*' list-colors 'di=34' 'ln=35' 'so=32' 'ex=31' 'bd=46;34' 'cd=43;34'
-zstyle ':completion:*:ssh:*' hosts off
-setopt noautoremoveslash
+
+() { # Languages
+  () { # Ruby
+    export RBENV_ROOT="$HOME/.rbenv"
+    export PATH="$RBENV_ROOT/bin:$PATH"
+    export RUBY_CONFIGURE_OPTS="--with-readline-dir=$(brew --prefix readline)"
+    export RUBYLIB="$DROPBOX/a/c/lib/ruby:$DROPBOX/a/c/zprb:$RUBYLIB"
+    eval "$(rbenv init - --no-rehash)"
+    rbenv rehash &
+  }
+  () { # Node
+    export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+    eval "$(nodenv init - --no-rehash)"
+    nodenv rehash &
+  }
+  () { # Go
+    export GOPATH=$DROPBOX/b/s/c/go
+    export GOENV_DISABLE_GOPATH=1
+    export PATH="$HOME/.goenv/bin:$PATH"
+    eval "$(goenv init - --no-rehash)"
+    goenv rehash &
+  }
+  () { # Python
+    eval "$(pyenv init - --no-rehash)"
+    pyenv rehash &
+  }
+  () { # OCaml
+    alias ocaml="rlwrap ocaml"
+    export OCAMLRUNPARAM=b
+    test -r ~/.opam/opam-init/init.sh && . ~/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
+  }
+  () { # Nim
+    export PATH="$HOME/.nimble/bin:$PATH"
+  }
+}
+
+() { # Completion
+  zstyle ':completion:*' list-colors 'di=34' 'ln=35' 'so=32' 'ex=31' 'bd=46;34' 'cd=43;34'
+  zstyle ':completion:*:ssh:*' hosts off
+  setopt noautoremoveslash
+
+  # https://stackoverflow.com/a/56760494
+  h=()
+  for f in ~/.ssh/config ~/.ssh/conf.d/*; do
+    [[ -f $f ]] && h=($h ${${${(@M)${(f)"$(cat $f)"}:#Host *}#Host }:#*[*?]*})
+  done
+  # if [[ -r ~/.ssh/known_hosts ]]; then
+  #   h=($h ${${${(f)"$(cat ~/.ssh/known_hosts{,2} || true)"}%%\ *}%%,*}) 2>/dev/null
+  # fi
+  if [[ $#h -gt 0 ]]; then
+    zstyle ':completion:*:ssh:*' hosts $h
+    zstyle ':completion:*:slogin:*' hosts $h
+  fi
+}
 
 export DROPBOX="$HOME/Dropbox"
 hash -d db="$DROPBOX"
@@ -70,6 +122,7 @@ alias drpbi='xattr -w com.dropbox.ignored 1'
 alias g='git'
 alias ls='ls -hlaG'
 alias mv='mv -i'
+# ocaml: see above
 alias poff='predict-off'
 alias pon='predict-on'
 alias rm='rm -i'
