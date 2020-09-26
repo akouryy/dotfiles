@@ -54,6 +54,8 @@ predict-toggle() { ((predict_on=1-predict_on)) && predict-on || predict-off }
 zle -N predict-toggle
 bindkey '^P' history-beginning-search-backward-end
 bindkey '^N' history-beginning-search-forward-end
+bindkey "^R" history-incremental-search-backward
+bindkey "^S" history-incremental-search-forward
 bindkey '^K' kill-line
 bindkey '^W' backward-kill-word
 bindkey '^Z' predict-toggle

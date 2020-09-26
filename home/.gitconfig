@@ -1,0 +1,60 @@
+[include]
+  path = .gitconfig.local
+[push]
+	default = simple
+[core]
+	excludesfile = .gitignore_global
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[commit]
+	template = .stCommitMsg
+	gpgsign = true
+[merge]
+	ff = false
+[pull]
+	ff = only
+[credential]
+	helper = osxkeychain
+[alias]
+	a = add
+	aa = add .
+	b = checkout
+	bd = branch -d
+	bn = checkout -b
+	br = branch
+	bs = branch
+	c = commit
+	ca = commit -a
+	cam = commit -am
+	cb = checkout -b
+	ch = checkout
+	chb = checkout -b
+	cl = clone
+	cm = commit -m
+	d = diff
+	del = branch -d
+	dev = checkout develop
+	h = help
+	lf = log --pretty=fuller
+	lol = log --graph --decorate --pretty=oneline --abbrev-commit
+	lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+	m = merge
+	mas = checkout master
+	md = merge develop
+	mm = merge master
+	mmas = merge master
+	mom = merge origin/master
+	n = checkout -b
+	nb = checkout -b
+	p = push
+  pa = push --all
+	pl = pull
+	pu = push
+	puom = push -u origin master
+	s = status --short --branch
+	st = status
+	ta = tag -a
+  top = rev-parse --show-toplevel
+[gpg]
+	program = gpg
