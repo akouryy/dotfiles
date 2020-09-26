@@ -43,20 +43,29 @@ setopt hist_ignore_space
 setopt hist_reduce_blanks
 setopt share_history
 
+export DROPBOX="$HOME/Dropbox"
+
 export EDITOR=vim
 bindkey -v
 autoload history-search-end
 zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
+predict-toggle() { ((predict_on=1-predict_on)) && predict-on || predict-off }
+zle -N predict-toggle
 bindkey '^P' history-beginning-search-backward-end
 bindkey '^N' history-beginning-search-forward-end
 bindkey '^K' kill-line
 bindkey '^W' backward-kill-word
+bindkey '^Z' predict-toggle
 
 export LSCOLORS=exfxcxdxbxegedabagacad
 export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
+chpwd() { ls -hlaFv }
 
 () { # Languages
+  () { # Scala
+    alias sbt8='sbt -java-home /Library/Java/JavaVirtualMachines/jdk1.8.0_144.jdk/Contents/Home'
+  }
   () { # Ruby
     export RBENV_ROOT="$HOME/.rbenv"
     export PATH="$RBENV_ROOT/bin:$PATH"
@@ -89,6 +98,9 @@ export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46
   () { # Nim
     export PATH="$HOME/.nimble/bin:$PATH"
   }
+  () { # bc, dc
+    export PATH="/usr/local/opt/bc/bin:$PATH"
+  }
 }
 
 () { # Completion
@@ -97,7 +109,7 @@ export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46
   setopt noautoremoveslash
 
   # https://stackoverflow.com/a/56760494
-  h=()
+  local h=()
   for f in ~/.ssh/config ~/.ssh/conf.d/*; do
     [[ -f $f ]] && h=($h ${${${(@M)${(f)"$(cat $f)"}:#Host *}#Host }:#*[*?]*})
   done
@@ -110,23 +122,47 @@ export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46
   fi
 }
 
-export DROPBOX="$HOME/Dropbox"
+() { # Other PATHs
+  export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+  export PATH="/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH"
+  export PATH="~/.local/bin:$PATH"
+  # export PATH="$HOME/kwankyag/ghdl-20181129-macosx-mcode/bin:$PATH"
+  export PATH="$DROPBOX/a/c/bin:$DROPBOX/a/c/bin/public:$PATH"
+}
+
 hash -d db="$DROPBOX"
 hash -d e="$DROPBOX/e"
 
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+alias ......='cd ../../../../..'
+alias .......='cd ../../../../../..'
+alias .zshrc='source ~/.zshrc'
 alias bx='bundle exec'
 alias cal='cal -y'
+alias cd..=$'echo $\'use `..` instead.\' && cd ..'
+alias cdr='git top && cd $(git top)'
+alias chr=$'ruby -e \'p ARGV.map{|a| a.to_i.chr Encoding::UTF_8 }\' --'
 alias cl='cd -P'
 alias cp='cp -i'
 alias drpbi='xattr -w com.dropbox.ignored 1'
 alias g='git'
-alias ls='ls -hlaG'
+alias g++='g++ -std=c++17 -I$DROPBOX/b/codes/comp -Wall -Wno-logical-op-parentheses -fsanitize=address -O2'
+alias g++d='g++ -std=c++17 -I$DROPBOX/b/codes/comp -Wall -Wno-logical-op-parentheses -fsanitize=address -DEBUG -DDEBUG'
+alias hc='history -c'
+alias ls=$'ls -hlaFv --color=auto --time-style=\'+%Y-%m-%d %H:%M:%S\''
+function md() { mkdir -p "$@" && eval cd "\"\$$#\"" }
+alias minisat="$DROPBOX/a/c/env-setup/minisat/core/minisat_release"
 alias mv='mv -i'
 # ocaml: see above
 alias poff='predict-off'
 alias pon='predict-on'
 alias rm='rm -i'
+# sbt8: see above
 alias typora='open -a typora'
+alias u+x='chmod u+x'
+alias vg='vimgolf put'
 alias wh='command -v' # alias wh='which -a'
 alias ya='yarn add'
 alias yd='yarn add --dev'
@@ -137,4 +173,4 @@ alias yrd='yarn run dev'
 alias yrl='yarn run lint'
 alias yrs='yarn run start'
 alias yy='yarn'
-alias zshrc='source ~/.zshrc'
+alias zshrc='sl ~/.zshrc'
