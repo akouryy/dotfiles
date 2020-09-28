@@ -56,22 +56,20 @@
                         ]
                     },
                     {
-                        "description": "Clear Clipboard by Fn Fn",
+                        "description": "Clear Clipboard by Fn+C",
                         "manipulators": [
                             {
                                 "from": {
-                                    "simultaneous": [
-                                        {
-                                            "key_code": "fn"
-                                        },
-                                        {
-                                            "key_code": "fn"
-                                        }
-                                    ]
+                                    "key_code": "c",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "fn"
+                                        ]
+                                    }
                                 },
                                 "to_if_alone": [
                                     {
-                                        "shell_command": "/usr/bin/env cat | /usr/bin/env pbcopy"
+                                        "shell_command": "/usr/bin/env pbcopy"
                                     }
                                 ],
                                 "type": "basic"
@@ -80,7 +78,21 @@
                     }
                 ]
             },
-            "devices": [],
+            "devices": [
+                {
+                    "disable_built_in_keyboard_if_exists": false,
+                    "fn_function_keys": [],
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "is_pointing_device": false,
+                        "product_id": 630,
+                        "vendor_id": 1452
+                    },
+                    "ignore": false,
+                    "manipulate_caps_lock_led": true,
+                    "simple_modifications": []
+                }
+            ],
             "fn_function_keys": [
                 {
                     "from": {

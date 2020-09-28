@@ -1,24 +1,20 @@
 {
-  "title": "Clear Clipboard by Fn Fn",
+  "title": "0 Clear Clipboard by Fn+C",
   "rules": [
     {
-      "description": "Clear Clipboard by Fn Fn",
+      "description": "Clear Clipboard by Fn+C",
       "manipulators": [
         {
           "type": "basic",
           "from": {
-            "simultaneous": [
-              {
-                "key_code": "fn"
-              },
-              {
-                "key_code": "fn"
-              }
-            ]
+            "key_code": "c",
+            "modifiers": {
+              "mandatory": ["fn"]
+            }
           },
           "to_if_alone": [
             {
-              "shell_command": "/usr/bin/env cat | /usr/bin/env pbcopy"
+              "shell_command": "/usr/bin/env pbcopy"
             }
           ]
         }
