@@ -42,9 +42,10 @@
 	m = merge
 	mas = checkout master
 	md = merge develop
-	mm = merge master
+	mm = merge main
+	mmai = merge main
 	mmas = merge master
-	mom = merge origin/master
+	mom = merge origin/main
 	n = checkout -b
 	nb = checkout -b
 	p = push
