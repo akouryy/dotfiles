@@ -16,46 +16,32 @@ bye	びぇ
 byi	びぃ
 byo	びょ
 byu	びゅ
-ca	か
 cc	っ	c
-ce	せ
 cha	ちゃ
 che	ちぇ
 chi	ち
 cho	ちょ
 chu	ちゅ
-ci	し
-co	こ
-cu	く
-cya	ちゃ
-cye	ちぇ
-cyi	ちぃ
-cyo	ちょ
-cyu	ちゅ
 da	だ
 dd	っ	d
 de	で
-dha	でゃ
-dhe	でぇ
-dhi	でぃ
-dho	でょ
-dhu	でゅ
-di	ぢ
-d'i	でぃ
+di	でぃ
+dja	ぢゃ
+dje	ぢぇ
+dji	ぢ
+djo	ぢょ
+dju	ぢゅ
 do	ど
-du	づ
-d'u	どぅ
+du	どぅ
 dwa	どぁ
 dwe	どぇ
 dwi	どぃ
 dwo	どぉ
 dwu	どぅ
-dya	ぢゃ
-dye	ぢぇ
-dyi	ぢぃ
-dyo	ぢょ
-dyu	ぢゅ
-d'yu	でゅ
+dya	でゃ
+dyo	でょ
+dyu	でゅ
+dzu	づ
 e	え
 fa	ふぁ
 fe	ふぇ
@@ -88,12 +74,6 @@ he	へ
 hh	っ	h
 hi	ひ
 ho	ほ
-hu	ふ
-hwa	ふぁ
-hwe	ふぇ
-hwi	ふぃ
-hwo	ふぉ
-hwyu	ふゅ
 hya	ひゃ
 hye	ひぇ
 hyi	ひぃ
@@ -106,18 +86,13 @@ ji	じ
 jj	っ	j
 jo	じょ
 ju	じゅ
-jya	じゃ
-jye	じぇ
-jyi	じぃ
-jyo	じょ
-jyu	じゅ
 ka	か
 ke	け
 ki	き
 kk	っ	k
 ko	こ
 ku	く
-kwa	くぁ
+kwa	くゎ
 kwe	くぇ
 kwi	くぃ
 kwo	くぉ
@@ -155,7 +130,6 @@ myi	みぃ
 myo	みょ
 myu	みゅ
 n	ん
-n'	ん
 na	な
 ne	ね
 ni	に
@@ -179,12 +153,6 @@ pye	ぴぇ
 pyi	ぴぃ
 pyo	ぴょ
 pyu	ぴゅ
-qa	くぁ
-qe	くぇ
-qi	くぃ
-qo	くぉ
-qq	っ	q
-qu	く
 ra	ら
 re	れ
 ri	り
@@ -203,7 +171,7 @@ she	しぇ
 shi	し
 sho	しょ
 shu	しゅ
-si	し
+si	すぃ
 so	そ
 ss	っ	s
 su	す
@@ -219,13 +187,7 @@ syo	しょ
 syu	しゅ
 ta	た
 te	て
-tha	てゃ
-the	てぇ
-thi	てぃ
-tho	てょ
-thu	てゅ
-ti	ち
-t'i	てぃ
+ti	てぃ
 to	と
 tsa	つぁ
 tse	つぇ
@@ -233,19 +195,15 @@ tsi	つぃ
 tso	つぉ
 tsu	つ
 tt	っ	t
-tu	つ
-t'u	とぅ
+tu	とぅ
 twa	とぁ
 twe	とぇ
 twi	とぃ
 two	とぉ
 twu	とぅ
-tya	ちゃ
-tye	ちぇ
-tyi	ちぃ
-tyo	ちょ
-tyu	ちゅ
-t'yu	てゅ
+tya	てゃ
+tyo	てょ
+tyu	てゅ
 u	う
 va	ゔぁ
 ve	ゔぇ
@@ -254,8 +212,6 @@ vo	ゔぉ
 vu	ゔ
 vv	っ	v
 vya	ゔゃ
-vye	ゔぇ
-vyi	ゔぃ
 vyo	ゔょ
 vyu	ゔゅ
 wa	わ
@@ -272,23 +228,6 @@ ww	っ	w
 www	w	ww
 wye	ゑ
 wyi	ゐ
-xa	ぁ
-xe	ぇ
-xi	ぃ
-xka	ヵ
-xke	ヶ
-xn	ん
-xo	ぉ
-xtsu	っ
-xtu	っ
-xu	ぅ
-xwa	ゎ
-xx	っ	x
-xya	ゃ
-xye	ぇ
-xyi	ぃ
-xyo	ょ
-xyu	ゅ
 ya	や
 ye	いぇ
 yo	よ
@@ -297,13 +236,13 @@ yy	っ	y
 z-	〜
 z,	‥
 z.	…
-z/	・
 z[	『
 z]	』
+z/	・
 za	ざ
 ze	ぜ
 zh	←
-zi	じ
+zi	ずぃ
 zj	↓
 zk	↑
 zl	→
@@ -311,12 +250,5 @@ zo	ぞ
 zu	ず
 zwa	ずぁ
 zwe	ずぇ
-zwi	ずぃ
 zwo	ずぉ
-zwu	ずぅ
-zya	じゃ
-zye	じぇ
-zyi	じぃ
-zyo	じょ
-zyu	じゅ
 zz	っ	z
