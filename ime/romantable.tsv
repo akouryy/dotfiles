@@ -3,6 +3,11 @@
 .	。
 [	「
 ]	」
+@@	@
+@a	←
+@d	→
+@s	↓
+@w	↑
 ~	〜
 a	あ
 ba	ば
@@ -16,12 +21,17 @@ bye	びぇ
 byi	びぃ
 byo	びょ
 byu	びゅ
+ca	ちゃ
 cc	っ	c
+ce	ちぇ
 cha	ちゃ
 che	ちぇ
 chi	ち
 cho	ちょ
 chu	ちゅ
+ci	ち
+co	ちょ
+cu	ちゅ
 da	だ
 dd	っ	d
 de	で
@@ -185,6 +195,7 @@ sye	しぇ
 syi	しぃ
 syo	しょ
 syu	しゅ
+t;	つ
 ta	た
 te	て
 ti	てぃ
@@ -228,6 +239,11 @@ ww	っ	w
 www	w	ww
 wye	ゑ
 wyi	ゐ
+xa	しゃ
+xe	しぇ
+xi	し
+xo	しょ
+xu	しゅ
 ya	や
 ye	いぇ
 yo	よ
@@ -241,11 +257,7 @@ z]	』
 z/	・
 za	ざ
 ze	ぜ
-zh	←
 zi	ずぃ
-zj	↓
-zk	↑
-zl	→
 zo	ぞ
 zu	ず
 zwa	ずぁ
