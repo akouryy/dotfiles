@@ -1,24 +1,26 @@
 BaseChars = {
-  ?b => ['ば', 'び', 'ぶ', 'べ', 'ぼ'],
-  ?c => ['ちゃ', 'ち', 'ちゅ', 'ちぇ', 'ちょ'],
-  ?d => ['だ', 'でぃ', 'どぅ', 'で', 'ど'],
-  ?f => ['ふぁ', 'ふぃ', 'ふ', 'ふぇ', 'ふぉ'],
-  ?g => ['が', 'ぎ', 'ぐ', 'げ', 'ご'],
-  ?h => ['は', 'ひ', nil, 'へ', 'ほ'],
-  ?j => ['じゃ', 'じ', 'じゅ', 'じぇ', 'じょ'],
-  ?k => ['か', 'き', 'く', 'け', 'こ'],
-  ?l => ['ぁ', 'ぃ', 'ぅ', 'ぇ', 'ぉ'],
-  ?m => ['ま', 'み', 'む', 'め', 'も'],
-  ?n => ['な', 'に', 'ぬ', 'ね', 'の'],
-  ?p => ['ぱ', 'ぴ', 'ぷ', 'ぺ', 'ぽ'],
-  ?r => ['ら', 'り', 'る', 'れ', 'ろ'],
-  ?s => ['さ', 'すぃ', 'す', 'せ', 'そ'],
-  ?t => ['た', 'てぃ', 'とぅ', 'て', 'と'],
-  ?v => ['ゔぁ', 'ゔぃ', 'ゔ', 'ゔぇ', 'ゔぉ'],
-  ?w => ['わ', 'うぃ', nil, 'うぇ', 'を'],
-  ?x => ['しゃ', 'し', 'しゅ', 'しぇ', 'しょ'],
-  ?y => ['や', nil, 'ゆ', 'いぇ', 'よ'],
-  ?z => ['ざ', 'ずぃ', 'ず', 'ぜ', 'ぞ'],
+  # consonants => [key for 拗音, a, i, u, e, o]
+  ?b   => [1,   'ば', 'び', 'ぶ', 'べ', 'ぼ'],
+  ?c   => [nil, 'つぁ', 'つぃ', 'つ', 'つぇ', 'つぉ'],
+  ?d   => [3,   'だ', 'でぃ', 'どぅ', 'で', 'ど'],
+  ?f   => [2,   'ふぁ', 'ふぃ', 'ふ', 'ふぇ', 'ふぉ'],
+  ?g   => [1,   'が', 'ぎ', 'ぐ', 'げ', 'ご'],
+  ?h   => [1,   'は', 'ひ', nil, 'へ', 'ほ'],
+  ?j   => [nil, 'じゃ', 'じ', 'じゅ', 'じぇ', 'じょ'],
+  ?k   => [1,   'か', 'き', 'く', 'け', 'こ'],
+  ?l   => [nil, 'ぁ', 'ぃ', 'ぅ', 'ぇ', 'ぉ'],
+  ?m   => [1,   'ま', 'み', 'む', 'め', 'も'],
+  ?n   => [1,   'な', 'に', 'ぬ', 'ね', 'の'],
+  ?p   => [1,   'ぱ', 'ぴ', 'ぷ', 'ぺ', 'ぽ'],
+  ?q   => [nil, 'ちゃ', 'ち', 'ちゅ', 'ちぇ', 'ちょ'],
+  ?r   => [1,   'ら', 'り', 'る', 'れ', 'ろ'],
+  ?s   => ['し', 'さ', 'すぃ', 'す', 'せ', 'そ'],
+  ?t   => [3,   'た', 'てぃ', 'とぅ', 'て', 'と'],
+  ?v   => [2,   'ゔぁ', 'ゔぃ', 'ゔ', 'ゔぇ', 'ゔぉ'],
+  ?w   => [nil, 'わ', 'うぃ', nil, 'うぇ', 'を'],
+  ?x   => [nil, 'しゃ', 'し', 'しゅ', 'しぇ', 'しょ'],
+  ?y   => [nil, 'や', nil, 'ゆ', 'いぇ', 'よ'],
+  ?z   => [nil, 'ざ', 'ずぃ', 'ず', 'ぜ', 'ぞ'],
 }
 
 $table = DATA.each_line.map{ _1.chomp.split ?\t, 2 }.to_h
@@ -30,20 +32,48 @@ def insert k, v
   $table[k] = v
 end
 
-BaseChars.each do |cons, kanas|
+def add_cons cons, kanas
   'aiueo'.chars.zip kanas do |vowel, kana|
     insert cons + vowel, kana
   end
 
-  insert cons + ?d, kanas[3]&.+('ん')
-  insert cons + ?j, kanas[2]&.+('ん')
-  insert cons + ?k, kanas[1]&.+('ん')
-  insert cons + ?l, kanas[4]&.+('ん')
-  insert cons + ?q, kanas[0]&.+('い')
-  insert cons + ?z, kanas[0]&.+('ん')
-  insert cons + ?3, kanas[3]&.+('い')
-  insert cons + ?7, kanas[2]&.+('う')
-  insert cons + ?9, kanas[4]&.+('う')
+  {
+    d: [3, ?ん],
+    j: [2, ?ん],
+    k: [1, ?ん],
+    l: [4, ?ん],
+    q: [0, ?い],
+    z: [0, ?ん],
+    3 => [3, ?い],
+    7 => [2, ?う],
+    8 => [2, ?う],
+    9 => [4, ?う],
+    0 => [4, ?う],
+  }.each do |vowel, (kana_index, suffix)|
+    insert "#{cons}#{vowel}", kanas[kana_index]&.+(suffix)
+  end
+end
+
+BaseChars.each do |cons, (yôon_key, *kanas)|
+  add_cons cons, kanas
+
+  yôon_prefix = case yôon_key
+    when String  then yôon_key
+    when Integer then kanas[yôon_key]
+    when nil     then nil
+  end
+
+  if yôon_prefix
+    yôon_chars = 'ゃぃゅぇょ'.chars.map.with_index do |small, i|
+      # if i == kanas.index(yôon_prefix)
+      #   nil
+      # else
+      yôon_prefix + small
+      # end
+    end
+
+    add_cons cons + ?y, yôon_chars
+  end
 end
 
 File.write 'romantable.tsv', $table.map{ _1.join(?\t) + ?\n }.sort.join
@@ -63,13 +93,6 @@ __END__
 @w	↑
 ~	〜
 a	あ
-bb	っ	b
-bya	びゃ
-bye	びぇ
-byi	びぃ
-byo	びょ
-byu	びゅ
-cc	っ	c
 cha	ちゃ
 che	ちぇ
 chi	ち
@@ -85,43 +108,20 @@ dwe	どぇ
 dwi	どぃ
 dwo	どぉ
 dwu	どぅ
-dya	でゃ
-dyo	でょ
-dyu	でゅ
 dzu	づ
 e	え
-ff	っ	f
-fya	ふゃ
-fyo	ふょ
-fyu	ふゅ
-gg	っ	g
 gwa	ぐぁ
 gwe	ぐぇ
 gwi	ぐぃ
 gwo	ぐぉ
 gwu	ぐぅ
-gya	ぎゃ
-gye	ぎぇ
-gyi	ぎぃ
-gyo	ぎょ
-gyu	ぎゅ
-hh	っ	h
-hya	ひゃ
-hye	ひぇ
-hyi	ひぃ
-hyo	ひょ
-hyu	ひゅ
 i	い
 kwa	くゎ
 kwe	くぇ
 kwi	くぃ
 kwo	くぉ
 kwu	くぅ
-kya	きゃ
-kye	きぇ
-kyi	きぃ
-kyo	きょ
-kyu	きゅ
+lcu	っ
 lka	ヵ
 lke	ヶ
 ltsu	っ
@@ -132,78 +132,33 @@ lye	ぇ
 lyi	ぃ
 lyo	ょ
 lyu	ゅ
-mm	っ	m
-mya	みゃ
-mye	みぇ
-myi	みぃ
-myo	みょ
-myu	みゅ
 n	ん
 nn	ん
-nya	にゃ
-nye	にぇ
-nyi	にぃ
-nyo	にょ
-nyu	にゅ
 o	お
-pp	っ	p
-pya	ぴゃ
-pye	ぴぇ
-pyi	ぴぃ
-pyo	ぴょ
-pyu	ぴゅ
-rr	っ	r
-rya	りゃ
-rye	りぇ
-ryi	りぃ
-ryo	りょ
-ryu	りゅ
 sha	しゃ
 she	しぇ
 shi	し
 sho	しょ
 shu	しゅ
-ss	っ	s
 swa	すぁ
 swe	すぇ
 swi	すぃ
 swo	すぉ
 swu	すぅ
-sya	しゃ
-sye	しぇ
-syi	しぃ
-syo	しょ
-syu	しゅ
-t;	つ
-tsa	つぁ
-tse	つぇ
-tsi	つぃ
-tso	つぉ
-tsu	つ
-tt	っ	t
 twa	とぁ
 twe	とぇ
 twi	とぃ
 two	とぉ
 twu	とぅ
-tya	てゃ
-tyo	てょ
-tyu	てゅ
 u	う
-vv	っ	v
-vya	ゔゃ
-vyo	ゔょ
-vyu	ゔゅ
 wha	うぁ
 whe	うぇ
 whi	うぃ
 who	うぉ
 whu	う
-ww	っ	w
 www	w	ww
 wye	ゑ
 wyi	ゐ
-yy	っ	y
 z-	〜
 z,	‥
 z.	…

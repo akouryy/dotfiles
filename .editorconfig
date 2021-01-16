@@ -6,3 +6,7 @@ indent_size = 2
 indent_style = space
 root = true
 trim_trailing_whitespace = true
+
+[*.tsv]
+indent_size = 8
+indent_style = tab
