@@ -2,13 +2,14 @@ autoload -Uz compinit; compinit
 autoload -Uz colors; colors
 autoload -Uz add-zsh-hook
 autoload -Uz terminfo
-autoload predict-on; predict-on
+# autoload predict-on; predict-on
 
 export LANG=ja_JP.UTF-8
 setopt auto_cd
 setopt auto_pushd
 setopt correct
 setopt notify
+setopt IGNOREEOF
 
 left_down_prompt_preexec() {
   print -rn -- $terminfo[el]
@@ -46,7 +47,8 @@ setopt share_history
 export DROPBOX="$HOME/Dropbox"
 
 export EDITOR=vim
-bindkey -v
+# bindkey -v
+bindkey -e
 autoload history-search-end
 zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
@@ -62,7 +64,7 @@ bindkey '^Z' predict-toggle
 
 export LSCOLORS=exfxcxdxbxegedabagacad
 export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
-chpwd() { ls -hlaFv }
+chpwd() { ls -hlaFv --color=auto --time-style='+%Y-%m-%d %H:%M:%S' }
 
 () { # Languages
   () { # Scala
@@ -162,6 +164,7 @@ alias poff='predict-off'
 alias pon='predict-on'
 alias rm='rm -i'
 # sbt8: see above
+alias tmid='timidity -K-2 -s42500' # -s43500'
 alias typora='open -a typora'
 alias u+x='chmod u+x'
 alias vg='vimgolf put'

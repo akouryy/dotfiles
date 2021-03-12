@@ -8,7 +8,7 @@ BaseChars = {
   ?h   => [1,   'は', 'ひ', nil, 'へ', 'ほ'],
   ?j   => [nil, 'じゃ', 'じ', 'じゅ', 'じぇ', 'じょ'],
   ?k   => [1,   'か', 'き', 'く', 'け', 'こ'],
-  ?l   => [nil, 'ぁ', 'ぃ', 'ぅ', 'ぇ', 'ぉ'],
+  ?l   => [nil, 'あ', 'い', 'う', 'え', 'お'],
   ?m   => [1,   'ま', 'み', 'む', 'め', 'も'],
   ?n   => [1,   'な', 'に', 'ぬ', 'ね', 'の'],
   ?p   => [1,   'ぱ', 'ぴ', 'ぷ', 'ぺ', 'ぽ'],
@@ -21,6 +21,7 @@ BaseChars = {
   ?x   => [nil, 'しゃ', 'し', 'しゅ', 'しぇ', 'しょ'],
   ?y   => [nil, 'や', nil, 'ゆ', 'いぇ', 'よ'],
   ?z   => [nil, 'ざ', 'ずぃ', 'ず', 'ぜ', 'ぞ'],
+  '@l' => [nil, 'ぁ', 'ぃ', 'ぅ', 'ぇ', 'ぉ'],
 }
 
 $table = DATA.each_line.map{ _1.chomp.split ?\t, 2 }.to_h
@@ -39,18 +40,24 @@ def add_cons cons, kanas
 
   {
     d: [3, ?ん],
+    h: [2, ?っ],
     j: [2, ?ん],
     k: [1, ?ん],
     l: [4, ?ん],
+    m: [1, ?っ],
+    p: [4, ?っ],
     q: [0, ?い],
+    r: [3, ?っ],
+    s: [0, ?っ],
     z: [0, ?ん],
     3 => [3, ?い],
+    4 => [3, ?い],
     7 => [2, ?う],
     8 => [2, ?う],
-    9 => [4, ?う],
-    0 => [4, ?う],
+    9 => cons != 'ny' && [4, ?う],
+    0 => cons != 'ny' && [4, ?う],
   }.each do |vowel, (kana_index, suffix)|
-    insert "#{cons}#{vowel}", kanas[kana_index]&.+(suffix)
+    insert "#{cons}#{vowel}", kanas[kana_index]&.+(suffix) if kana_index
   end
 end
 
@@ -121,17 +128,13 @@ kwe	くぇ
 kwi	くぃ
 kwo	くぉ
 kwu	くぅ
-lcu	っ
-lka	ヵ
-lke	ヶ
-ltsu	っ
-ltu	っ
-lwa	ゎ
-lya	ゃ
-lye	ぇ
-lyi	ぃ
-lyo	ょ
-lyu	ゅ
+@lcu	っ
+@lka	ヵ
+@lke	ヶ
+@lwa	ゎ
+@lya	ゃ
+@lyo	ょ
+@lyu	ゅ
 n	ん
 nn	ん
 o	お
