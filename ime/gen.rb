@@ -24,6 +24,8 @@ BaseChars = {
   '@l' => [nil, 'ぁ', 'ぃ', 'ぅ', 'ぇ', 'ぉ'],
 }
 
+GREEKS = 'αβψδεφγηιξκλμνοπθρστθωςχυζ'
+
 $table = DATA.each_line.map{ _1.chomp.split ?\t, 2 }.to_h
 
 def insert k, v
@@ -83,10 +85,25 @@ BaseChars.each do |cons, (yôon_key, *kanas)|
   end
 end
 
+GREEKS.chars.zip (?a..?z).to_a do |g, l|
+  insert "##{l}", g
+  insert "##{l.upcase}", g.upcase
+end
+
 File.write 'romantable.tsv', $table.map{ _1.join(?\t) + ?\n }.sort.join
 puts "Generated #{$table.size} entries."
 
 __END__
+_bot	⊥
+_exists	∃
+_forall	∀
+_land	∧
+_lnot	¬
+_lor	∨
+_pm	±
+_times	×
+_top	⊤
+_vdash	⊢
 -	ー
 ,	、
 ;	っ
@@ -105,6 +122,7 @@ che	ちぇ
 chi	ち
 cho	ちょ
 chu	ちゅ
+dcu	づ
 dja	ぢゃ
 dje	ぢぇ
 dji	ぢ
@@ -115,7 +133,6 @@ dwe	どぇ
 dwi	どぃ
 dwo	どぉ
 dwu	どぅ
-dzu	づ
 e	え
 gwa	ぐぁ
 gwe	ぐぇ
