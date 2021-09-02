@@ -117,11 +117,6 @@ _vdash	⊢
 @w	↑
 ~	〜
 a	あ
-cha	ちゃ
-che	ちぇ
-chi	ち
-cho	ちょ
-chu	ちゅ
 dcu	づ
 dja	ぢゃ
 dje	ぢぇ
@@ -155,11 +150,6 @@ kwu	くぅ
 n	ん
 nn	ん
 o	お
-sha	しゃ
-she	しぇ
-shi	し
-sho	しょ
-shu	しゅ
 swa	すぁ
 swe	すぇ
 swi	すぃ
