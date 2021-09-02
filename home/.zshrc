@@ -91,7 +91,7 @@ chpwd() { ls -hlaFv --color=auto --time-style='+%Y-%m-%d %H:%M:%S' }
     goenv rehash &
   }
   () { # Python
-    eval "$(pyenv init - --no-rehash)"
+    eval "$(pyenv init - --no-rehash --path)"
     pyenv rehash &
   }
   () { # OCaml
@@ -131,11 +131,12 @@ chpwd() { ls -hlaFv --color=auto --time-style='+%Y-%m-%d %H:%M:%S' }
   export PATH="/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH"
   export PATH="~/.local/bin:$PATH"
   # export PATH="$HOME/kwankyag/ghdl-20181129-macosx-mcode/bin:$PATH"
-  export PATH="$DROPBOX/a/c/bin:$DROPBOX/a/c/bin/public:$PATH"
+  export PATH="$DROPBOX/e/code/bin:$DROPBOX/a/c/bin:$DROPBOX/a/c/bin/public:$PATH"
 }
 
 hash -d db="$DROPBOX"
 hash -d e="$DROPBOX/e"
+source $HOME/.zshrc.local
 
 alias ...='cd ../..'
 alias ....='cd ../../..'
@@ -154,7 +155,7 @@ alias drpbi='xattr -w com.dropbox.ignored 1'
 alias g='git'
 alias g++='g++ -std=c++17 -I$DROPBOX/b/codes/comp -Wall -Wno-logical-op-parentheses -fsanitize=address -O2'
 alias g++d='g++ -std=c++17 -I$DROPBOX/b/codes/comp -Wall -Wno-logical-op-parentheses -fsanitize=address -DEBUG -DDEBUG'
-alias hc='history -c'
+alias hi='setopt HIST_IGNORE_SPACE && echo "setopt HIST_IGNORE_SPACE"'
 alias ls=$'ls -hlaFv --color=auto --time-style=\'+%Y-%m-%d %H:%M:%S\''
 function md() { mkdir -p "$@" && eval cd "\"\$$#\"" }
 alias minisat="$DROPBOX/a/c/env-setup/minisat/core/minisat_release"
