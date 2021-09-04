@@ -26,8 +26,8 @@ function zle-keymap-select zle-line-init zle-line-finish
 }
 NEWLINE=$'\n'
 setopt PROMPT_SUBST
-PROMPT='%B%F{ 39 }%n@$(hostname) %F{ 136 }%? %F{ 23 }%~$NEWLINE%F{ 33 }$MODE_PROMPT%b%f '
-RPROMPT='| %B%F{ 27 }%D{%H:%M:%S}%b%f'
+# PROMPT='%B%F{ 39 }%n@$(hostname) %F{ 136 }%? %F{ 23 }%~$NEWLINE%F{ 33 }$MODE_PROMPT%b%f '
+PROMPT='%B%F{ 27 }%D{%H:%M:%S} %F{ 136 }%? %F{ 23 }%~$NEWLINE%F{ 33 }$MODE_PROMPT%b%f '
 PROMPT2='%_$ '
 SPROMPT='もしかして %r [yNae]: '
 zle -N zle-line-init
