@@ -14,4 +14,7 @@ brew install icdiff
 
 # tag: Macのタグ管理 https://github.com/jdberry/tag
 brew install tag
+
+# zinit
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zinit/master/doc/install.sh)"
 ```
