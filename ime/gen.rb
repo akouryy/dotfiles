@@ -1,5 +1,6 @@
 BaseChars = {
   # consonants => [key for 拗音, a, i, u, e, o]
+  ?⇧   => [nil, 'ぁ', 'ぃ', 'ぅ', 'ぇ', 'ぉ'],
   ?b   => [1,   'ば', 'び', 'ぶ', 'べ', 'ぼ'],
   ?c   => [nil, 'つぁ', 'つぃ', 'つ', 'つぇ', 'つぉ'],
   ?d   => [3,   'だ', 'でぃ', 'どぅ', 'で', 'ど'],
@@ -30,6 +31,11 @@ $table = DATA.each_line.map{ _1.chomp.split ?\t, 2 }.to_h
 
 def insert k, v
   return unless v
+
+  k = k.gsub(/⇧(\w)/) { $1.upcase }
+
+  return if k =~ /^\d/
+
   raise "tried to set $table[#{k.inspect}] (currently #{$table[k].inspect}) to #{v.inspect}" if $table[k]
 
   $table[k] = v
