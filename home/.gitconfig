@@ -32,7 +32,7 @@
 	chb = checkout -b
 	cl = clone
 	cm = commit -m
-	d = diff
+	d = icdiff
 	del = branch -d
 	dev = checkout develop
 	h = help
@@ -42,10 +42,12 @@
 	m = merge
 	mas = checkout master
 	md = merge develop
+	mf = merge --ff-only
 	mm = merge main
 	mmai = merge main
 	mmas = merge master
 	mom = merge origin/main
+	momas = merge origin/master
 	n = checkout -b
 	nb = checkout -b
 	p = push
@@ -59,3 +61,5 @@
   top = rev-parse --show-toplevel
 [gpg]
 	program = gpg
+[init]
+	defaultBranch = main

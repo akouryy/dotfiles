@@ -65,6 +65,7 @@ bindkey '^Z' predict-toggle
 export LSCOLORS=exfxcxdxbxegedabagacad
 export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
 chpwd() { ls -hlaFv --color=auto --time-style='+%Y-%m-%d %H:%M:%S' }
+export TIMEFMT=$'\nreal\t%E\nuser\t%U\nsys\t%S'
 
 () { # Languages
   () { # Scala
@@ -84,7 +85,7 @@ chpwd() { ls -hlaFv --color=auto --time-style='+%Y-%m-%d %H:%M:%S' }
     nodenv rehash &
   }
   () { # Go
-    export GOPATH=$DROPBOX/b/s/c/go
+    # export GOPATH=$DROPBOX/b/s/c/go
     export GOENV_DISABLE_GOPATH=1
     export PATH="$HOME/.goenv/bin:$PATH"
     eval "$(goenv init - --no-rehash)"
@@ -150,17 +151,27 @@ alias cd..=$'echo $\'use `..` instead.\' && cd ..'
 alias cdr='git top && cd $(git top)'
 alias chr=$'ruby -e \'p ARGV.map{|a| a.to_i.chr Encoding::UTF_8 }\' --'
 alias cl='cd -P'
+alias co='cargo compete'
 alias cp='cp -i'
 alias drpbi='xattr -w com.dropbox.ignored 1'
 alias g='git'
-alias g++='g++ -std=c++17 -I$DROPBOX/b/codes/comp -Wall -Wno-logical-op-parentheses -fsanitize=address -O2'
-alias g++d='g++ -std=c++17 -I$DROPBOX/b/codes/comp -Wall -Wno-logical-op-parentheses -fsanitize=address -DEBUG -DDEBUG'
+alias g++='g++ -std=c++20 -I$DROPBOX/b/codes/comp -Wall -Wno-logical-op-parentheses -fsanitize=address -O2'
+alias g++d='g++ -std=c++20 -I$DROPBOX/b/codes/comp -Wall -Wno-logical-op-parentheses -fsanitize=address -DEBUG -DDEBUG'
 alias hi='setopt HIST_IGNORE_SPACE && echo "setopt HIST_IGNORE_SPACE"'
 alias ls=$'ls -hlaFv --color=auto --time-style=\'+%Y-%m-%d %H:%M:%S\''
 function md() { mkdir -p "$@" && eval cd "\"\$$#\"" }
 alias minisat="$DROPBOX/a/c/env-setup/minisat/core/minisat_release"
 alias mv='mv -i'
 # ocaml: see above
+alias pn='pnpm'
+alias pna='pnpm add'
+alias pnd='pnpm add -D'
+alias pnr='pnpm run'
+alias pnrb='pnpm run build'
+alias pnrd='pnpm run dev'
+alias pnrl='pnpm run lint'
+alias pnrt='pnpm run test'
+alias pnrs='pnpm run start'
 alias poff='predict-off'
 alias pon='predict-on'
 alias rm='rm -i'
@@ -173,11 +184,11 @@ alias wh='command -v' # alias wh='which -a'
 alias ya='yarn add'
 alias yd='yarn add --dev'
 alias yga='yarn global add'
-alias yr='yarn run'
-alias yrb='yarn run build'
-alias yrd='yarn run dev'
-alias yrl='yarn run lint'
-alias yrs='yarn run start'
+# alias yr='yarn run'
+# alias yrb='yarn run build'
+# alias yrd='yarn run dev'
+# alias yrl='yarn run lint'
+# alias yrs='yarn run start'
 alias yy='yarn'
 alias zshrc='sl ~/.zshrc'
 
@@ -206,4 +217,5 @@ zinit light-mode for \
 ### End of Zinit's installer chunk
 
 zinit light Tarrasch/zsh-autoenv
+zinit ice atload'FAST_HIGHLIGHT[chroma-ruby]='
 zinit light zdharma/fast-syntax-highlighting
