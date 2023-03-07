@@ -1,6 +1,7 @@
 /chrome/stylus-*.json
 /home/.zshrc.local
-/ime/dict-misc.tsv*
+/ime/dict-misc.tsv
+/ime/dict-*.txt
 /karabiner/automatic_backups/
 .DS_Store
 ~*

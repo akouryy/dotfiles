@@ -9,6 +9,7 @@ BaseChars = {
   ?h   => [1,   'は', 'ひ', nil, 'へ', 'ほ'],
   ?j   => [nil, 'じゃ', 'じ', 'じゅ', 'じぇ', 'じょ'],
   ?k   => [1,   'か', 'き', 'く', 'け', 'こ'],
+  ?K   => [nil, ?ヵ, nil, nil, ?ヶ, nil],
   ?l   => [nil, 'あ', 'い', 'う', 'え', 'お'],
   ?m   => [1,   'ま', 'み', 'む', 'め', 'も'],
   ?n   => [1,   'な', 'に', 'ぬ', 'ね', 'の'],
@@ -19,15 +20,18 @@ BaseChars = {
   ?t   => [3,   'た', 'てぃ', 'とぅ', 'て', 'と'],
   ?v   => [2,   'ゔぁ', 'ゔぃ', 'ゔ', 'ゔぇ', 'ゔぉ'],
   ?w   => [nil, 'わ', 'うぃ', nil, 'うぇ', 'を'],
+  ?W   => [nil, ?ゎ, nil, nil, nil, nil],
+  'wh' => [nil, 'うぁ', nil, nil, nil, 'うぉ'],
   ?x   => [nil, 'しゃ', 'し', 'しゅ', 'しぇ', 'しょ'],
   ?y   => [nil, 'や', nil, 'ゆ', 'いぇ', 'よ'],
+  ?Y   => [nil, ?ゃ, nil, ?ゅ, nil, ?ょ],
   ?z   => [nil, 'ざ', 'ずぃ', 'ず', 'ぜ', 'ぞ'],
   '@l' => [nil, 'ぁ', 'ぃ', 'ぅ', 'ぇ', 'ぉ'],
 }
 
 GREEKS = 'αβψδεφγηιξκλμνοπθρστθωςχυζ'
 
-$table = DATA.each_line.map{ _1.chomp.split ?\t, 2 }.to_h
+$table = DATA.each_line.map{ _1.chomp.split /\s+/, 2 }.to_h
 
 def insert k, v
   return unless v
@@ -58,11 +62,13 @@ def add_cons cons, kanas
     r: [3, ?っ],
     s: [0, ?っ],
     z: [0, ?ん],
+    1 => [0, ?う],
+    2 => [0, ?う],
     3 => [3, ?い],
-    4 => [3, ?い],
+    # 4 => [3, ?い],
     7 => [2, ?う],
     8 => [2, ?う],
-    9 => cons != 'ny' && [4, ?う],
+    # 9 => cons != 'ny' && [4, ?う],
     0 => cons != 'ny' && [4, ?う],
   }.each do |vowel, (kana_index, suffix)|
     insert "#{cons}#{vowel}", kanas[kana_index]&.+(suffix) if kana_index
@@ -100,87 +106,100 @@ File.write 'romantable.tsv', $table.map{ _1.join(?\t) + ?\n }.sort.join
 puts "Generated #{$table.size} entries."
 
 __END__
-_bot	⊥
-_exists	∃
-_forall	∀
-_land	∧
-_lnot	¬
-_lor	∨
-_pm	±
-_times	×
-_top	⊤
-_vdash	⊢
--	ー
-,	、
-;	っ
-.	。
-[	「
-]	」
-@@	@
-@a	←
-@d	→
-@s	↓
-@w	↑
-~	〜
-a	あ
-dcu	づ
-dja	ぢゃ
-dje	ぢぇ
-dji	ぢ
-djo	ぢょ
-dju	ぢゅ
-dwa	どぁ
-dwe	どぇ
-dwi	どぃ
-dwo	どぉ
-dwu	どぅ
-e	え
-gwa	ぐぁ
-gwe	ぐぇ
-gwi	ぐぃ
-gwo	ぐぉ
-gwu	ぐぅ
-i	い
-kwa	くゎ
-kwe	くぇ
-kwi	くぃ
-kwo	くぉ
-kwu	くぅ
-@lcu	っ
-@lka	ヵ
-@lke	ヶ
-@lwa	ゎ
-@lya	ゃ
-@lyo	ょ
-@lyu	ゅ
-n	ん
-nn	ん
-o	お
-swa	すぁ
-swe	すぇ
-swi	すぃ
-swo	すぉ
-swu	すぅ
-twa	とぁ
-twe	とぇ
-twi	とぃ
-two	とぉ
-twu	とぅ
-u	う
-wha	うぁ
-whe	うぇ
-whi	うぃ
-who	うぉ
-whu	う
-www	w	ww
-wye	ゑ
-wyi	ゐ
-z-	〜
-z,	‥
-z.	…
-z[	『
-z]	』
-z/	・
-zwa	ずぁ
-zwe	ずぇ
-zwo	ずぉ
+_bot ⊥
+_cap ∩
+_cup ∪
+_dashv ⊣
+_exists ∃
+_forall ∀
+_in ∈
+_land ∧
+_lnot ¬
+_lor ∨
+_ni ∋
+_odot ⊙
+_ominus ⊖
+_oplus ⊕
+_oslash ⊘
+_otimes ⊗
+_pm ±
+_subset ⊂
+_subseteq ⊆
+_subsetneq ⊊
+_supset ⊃
+_supseteq ⊇
+_supsetneq ⊋
+_times ×
+_top ⊤
+_varnothing ∅
+_vdash ⊢
+_vDash ⊨
+- ー
+, 、
+; っ
+. 。
+[ 「
+] 」
+@@ @
+@a ←
+@d →
+@s ↓
+@w ↑
+~ 〜
+a あ
+dcu づ
+dja ぢゃ
+dje ぢぇ
+dji ぢ
+djo ぢょ
+dju ぢゅ
+dwa どぁ
+dwe どぇ
+dwi どぃ
+dwo どぉ
+dwu どぅ
+e え
+gwa ぐぁ
+gwe ぐぇ
+gwi ぐぃ
+gwo ぐぉ
+gwu ぐぅ
+i い
+kwa くゎ
+kwe くぇ
+kwi くぃ
+kwo くぉ
+kwu くぅ
+@lcu っ
+@lka ヵ
+@lke ヶ
+@lwa ゎ
+@lya ゃ
+@lyo ょ
+@lyu ゅ
+n ん
+nn ん
+o お
+swa すぁ
+swe すぇ
+swi すぃ
+swo すぉ
+swu すぅ
+twa とぁ
+twe とぇ
+twi とぃ
+two とぉ
+twu とぅ
+u う
+www w ww
+wye ゑ
+wyi ゐ
+z- 〜
+z, ‥
+z. …
+z[ 『
+z] 』
+z/ ・
+zwa ずぁ
+zwe ずぇ
+zwo ずぉ
