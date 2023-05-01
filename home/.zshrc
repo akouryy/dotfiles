@@ -1,5 +1,6 @@
 autoload -Uz compinit && compinit
 autoload -Uz colors && colors
+# autoload -Uz predict-on; predict-on
 autoload -Uz terminfo
 
 setopt auto_cd
@@ -39,15 +40,11 @@ bindkey '^Z' predict-toggle
 
 export LSCOLORS=exfxcxdxbxegedabagacad
 export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
-chpwd() { ls -hlaFv --color=auto } # --time-style='+%Y-%m-%d %H:%M:%S'
+chpwd() { ls -hlaFv --color } # =auto --time-style='+%Y-%m-%d %H:%M:%S'
 export TIMEFMT=$'\nreal\t%E\nuser\t%U\nsys\t%S'
 
 () { # Languages
     eval "$(anyenv init -)"
-}
-
-() { # Completion
-    echo 'TODO: Completion'
 }
 
 () { # Other PATHs
@@ -57,7 +54,14 @@ export TIMEFMT=$'\nreal\t%E\nuser\t%U\nsys\t%S'
     # export PATH="$DROPBOX/e/code/bin:$DROPBOX/a/c/bin:$DROPBOX/a/c/bin/public:$PATH"
 }
 
+() { # Other PATHs
+  export PATH="$DROPBOX/e/code/bin:$PATH"
+  zshrc_path=$(readlink $HOME/.zshrc || echo $HOME/.zshrc)
+  export PATH="${zshrc_path:a:h}/../bin:$PATH"
+}
+
 hash -d db="$DROPBOX"
+hash -d dl="$HOME/Downloads"
 source $HOME/.zshrc.local
 
 alias ...='cd ../..'
@@ -66,17 +70,20 @@ alias .....='cd ../../../..'
 alias ......='cd ../../../../..'
 alias .......='cd ../../../../../..'
 alias bx='bundle exec'
+alias bxc='bundle exec rubocop'
+alias bxr='bundle exec rails'
+alias c='code .'
 alias cal='cal -y'
 alias cdr='git top && cd $(git top)'
-alias chr=$'ruby -e \'p ARGV.map{|a| a.to_i.chr Encoding::UTF_8 }\' --'
 alias cl='cd -P'
 alias co='cargo compete'
 alias cp='cp -i'
 alias drpbi='xattr -w com.dropbox.ignored 1'
+alias f='open .'
 alias g='git'
 alias g++='g++ -std=c++20 -I$DROPBOX/b/codes/comp -Wall -Wno-logical-op-parentheses -fsanitize=address -O2'
 alias g++d='g++ -std=c++20 -I$DROPBOX/b/codes/comp -Wall -Wno-logical-op-parentheses -fsanitize=address -DEBUG -DDEBUG'
-alias ls=$'ls -hlaFv --color=auto --time-style=\'+%Y-%m-%d %H:%M:%S\''
+alias ls=$'ls -hlaFv --color' # =auto --time-style=\'+%Y-%m-%d %H:%M:%S\''
 function md() { mkdir -p "$@" && eval cd "\"\$$#\"" }
 alias mv='mv -i'
 alias pn='pnpm'
@@ -92,5 +99,7 @@ alias poff='predict-off'
 alias pon='predict-on'
 alias rm='rm -i'
 alias u+x='chmod u+x'
+alias s='stree .'
 alias wh='command -v'
-alias zshrc='code `readlink ~/.zshrc`'
+alias x='chmod u+x'
+alias zshrc='code `readlink ~/.zshrc`/../..'

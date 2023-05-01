@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+(ARGV.empty? ? $stdin : ARGV).each do |a|
+  puts "[#{a.codepoints.join ' '}]\t0x[#{a.codepoints.map{_1.to_s 16}.join ' '}]"
+end
