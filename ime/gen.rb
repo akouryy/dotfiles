@@ -102,30 +102,40 @@ GREEKS.chars.zip (?a..?z).to_a do |g, l|
   insert "##{l.upcase}", g.upcase
 end
 
-File.write 'romantable.tsv', $table.map{ _1.join(?\t) + ?\n }.sort.join
+File.write 'romantable.tsv', $table.map{|k, v| [k, *v.split].join(?\t) + ?\n }.sort.join
 puts "Generated #{$table.size} entries."
 
 __END__
+_approx ≈
 _bot ⊥
 _cap ∩
 _cup ∪
 _dashv ⊣
+_equiv ≡
 _exists ∃
 _forall ∀
 _in ∈
+_infty ∞
 _land ∧
 _lnot ¬
 _lor ∨
+_neq ≠
 _ni ∋
+_notin ∉
 _odot ⊙
 _ominus ⊖
 _oplus ⊕
 _oslash ⊘
 _otimes ⊗
 _pm ±
+_prec ≺
+_preceq ⪯
+_simeq ≃
 _subset ⊂
 _subseteq ⊆
 _subsetneq ⊊
+_succ ≻
+_succeq ⪰
 _supset ⊃
 _supseteq ⊇
 _supsetneq ⊋
