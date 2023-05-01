@@ -1,0 +1,24 @@
+format = '$time$all'
+
+[directory]
+# fish_style_pwd_dir_length = 3
+before_repo_root_style = 'blue'
+repo_root_style = 'bold blue'
+style = 'bold blue'
+truncate_to_repo = false
+truncation_length = 100
+use_logical_path = false
+
+[directory.substitutions]
+# "~/Dropbox/e/cp/fy2023" = '~cp'
+# "~/Dropbox/e/code/dotfiles" = '~dot'
+"~/Dropbox/e" = '~e'
+"~/Downloads" = '~dl'
+# "~/Dropbox/e/web/gochisou" = '~goc'
+# "~/Dropbox/e/an/vt/wiki" = '~wiki'
+# "~/Dropbox/e/an/vt/yarcmng" = '~yarc'
+
+[time]
+disabled = false
+format = '[$time]($style) '
+style = 'yellow'
