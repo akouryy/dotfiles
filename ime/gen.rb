@@ -1,3 +1,66 @@
+Table = Data.define :mappings do
+  # @param data [#each_line]
+  # @return [Table]
+  def self.from_data data = DATA
+    new mappings: data.each_line.map{ _1.chomp.split /\s+/, 2 }.to_h
+  end
+
+  # @param mappings [Hash<String, String>]
+  # @return [void]
+  def initialize mappings: {}
+    super
+  end
+
+  # @param k [String]
+  # @param v [String, nil]
+  # @return [String, nil]
+  def insert k, v
+    return unless v
+
+    k = k.gsub(/⇧(\w)/) { $1.upcase }
+
+    return if k =~ /^\d/
+
+    raise "tried to set table[#{k.inspect}] (currently #{mappings[k].inspect}) to #{v.inspect}" if mappings[k]
+
+    mappings[k] = v
+  end
+
+  # @param column [Column]
+  # @return [void]
+  def add_column column
+    'aiueo'.chars.each do |vowel|
+      insert column.onset + vowel, column[vowel]
+    end
+
+    {
+      d: column.onset != '⇧' && [:e, ?ん],
+      h: column.onset != '⇧' && [:u, ?っ],
+      j: column.onset != '⇧' && [:u, ?ん],
+      k: column.onset != '⇧' && [:i, ?ん],
+      l: column.onset != '⇧' && [:o, ?ん],
+      m: column.onset != '⇧' && [:i, ?っ],
+      p: column.onset != '⇧' && [:o, ?っ],
+      q: column.onset != '⇧' && [:a, ?い],
+      r: column.onset != '⇧' && [:e, ?っ],
+      s: column.onset != '⇧' && [:a, ?っ],
+      z: column.onset != '⇧' && [:a, ?ん],
+      1 => [:a, ?う],
+      2 => [:a, ?う],
+      3 => [:e, ?い],
+      7 => [:u, ?う],
+      8 => [:u, ?う],
+      0 => column.onset != 'ny' && [:o, ?う],
+    }.each do |rime, (original_vowel, suffix)|
+      insert "#{column.onset}#{rime}", column[original_vowel]&.+(suffix) if original_vowel
+    end
+  end
+
+  def to_tsv
+    mappings.map{|k, v| [k, *v.split].join(?\t) + ?\n }.sort.join
+  end
+end
+
 Column = Data.define :onset, :yôon_key, :a, :i, :u, :e, :o do
   alias_method :[], :send
 
@@ -59,60 +122,20 @@ BASIC_COLUMNS = [
 
 GREEKS = 'αβψδεφγηιξκλμνοπθρστθωςχυζ'
 
-$table = DATA.each_line.map{ _1.chomp.split /\s+/, 2 }.to_h
-
-def insert k, v
-  return unless v
-
-  k = k.gsub(/⇧(\w)/) { $1.upcase }
-
-  return if k =~ /^\d/
-
-  raise "tried to set $table[#{k.inspect}] (currently #{$table[k].inspect}) to #{v.inspect}" if $table[k]
-
-  $table[k] = v
-end
-
-def add_column column
-  'aiueo'.chars.each do |vowel|
-    insert column.onset + vowel, column[vowel]
-  end
-
-  {
-    d: column.onset != '⇧' && [:e, ?ん],
-    h: column.onset != '⇧' && [:u, ?っ],
-    j: column.onset != '⇧' && [:u, ?ん],
-    k: column.onset != '⇧' && [:i, ?ん],
-    l: column.onset != '⇧' && [:o, ?ん],
-    m: column.onset != '⇧' && [:i, ?っ],
-    p: column.onset != '⇧' && [:o, ?っ],
-    q: column.onset != '⇧' && [:a, ?い],
-    r: column.onset != '⇧' && [:e, ?っ],
-    s: column.onset != '⇧' && [:a, ?っ],
-    z: column.onset != '⇧' && [:a, ?ん],
-    1 => [:a, ?う],
-    2 => [:a, ?う],
-    3 => [:e, ?い],
-    7 => [:u, ?う],
-    8 => [:u, ?う],
-    0 => column.onset != 'ny' && [:o, ?う],
-  }.each do |rime, (original_vowel, suffix)|
-    insert "#{column.onset}#{rime}", column[original_vowel]&.+(suffix) if original_vowel
-  end
-end
+table = Table.from_data
 
 BASIC_COLUMNS.each do |column|
-  add_column column
-  add_column column.yôon_column if column.yôon_column
+  table.add_column column
+  table.add_column column.yôon_column if column.yôon_column
 end
 
 GREEKS.chars.zip (?a..?z).to_a do |g, l|
-  insert "##{l}", g
-  insert "##{l.upcase}", g.upcase
+  table.insert "##{l}", g
+  table.insert "##{l.upcase}", g.upcase
 end
 
-File.write 'romantable.tsv', $table.map{|k, v| [k, *v.split].join(?\t) + ?\n }.sort.join
-puts "Generated #{$table.size} entries."
+File.write 'romantable.tsv', table.to_tsv
+$stderr.puts "Generated #{table.mappings.size} entries."
 
 __END__
 _approx ≈
