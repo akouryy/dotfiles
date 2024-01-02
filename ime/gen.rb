@@ -2,7 +2,7 @@ Table = Data.define :mappings do
   # @param data [#each_line]
   # @return [Table]
   def self.from_data data = DATA
-    new mappings: data.each_line.map{ _1.chomp.split /\s+/, 2 }.to_h
+    new mappings: data.each_line.map { _1.chomp.split /\s+/, 2 }.to_h
   end
 
   # @param mappings [Hash<String, String>]
@@ -19,8 +19,6 @@ Table = Data.define :mappings do
 
     k = k.gsub(/⇧(\w)/) { $1.upcase }
 
-    return if k =~ /^\d/
-
     raise "tried to set table[#{k.inspect}] (currently #{mappings[k].inspect}) to #{v.inspect}" if mappings[k]
 
     mappings[k] = v
@@ -33,29 +31,32 @@ Table = Data.define :mappings do
       insert column.onset + vowel, column[vowel]
     end
 
-    {
-      d: column.onset != '⇧' && [:e, ?ん],
-      h: column.onset != '⇧' && [:u, ?っ],
-      j: column.onset != '⇧' && [:u, ?ん],
-      k: column.onset != '⇧' && [:i, ?ん],
-      l: column.onset != '⇧' && [:o, ?ん],
-      m: column.onset != '⇧' && [:i, ?っ],
-      p: column.onset != '⇧' && [:o, ?っ],
-      q: column.onset != '⇧' && [:a, ?い],
-      r: column.onset != '⇧' && [:e, ?っ],
-      s: column.onset != '⇧' && [:a, ?っ],
-      z: column.onset != '⇧' && [:a, ?ん],
-      1 => [:a, ?う],
-      2 => [:a, ?う],
-      3 => [:e, ?い],
-      7 => [:u, ?う],
-      8 => [:u, ?う],
-      0 => column.onset != 'ny' && [:o, ?う],
-    }.each do |rime, (original_vowel, suffix)|
-      insert "#{column.onset}#{rime}", column[original_vowel]&.+(suffix) if original_vowel
+    unless ['', '⇧'].include? column.onset
+      {
+        d: [:e, ?ん],
+        h: [:u, ?っ],
+        j: [:u, ?ん],
+        k: [:i, ?ん],
+        l: [:o, ?ん],
+        m: [:i, ?っ],
+        p: [:o, ?っ],
+        q: [:a, ?い],
+        r: [:e, ?っ],
+        s: [:a, ?っ],
+        z: [:a, ?ん],
+        1 => [:a, ?う],
+        2 => [:a, ?う],
+        3 => [:e, ?い],
+        7 => [:u, ?う],
+        8 => [:u, ?う],
+        0 => column.onset != 'ny' && [:o, ?う],
+      }.each do |rime, (original_vowel, suffix)|
+        insert "#{column.onset}#{rime}", column[original_vowel]&.+(suffix) if original_vowel
+      end
     end
   end
 
+  # @return [String]
   def to_tsv
     mappings.map{|k, v| [k, *v.split].join(?\t) + ?\n }.sort.join
   end
@@ -193,13 +194,8 @@ _vDash ⊨
 @s ↓
 @w ↑
 ~ 〜
-a あ
-e え
-i い
 n ん
 nn ん
-o お
-u う
 www w ww
 z- 〜
 z, ‥
