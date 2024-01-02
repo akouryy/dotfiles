@@ -1,17 +1,13 @@
 Column = Data.define :yôon_key, :a, :i, :u, :e, :o do
-  def [] index
-    case index
-    in Integer         then [a, i, u, e, o][index]
-    in String | Symbol then send index
-    end
-  end
+  alias_method :[], :send
 
+  # @return [Column, nil]
   def yôon_column
     if yôon_key
       yôon_prefix =
         case yôon_key
-        in String           then yôon_key
-        in Integer | Symbol then self[yôon_key]
+        in String then yôon_key
+        in Symbol then self[yôon_key]
         end
 
       Column.new(nil, *'ゃぃゅぇょ'.chars.map { |small| yôon_prefix + small })
@@ -88,8 +84,8 @@ def add_cons cons, column
     7 => [:u, ?う],
     8 => [:u, ?う],
     0 => cons != 'ny' && [:o, ?う],
-  }.each do |rime, (kana_index, suffix)|
-    insert "#{cons}#{rime}", column[kana_index]&.+(suffix) if kana_index
+  }.each do |rime, (original_vowel, suffix)|
+    insert "#{cons}#{rime}", column[original_vowel]&.+(suffix) if original_vowel
   end
 end
 
