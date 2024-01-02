@@ -1,3 +1,5 @@
+require 'strscan'
+
 Table = Data.define :mappings do
   # @param data [#each_line]
   # @return [Table]
@@ -65,6 +67,39 @@ end
 Column = Data.define :onset, :yôon_key, :a, :i, :u, :e, :o do
   alias_method :[], :send
 
+  # "あいうえお" という文字列を a: "あ", i: "い", ... という Column に変換する。
+  # 大きい文字と小さい文字が連続する場合、ひとまとまりになる。
+  # nil は "×" で表す。
+  # @param onset [String]
+  # @param string [String]
+  # @param yôon_key [String, Symbol, nil]
+  # @return [Column]
+  def self.parse onset, string, yôon_key: nil
+    aiueo = []
+
+    scanner = StringScanner.new string
+
+    until scanner.eos?
+      scanner.scan %r[
+        (?<none> ×)
+      | (?<kana>
+          [\p{Hiragana}\p{Katakana}]
+          (?:
+            (?<! [ぁぃぅぇぉヵヶゃゅょゎ])
+            [ぁぃぅぇぉヵヶゃゅょゎ]
+          )?+
+        )
+      ]x
+      raise "invalid string: #{scanner.inspect}" unless scanner.matched?
+
+      aiueo << (scanner[:none] ? nil : scanner[:kana])
+    end
+
+    aiueo => [a, i, u, e, o]
+
+    Column.new(onset:, yôon_key:, a:, i:, u:, e:, o:)
+  end
+
   # @return [Column, nil]
   def yôon_column
     if yôon_key
@@ -80,45 +115,46 @@ Column = Data.define :onset, :yôon_key, :a, :i, :u, :e, :o do
 end
 
 BASIC_COLUMNS = [
-  Column.new(?⇧,   nil, 'ぁ', 'ぃ', 'ぅ', 'ぇ', 'ぉ'),
-  Column.new(?b,   :i,  'ば', 'び', 'ぶ', 'べ', 'ぼ'),
-  Column.new(?c,   nil, 'つぁ', 'つぃ', 'つ', 'つぇ', 'つぉ'),
-  Column.new(?d,   :e,  'だ', 'でぃ', 'どぅ', 'で', 'ど'),
-  Column.new('dc', nil, nil, nil, 'づ', nil, nil),
-  Column.new('dj', nil, 'ぢゃ', 'ぢ', 'ぢゅ', 'ぢぇ', 'ぢょ'),
-  Column.new('dw', nil, 'どぁ', 'どぃ', 'どぅ', 'どぇ', 'どぉ'),
-  Column.new(?f,   :u,  'ふぁ', 'ふぃ', 'ふ', 'ふぇ', 'ふぉ'),
-  Column.new(?g,   :i,  'が', 'ぎ', 'ぐ', 'げ', 'ご'),
-  Column.new('gw', nil, 'ぐゎ', 'ぐぃ', 'ぐぅ', 'ぐぇ', 'ぐぉ'),
-  Column.new(?h,   :i,  'は', 'ひ', nil, 'へ', 'ほ'),
-  Column.new(?j,   nil, 'じゃ', 'じ', 'じゅ', 'じぇ', 'じょ'),
-  Column.new(?k,   :i,  'か', 'き', 'く', 'け', 'こ'),
-  Column.new('kw', nil, 'くゎ', 'くぃ', 'くぅ', 'くぇ', 'くぉ'),
-  Column.new(?K,   nil, ?ヵ, nil, nil, ?ヶ, nil),
-  Column.new(?l,   nil, 'あ', 'い', 'う', 'え', 'お'),
-  Column.new(?m,   :i,  'ま', 'み', 'む', 'め', 'も'),
-  Column.new(?n,   :i,  'な', 'に', 'ぬ', 'ね', 'の'),
-  Column.new(?p,   :i,  'ぱ', 'ぴ', 'ぷ', 'ぺ', 'ぽ'),
-  Column.new(?q,   nil, 'ちゃ', 'ち', 'ちゅ', 'ちぇ', 'ちょ'),
-  Column.new(?r,   :i,  'ら', 'り', 'る', 'れ', 'ろ'),
-  Column.new(?s,   'し', 'さ', 'すぃ', 'す', 'せ', 'そ'),
-  Column.new('sw', nil, 'すぁ', nil, 'すぅ', 'すぇ', 'すぉ'),
-  Column.new(?t,   :e,  'た', 'てぃ', 'とぅ', 'て', 'と'),
-  Column.new('tw', nil, 'とぁ', 'とぃ', nil, 'とぇ', 'とぉ'),
-  Column.new(?v,   :u,  'ゔぁ', 'ゔぃ', 'ゔ', 'ゔぇ', 'ゔぉ'),
-  Column.new(?w,   nil, 'わ', 'うぃ', nil, 'うぇ', 'を'),
-  Column.new(?W,   nil, ?ゎ, nil, nil, nil, nil),
-  Column.new('wh', nil, 'うぁ', nil, nil, nil, 'うぉ'),
-  Column.new('wy', nil, nil, 'ゑ', nil, 'ゐ', nil),
-  Column.new(?x,   nil, 'しゃ', 'し', 'しゅ', 'しぇ', 'しょ'),
-  Column.new(?y,   nil, 'や', nil, 'ゆ', 'いぇ', 'よ'),
-  Column.new(?Y,   nil, ?ゃ, nil, ?ゅ, nil, ?ょ),
-  Column.new(?z,   nil, 'ざ', 'ずぃ', 'ず', 'ぜ', 'ぞ'),
-  Column.new('zw', nil, 'ずぁ', nil, 'ずぅ', 'ずぇ', 'ずぉ'),
-  Column.new('@l', nil, 'ぁ', 'ぃ', 'ぅ', 'ぇ', 'ぉ'),
-  Column.new('@lk', nil, 'ヵ', nil, nil, 'ヶ', nil),
-  Column.new('@lw', nil, 'ゎ', nil, nil, nil, nil),
-  Column.new('@ly', nil, 'ゃ', nil, 'ゅ', nil, 'ょ'),
+  Column.parse('', 'あいうえお'),
+  Column.parse(?⇧, 'ぁぃぅぇぉ'),
+  Column.parse(?b, 'ばびぶべぼ', yôon_key: :i),
+  Column.parse(?c, 'つぁつぃつつぇつぉ'),
+  Column.parse(?d, 'だでぃどぅでど', yôon_key: :e),
+  Column.parse('dc', '××づ××'),
+  Column.parse('dj', 'ぢゃぢぢゅぢぇぢょ'),
+  Column.parse('dw', 'どぁどぃどぅどぇどぉ'),
+  Column.parse(?f, 'ふぁふぃふふぇふぉ', yôon_key: :u),
+  Column.parse(?g, 'がぎぐげご', yôon_key: :i),
+  Column.parse('gw', 'ぐゎぐぃぐぅぐぇぐぉ'),
+  Column.parse(?h, 'はひ×へほ', yôon_key: :i),
+  Column.parse(?j, 'じゃじじゅじぇじょ'),
+  Column.parse(?k, 'かきくけこ', yôon_key: :i),
+  Column.parse('kw', 'くゎくぃくぅくぇくぉ'),
+  Column.parse(?K, 'ヵ××ヶ×'),
+  Column.parse(?l, 'あいうえお'),
+  Column.parse(?m, 'まみむめも', yôon_key: :i),
+  Column.parse(?n, 'なにぬねの', yôon_key: :i),
+  Column.parse(?p, 'ぱぴぷぺぽ', yôon_key: :i),
+  Column.parse(?q, 'ちゃちちゅちぇちょ'),
+  Column.parse(?r, 'らりるれろ', yôon_key: :i),
+  Column.parse(?s, 'さすぃすせそ', yôon_key: 'し'),
+  Column.parse('sw', 'すぁ×すぅすぇすぉ'),
+  Column.parse(?t, 'たてぃとぅてと', yôon_key: :e),
+  Column.parse('tw', 'とぁとぃ×とぇとぉ'),
+  Column.parse(?v, 'ゔぁゔぃゔゔぇゔぉ', yôon_key: :u),
+  Column.parse(?w, 'わうぃ×うぇを'),
+  Column.parse(?W, 'ゎ××××'),
+  Column.parse('wh', 'うぁ×××うぉ'),
+  Column.parse('wy', '×ゑ×ゐ×'),
+  Column.parse(?x, 'しゃししゅしぇしょ'),
+  Column.parse(?y, 'や×ゆいぇよ'),
+  Column.parse(?Y, 'ゃ×ゅ×ょ'),
+  Column.parse(?z, 'ざずぃずぜぞ'),
+  Column.parse('zw', 'ずぁ×ずぅずぇずぉ'),
+  Column.parse('@l', 'ぁぃぅぇぉ'),
+  Column.parse('@lk', 'ヵ××ヶ×'),
+  Column.parse('@lw', 'ゎ××××'),
+  Column.parse('@ly', 'ゃ×ゅ×ょ'),
 ]
 
 GREEKS = 'αβψδεφγηιξκλμνοπθρστθωςχυζ'
