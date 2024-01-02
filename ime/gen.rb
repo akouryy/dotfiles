@@ -53,7 +53,7 @@ Table = Data.define :mappings do
       '8': [:u, ?う],
       '0': [:o, ?う],
     }.each do |rime, (original_vowel, suffix)|
-      if column.allowed_rimes =~ rime
+      if column.allowed_rimes =~ rime && column.allowed_vowels =~ original_vowel
         insert "#{column.onset}#{rime}", column[original_vowel]&.+(suffix) if original_vowel
       end
     end
@@ -65,7 +65,7 @@ Table = Data.define :mappings do
   end
 end
 
-Column = Data.define :onset, :yôon_key, :a, :i, :u, :e, :o, :allowed_rimes, :yôon_column_properties do
+Column = Data.define :onset, :a, :i, :u, :e, :o, :allowed_vowels, :allowed_rimes, :yôon_key, :yôon_column_properties do
   alias_method :[], :send
 
   # "あいうえお" という文字列を a: "あ", i: "い", ... という Column に変換する。
@@ -101,7 +101,7 @@ Column = Data.define :onset, :yôon_key, :a, :i, :u, :e, :o, :allowed_rimes, :y�
     Column.new onset:, a:, i:, u:, e:, o:, **kwargs
   end
 
-  def initialize onset:, a:, i:, u:, e:, o:, yôon_key: nil, allowed_rimes: /./, yôon_column_properties: {}
+  def initialize onset:, a:, i:, u:, e:, o:, allowed_vowels: /./, allowed_rimes: /./, yôon_key: nil, yôon_column_properties: {}
     super
   end
 
@@ -125,7 +125,7 @@ end
 
 BASIC_COLUMNS = [
   Column.parse('', 'あいうえお', allowed_rimes: /[aiueo]/),
-  Column.parse(?⇧, 'ぁぃぅぇぉ', allowed_rimes: /[aiueo]/),
+  Column.parse(?⇧, 'ぁぃぅぇぉ', allowed_rimes: /[aiueo]/, yôon_key: '', yôon_column_properties: { allowed_vowels: /[auo]/ }),
   Column.parse(?b, 'ばびぶべぼ', yôon_key: :i),
   Column.parse(?c, 'つぁつぃつつぇつぉ'),
   Column.parse(?d, 'だでぃどぅでど', yôon_key: :e),
@@ -157,13 +157,11 @@ BASIC_COLUMNS = [
   Column.parse('wy', '×ゑ×ゐ×'),
   Column.parse(?x, 'しゃししゅしぇしょ'),
   Column.parse(?y, 'や×ゆいぇよ'),
-  Column.parse(?Y, 'ゃ×ゅ×ょ'),
   Column.parse(?z, 'ざずぃずぜぞ'),
   Column.parse('zw', 'ずぁ×ずぅずぇずぉ'),
-  Column.parse('@l', 'ぁぃぅぇぉ'),
+  Column.parse('@l', 'ぁぃぅぇぉ', yôon_key: '', yôon_column_properties: { allowed_vowels: /[auo]/ }),
   Column.parse('@lk', 'ヵ××ヶ×'),
   Column.parse('@lw', 'ゎ××××'),
-  Column.parse('@ly', 'ゃ×ゅ×ょ'),
 ]
 
 GREEKS = 'αβψδεφγηιξκλμνοπθρστθωςχυζ'
