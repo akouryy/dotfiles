@@ -20,11 +20,16 @@ BaseChars = {
   ?b   => Column.new(:i,  'ば', 'び', 'ぶ', 'べ', 'ぼ'),
   ?c   => Column.new(nil, 'つぁ', 'つぃ', 'つ', 'つぇ', 'つぉ'),
   ?d   => Column.new(:e,  'だ', 'でぃ', 'どぅ', 'で', 'ど'),
+  'dc' => Column.new(nil, nil, nil, 'づ', nil, nil),
+  'dj' => Column.new(nil, 'ぢゃ', 'ぢ', 'ぢゅ', 'ぢぇ', 'ぢょ'),
+  'dw' => Column.new(nil, 'どぁ', 'どぃ', 'どぅ', 'どぇ', 'どぉ'),
   ?f   => Column.new(:u,  'ふぁ', 'ふぃ', 'ふ', 'ふぇ', 'ふぉ'),
   ?g   => Column.new(:i,  'が', 'ぎ', 'ぐ', 'げ', 'ご'),
+  'gw' => Column.new(nil, 'ぐゎ', 'ぐぃ', 'ぐぅ', 'ぐぇ', 'ぐぉ'),
   ?h   => Column.new(:i,  'は', 'ひ', nil, 'へ', 'ほ'),
   ?j   => Column.new(nil, 'じゃ', 'じ', 'じゅ', 'じぇ', 'じょ'),
   ?k   => Column.new(:i,  'か', 'き', 'く', 'け', 'こ'),
+  'kw' => Column.new(nil, 'くゎ', 'くぃ', 'くぅ', 'くぇ', 'くぉ'),
   ?K   => Column.new(nil, ?ヵ, nil, nil, ?ヶ, nil),
   ?l   => Column.new(nil, 'あ', 'い', 'う', 'え', 'お'),
   ?m   => Column.new(:i,  'ま', 'み', 'む', 'め', 'も'),
@@ -33,16 +38,23 @@ BaseChars = {
   ?q   => Column.new(nil, 'ちゃ', 'ち', 'ちゅ', 'ちぇ', 'ちょ'),
   ?r   => Column.new(:i,  'ら', 'り', 'る', 'れ', 'ろ'),
   ?s   => Column.new('し', 'さ', 'すぃ', 'す', 'せ', 'そ'),
+  'sw' => Column.new(nil, 'すぁ', nil, 'すぅ', 'すぇ', 'すぉ'),
   ?t   => Column.new(:e,  'た', 'てぃ', 'とぅ', 'て', 'と'),
+  'tw' => Column.new(nil, 'とぁ', 'とぃ', nil, 'とぇ', 'とぉ'),
   ?v   => Column.new(:u,  'ゔぁ', 'ゔぃ', 'ゔ', 'ゔぇ', 'ゔぉ'),
   ?w   => Column.new(nil, 'わ', 'うぃ', nil, 'うぇ', 'を'),
   ?W   => Column.new(nil, ?ゎ, nil, nil, nil, nil),
   'wh' => Column.new(nil, 'うぁ', nil, nil, nil, 'うぉ'),
+  'wy' => Column.new(nil, nil, 'ゑ', nil, 'ゐ', nil),
   ?x   => Column.new(nil, 'しゃ', 'し', 'しゅ', 'しぇ', 'しょ'),
   ?y   => Column.new(nil, 'や', nil, 'ゆ', 'いぇ', 'よ'),
   ?Y   => Column.new(nil, ?ゃ, nil, ?ゅ, nil, ?ょ),
   ?z   => Column.new(nil, 'ざ', 'ずぃ', 'ず', 'ぜ', 'ぞ'),
+  'zw' => Column.new(nil, 'ずぁ', nil, 'ずぅ', 'ずぇ', 'ずぉ'),
   '@l' => Column.new(nil, 'ぁ', 'ぃ', 'ぅ', 'ぇ', 'ぉ'),
+  '@lk' => Column.new(nil, 'ヵ', nil, nil, 'ヶ', nil),
+  '@lw' => Column.new(nil, 'ゎ', nil, nil, nil, nil),
+  '@ly' => Column.new(nil, 'ゃ', nil, 'ゅ', nil, 'ょ'),
 }
 
 GREEKS = 'αβψδεφγηιξκλμνοπθρστθωςχυζ'
@@ -154,63 +166,21 @@ _vDash ⊨
 @@ @
 @a ←
 @d →
+@lcu っ
 @s ↓
 @w ↑
 ~ 〜
 a あ
-dcu づ
-dja ぢゃ
-dje ぢぇ
-dji ぢ
-djo ぢょ
-dju ぢゅ
-dwa どぁ
-dwe どぇ
-dwi どぃ
-dwo どぉ
-dwu どぅ
 e え
-gwa ぐぁ
-gwe ぐぇ
-gwi ぐぃ
-gwo ぐぉ
-gwu ぐぅ
 i い
-kwa くゎ
-kwe くぇ
-kwi くぃ
-kwo くぉ
-kwu くぅ
-@lcu っ
-@lka ヵ
-@lke ヶ
-@lwa ゎ
-@lya ゃ
-@lyo ょ
-@lyu ゅ
 n ん
 nn ん
 o お
-swa すぁ
-swe すぇ
-swi すぃ
-swo すぉ
-swu すぅ
-twa とぁ
-twe とぇ
-twi とぃ
-two とぉ
-twu とぅ
 u う
 www w ww
-wye ゑ
-wyi ゐ
 z- 〜
 z, ‥
 z. …
 z[ 『
 z] 』
 z/ ・
-zwa ずぁ
-zwe ずぇ
-zwo ずぉ
