@@ -129,7 +129,7 @@ BASIC_COLUMNS = [
   Column.parse(?b, 'ばびぶべぼ', yôon_key: :i),
   Column.parse(?c, 'つぁつぃつつぇつぉ'),
   Column.parse(?d, 'だでぃどぅでど', yôon_key: :e),
-  Column.parse('dc', '××づ××'),
+  Column.parse('dc', 'づぁづぃづづぇづぉ'),
   Column.parse('dj', 'ぢゃぢぢゅぢぇぢょ'),
   Column.parse('dw', 'どぁどぃどぅどぇどぉ'),
   Column.parse(?f, 'ふぁふぃふふぇふぉ', yôon_key: :u),
