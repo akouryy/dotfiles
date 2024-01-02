@@ -29,30 +29,31 @@ Table = Data.define :mappings do
   # @param column [Column]
   # @return [void]
   def add_column column
-    'aiueo'.chars.each do |vowel|
-      insert column.onset + vowel, column[vowel]
-    end
-
-    unless ['', '⇧'].include? column.onset
-      {
-        d: [:e, ?ん],
-        h: [:u, ?っ],
-        j: [:u, ?ん],
-        k: [:i, ?ん],
-        l: [:o, ?ん],
-        m: [:i, ?っ],
-        p: [:o, ?っ],
-        q: [:a, ?い],
-        r: [:e, ?っ],
-        s: [:a, ?っ],
-        z: [:a, ?ん],
-        1 => [:a, ?う],
-        2 => [:a, ?う],
-        3 => [:e, ?い],
-        7 => [:u, ?う],
-        8 => [:u, ?う],
-        0 => column.onset != 'ny' && [:o, ?う],
-      }.each do |rime, (original_vowel, suffix)|
+    {
+      a: [:a, ''],
+      d: [:e, ?ん],
+      e: [:e, ''],
+      h: [:u, ?っ],
+      i: [:i, ''],
+      j: [:u, ?ん],
+      k: [:i, ?ん],
+      l: [:o, ?ん],
+      m: [:i, ?っ],
+      o: [:o, ''],
+      p: [:o, ?っ],
+      q: [:a, ?い],
+      r: [:e, ?っ],
+      s: [:a, ?っ],
+      u: [:u, ''],
+      z: [:a, ?ん],
+      '1': [:a, ?う],
+      '2': [:a, ?う],
+      '3': [:e, ?い],
+      '7': [:u, ?う],
+      '8': [:u, ?う],
+      '0': [:o, ?う],
+    }.each do |rime, (original_vowel, suffix)|
+      if column.allowed_rimes =~ rime
         insert "#{column.onset}#{rime}", column[original_vowel]&.+(suffix) if original_vowel
       end
     end
@@ -64,7 +65,7 @@ Table = Data.define :mappings do
   end
 end
 
-Column = Data.define :onset, :yôon_key, :a, :i, :u, :e, :o do
+Column = Data.define :onset, :yôon_key, :a, :i, :u, :e, :o, :allowed_rimes, :yôon_column_properties do
   alias_method :[], :send
 
   # "あいうえお" という文字列を a: "あ", i: "い", ... という Column に変換する。
@@ -74,7 +75,7 @@ Column = Data.define :onset, :yôon_key, :a, :i, :u, :e, :o do
   # @param string [String]
   # @param yôon_key [String, Symbol, nil]
   # @return [Column]
-  def self.parse onset, string, yôon_key: nil
+  def self.parse onset, string, **kwargs
     aiueo = []
 
     scanner = StringScanner.new string
@@ -97,7 +98,11 @@ Column = Data.define :onset, :yôon_key, :a, :i, :u, :e, :o do
 
     aiueo => [a, i, u, e, o]
 
-    Column.new(onset:, yôon_key:, a:, i:, u:, e:, o:)
+    Column.new onset:, a:, i:, u:, e:, o:, **kwargs
+  end
+
+  def initialize onset:, a:, i:, u:, e:, o:, yôon_key: nil, allowed_rimes: /./, yôon_column_properties: {}
+    super
   end
 
   # @return [Column, nil]
@@ -109,14 +114,18 @@ Column = Data.define :onset, :yôon_key, :a, :i, :u, :e, :o do
         in Symbol then self[yôon_key]
         end
 
-      Column.new(onset + ?y, nil, *'ゃぃゅぇょ'.chars.map { |small| yôon_prefix + small })
+      Column.new(
+        onset: onset + ?y,
+        **'aiueo'.chars.zip('ゃぃゅぇょ'.chars).to_h { |vowel, small| [vowel.to_sym, yôon_prefix + small] },
+        **yôon_column_properties,
+      )
     end
   end
 end
 
 BASIC_COLUMNS = [
-  Column.parse('', 'あいうえお'),
-  Column.parse(?⇧, 'ぁぃぅぇぉ'),
+  Column.parse('', 'あいうえお', allowed_rimes: /[aiueo]/),
+  Column.parse(?⇧, 'ぁぃぅぇぉ', allowed_rimes: /[aiueo]/),
   Column.parse(?b, 'ばびぶべぼ', yôon_key: :i),
   Column.parse(?c, 'つぁつぃつつぇつぉ'),
   Column.parse(?d, 'だでぃどぅでど', yôon_key: :e),
@@ -133,7 +142,7 @@ BASIC_COLUMNS = [
   Column.parse(?K, 'ヵ××ヶ×'),
   Column.parse(?l, 'あいうえお'),
   Column.parse(?m, 'まみむめも', yôon_key: :i),
-  Column.parse(?n, 'なにぬねの', yôon_key: :i),
+  Column.parse(?n, 'なにぬねの', yôon_key: :i, yôon_column_properties: { allowed_rimes: /[^0]/ }),
   Column.parse(?p, 'ぱぴぷぺぽ', yôon_key: :i),
   Column.parse(?q, 'ちゃちちゅちぇちょ'),
   Column.parse(?r, 'らりるれろ', yôon_key: :i),
