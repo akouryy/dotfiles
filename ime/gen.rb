@@ -1,32 +1,52 @@
+Column = Data.define :yôon_key, :a, :i, :u, :e, :o do
+  def [] index
+    case index
+    in Integer         then [a, i, u, e, o][index]
+    in String | Symbol then send index
+    end
+  end
+
+  def yôon_column
+    if yôon_key
+      yôon_prefix =
+        case yôon_key
+        in String           then yôon_key
+        in Integer | Symbol then self[yôon_key]
+        end
+
+      Column.new(nil, *'ゃぃゅぇょ'.chars.map { |small| yôon_prefix + small })
+    end
+  end
+end
+
 BaseChars = {
-  # consonants => [key for 拗音, a, i, u, e, o]
-  ?⇧   => [nil, 'ぁ', 'ぃ', 'ぅ', 'ぇ', 'ぉ'],
-  ?b   => [1,   'ば', 'び', 'ぶ', 'べ', 'ぼ'],
-  ?c   => [nil, 'つぁ', 'つぃ', 'つ', 'つぇ', 'つぉ'],
-  ?d   => [3,   'だ', 'でぃ', 'どぅ', 'で', 'ど'],
-  ?f   => [2,   'ふぁ', 'ふぃ', 'ふ', 'ふぇ', 'ふぉ'],
-  ?g   => [1,   'が', 'ぎ', 'ぐ', 'げ', 'ご'],
-  ?h   => [1,   'は', 'ひ', nil, 'へ', 'ほ'],
-  ?j   => [nil, 'じゃ', 'じ', 'じゅ', 'じぇ', 'じょ'],
-  ?k   => [1,   'か', 'き', 'く', 'け', 'こ'],
-  ?K   => [nil, ?ヵ, nil, nil, ?ヶ, nil],
-  ?l   => [nil, 'あ', 'い', 'う', 'え', 'お'],
-  ?m   => [1,   'ま', 'み', 'む', 'め', 'も'],
-  ?n   => [1,   'な', 'に', 'ぬ', 'ね', 'の'],
-  ?p   => [1,   'ぱ', 'ぴ', 'ぷ', 'ぺ', 'ぽ'],
-  ?q   => [nil, 'ちゃ', 'ち', 'ちゅ', 'ちぇ', 'ちょ'],
-  ?r   => [1,   'ら', 'り', 'る', 'れ', 'ろ'],
-  ?s   => ['し', 'さ', 'すぃ', 'す', 'せ', 'そ'],
-  ?t   => [3,   'た', 'てぃ', 'とぅ', 'て', 'と'],
-  ?v   => [2,   'ゔぁ', 'ゔぃ', 'ゔ', 'ゔぇ', 'ゔぉ'],
-  ?w   => [nil, 'わ', 'うぃ', nil, 'うぇ', 'を'],
-  ?W   => [nil, ?ゎ, nil, nil, nil, nil],
-  'wh' => [nil, 'うぁ', nil, nil, nil, 'うぉ'],
-  ?x   => [nil, 'しゃ', 'し', 'しゅ', 'しぇ', 'しょ'],
-  ?y   => [nil, 'や', nil, 'ゆ', 'いぇ', 'よ'],
-  ?Y   => [nil, ?ゃ, nil, ?ゅ, nil, ?ょ],
-  ?z   => [nil, 'ざ', 'ずぃ', 'ず', 'ぜ', 'ぞ'],
-  '@l' => [nil, 'ぁ', 'ぃ', 'ぅ', 'ぇ', 'ぉ'],
+  ?⇧   => Column.new(nil, 'ぁ', 'ぃ', 'ぅ', 'ぇ', 'ぉ'),
+  ?b   => Column.new(:i,  'ば', 'び', 'ぶ', 'べ', 'ぼ'),
+  ?c   => Column.new(nil, 'つぁ', 'つぃ', 'つ', 'つぇ', 'つぉ'),
+  ?d   => Column.new(:e,  'だ', 'でぃ', 'どぅ', 'で', 'ど'),
+  ?f   => Column.new(:u,  'ふぁ', 'ふぃ', 'ふ', 'ふぇ', 'ふぉ'),
+  ?g   => Column.new(:i,  'が', 'ぎ', 'ぐ', 'げ', 'ご'),
+  ?h   => Column.new(:i,  'は', 'ひ', nil, 'へ', 'ほ'),
+  ?j   => Column.new(nil, 'じゃ', 'じ', 'じゅ', 'じぇ', 'じょ'),
+  ?k   => Column.new(:i,  'か', 'き', 'く', 'け', 'こ'),
+  ?K   => Column.new(nil, ?ヵ, nil, nil, ?ヶ, nil),
+  ?l   => Column.new(nil, 'あ', 'い', 'う', 'え', 'お'),
+  ?m   => Column.new(:i,  'ま', 'み', 'む', 'め', 'も'),
+  ?n   => Column.new(:i,  'な', 'に', 'ぬ', 'ね', 'の'),
+  ?p   => Column.new(:i,  'ぱ', 'ぴ', 'ぷ', 'ぺ', 'ぽ'),
+  ?q   => Column.new(nil, 'ちゃ', 'ち', 'ちゅ', 'ちぇ', 'ちょ'),
+  ?r   => Column.new(:i,  'ら', 'り', 'る', 'れ', 'ろ'),
+  ?s   => Column.new('し', 'さ', 'すぃ', 'す', 'せ', 'そ'),
+  ?t   => Column.new(:e,  'た', 'てぃ', 'とぅ', 'て', 'と'),
+  ?v   => Column.new(:u,  'ゔぁ', 'ゔぃ', 'ゔ', 'ゔぇ', 'ゔぉ'),
+  ?w   => Column.new(nil, 'わ', 'うぃ', nil, 'うぇ', 'を'),
+  ?W   => Column.new(nil, ?ゎ, nil, nil, nil, nil),
+  'wh' => Column.new(nil, 'うぁ', nil, nil, nil, 'うぉ'),
+  ?x   => Column.new(nil, 'しゃ', 'し', 'しゅ', 'しぇ', 'しょ'),
+  ?y   => Column.new(nil, 'や', nil, 'ゆ', 'いぇ', 'よ'),
+  ?Y   => Column.new(nil, ?ゃ, nil, ?ゅ, nil, ?ょ),
+  ?z   => Column.new(nil, 'ざ', 'ずぃ', 'ず', 'ぜ', 'ぞ'),
+  '@l' => Column.new(nil, 'ぁ', 'ぃ', 'ぅ', 'ぇ', 'ぉ'),
 }
 
 GREEKS = 'αβψδεφγηιξκλμνοπθρστθωςχυζ'
@@ -45,56 +65,37 @@ def insert k, v
   $table[k] = v
 end
 
-def add_cons cons, kanas
-  'aiueo'.chars.zip kanas do |vowel, kana|
-    insert cons + vowel, kana
+def add_cons cons, column
+  'aiueo'.chars.each do |vowel|
+    insert cons + vowel, column[vowel]
   end
 
   {
-    d: cons != '⇧' && [3, ?ん],
-    h: cons != '⇧' && [2, ?っ],
-    j: cons != '⇧' && [2, ?ん],
-    k: cons != '⇧' && [1, ?ん],
-    l: cons != '⇧' && [4, ?ん],
-    m: cons != '⇧' && [1, ?っ],
-    p: cons != '⇧' && [4, ?っ],
-    q: cons != '⇧' && [0, ?い],
-    r: cons != '⇧' && [3, ?っ],
-    s: cons != '⇧' && [0, ?っ],
-    z: cons != '⇧' && [0, ?ん],
-    1 => [0, ?う],
-    2 => [0, ?う],
-    3 => [3, ?い],
-    # 4 => [3, ?い],
-    7 => [2, ?う],
-    8 => [2, ?う],
-    # 9 => cons != 'ny' && [4, ?う],
-    0 => cons != 'ny' && [4, ?う],
-  }.each do |vowel, (kana_index, suffix)|
-    insert "#{cons}#{vowel}", kanas[kana_index]&.+(suffix) if kana_index
+    d: cons != '⇧' && [:e, ?ん],
+    h: cons != '⇧' && [:u, ?っ],
+    j: cons != '⇧' && [:u, ?ん],
+    k: cons != '⇧' && [:i, ?ん],
+    l: cons != '⇧' && [:o, ?ん],
+    m: cons != '⇧' && [:i, ?っ],
+    p: cons != '⇧' && [:o, ?っ],
+    q: cons != '⇧' && [:a, ?い],
+    r: cons != '⇧' && [:e, ?っ],
+    s: cons != '⇧' && [:a, ?っ],
+    z: cons != '⇧' && [:a, ?ん],
+    1 => [:a, ?う],
+    2 => [:a, ?う],
+    3 => [:e, ?い],
+    7 => [:u, ?う],
+    8 => [:u, ?う],
+    0 => cons != 'ny' && [:o, ?う],
+  }.each do |rime, (kana_index, suffix)|
+    insert "#{cons}#{rime}", column[kana_index]&.+(suffix) if kana_index
   end
 end
 
-BaseChars.each do |cons, (yôon_key, *kanas)|
-  add_cons cons, kanas
-
-  yôon_prefix = case yôon_key
-    when String  then yôon_key
-    when Integer then kanas[yôon_key]
-    when nil     then nil
-  end
-
-  if yôon_prefix
-    yôon_chars = 'ゃぃゅぇょ'.chars.map.with_index do |small, i|
-      # if i == kanas.index(yôon_prefix)
-      #   nil
-      # else
-      yôon_prefix + small
-      # end
-    end
-
-    add_cons cons + ?y, yôon_chars
-  end
+BaseChars.each do |cons, column|
+  add_cons cons, column
+  add_cons cons + ?y, column.yôon_column if column.yôon_column
 end
 
 GREEKS.chars.zip (?a..?z).to_a do |g, l|
