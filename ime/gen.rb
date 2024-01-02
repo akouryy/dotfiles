@@ -15,7 +15,7 @@ Table = Data.define :mappings do
 
   # @param k [String]
   # @param v [String, nil]
-  # @return [String, nil]
+  # @return [void]
   def insert k, v
     return unless v
 
@@ -46,10 +46,10 @@ Table = Data.define :mappings do
       s: [:a, ?っ],
       u: [:u, ''],
       z: [:a, ?ん],
-      '1': [:a, ?う],
+      # '1': [:a, ?う],
       '2': [:a, ?う],
       '3': [:e, ?い],
-      '7': [:u, ?う],
+      # '7': [:u, ?う],
       '8': [:u, ?う],
       '0': [:o, ?う],
     }.each do |rime, (original_vowel, suffix)|
@@ -128,11 +128,11 @@ BASIC_COLUMNS = [
   Column.parse(?⇧, 'ぁぃぅぇぉ', allowed_rimes: /[aiueo]/, yôon_key: '', yôon_column_properties: { allowed_vowels: /[auo]/ }),
   Column.parse(?b, 'ばびぶべぼ', yôon_key: :i),
   Column.parse(?c, 'つぁつぃつつぇつぉ'),
-  Column.parse(?d, 'だでぃどぅでど', yôon_key: :e),
+  Column.parse(?d, 'だでぃどぅでど', yôon_key: :e, yôon_column_properties: { allowed_vowels: /[aueo]/ }),
   Column.parse('dc', 'づぁづぃづづぇづぉ'),
   Column.parse('dj', 'ぢゃぢぢゅぢぇぢょ'),
-  Column.parse('dw', 'どぁどぃどぅどぇどぉ'),
-  Column.parse(?f, 'ふぁふぃふふぇふぉ', yôon_key: :u),
+  Column.parse('dw', 'どぁどぃ×どぇどぉ'),
+  Column.parse(?f, 'ふぁふぃふふぇふぉ', yôon_key: :u, yôon_column_properties: { allowed_vowels: /[auo]/ }),
   Column.parse(?g, 'がぎぐげご', yôon_key: :i),
   Column.parse('gw', 'ぐゎぐぃぐぅぐぇぐぉ'),
   Column.parse(?h, 'はひ×へほ', yôon_key: :i),
@@ -146,11 +146,11 @@ BASIC_COLUMNS = [
   Column.parse(?p, 'ぱぴぷぺぽ', yôon_key: :i),
   Column.parse(?q, 'ちゃちちゅちぇちょ'),
   Column.parse(?r, 'らりるれろ', yôon_key: :i),
-  Column.parse(?s, 'さすぃすせそ', yôon_key: 'し'),
+  Column.parse(?s, 'さすぃすせそ'),
   Column.parse('sw', 'すぁ×すぅすぇすぉ'),
-  Column.parse(?t, 'たてぃとぅてと', yôon_key: :e),
+  Column.parse(?t, 'たてぃとぅてと', yôon_key: :e, yôon_column_properties: { allowed_vowels: /[aueo]/ }),
   Column.parse('tw', 'とぁとぃ×とぇとぉ'),
-  Column.parse(?v, 'ゔぁゔぃゔゔぇゔぉ', yôon_key: :u),
+  Column.parse(?v, 'ゔぁゔぃゔゔぇゔぉ', yôon_key: :u, yôon_column_properties: { allowed_vowels: /[auo]/ }),
   Column.parse(?w, 'わうぃ×うぇを'),
   Column.parse(?W, 'ゎ××××'),
   Column.parse('wh', 'うぁ×××うぉ'),
@@ -179,6 +179,11 @@ GREEKS.chars.zip (?a..?z).to_a do |g, l|
 end
 
 File.write 'romantable.tsv', table.to_tsv
+
+table.mappings.group_by(&:last).sort.each do |value, keys|
+  $stderr.puts "#{value.inspect} is associated with multiple romanizations: #{keys.map(&:first)}" if keys.size > 1
+end
+
 $stderr.puts "Generated #{table.mappings.size} entries."
 
 __END__
@@ -240,9 +245,7 @@ _vDash ⊨
 n ん
 nn ん
 www w ww
-z- 〜
 z, ‥
-z. …
 z[ 『
 z] 』
 z/ ・
