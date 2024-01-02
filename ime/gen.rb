@@ -1,4 +1,4 @@
-Column = Data.define :yôon_key, :a, :i, :u, :e, :o do
+Column = Data.define :onset, :yôon_key, :a, :i, :u, :e, :o do
   alias_method :[], :send
 
   # @return [Column, nil]
@@ -10,52 +10,52 @@ Column = Data.define :yôon_key, :a, :i, :u, :e, :o do
         in Symbol then self[yôon_key]
         end
 
-      Column.new(nil, *'ゃぃゅぇょ'.chars.map { |small| yôon_prefix + small })
+      Column.new(onset + ?y, nil, *'ゃぃゅぇょ'.chars.map { |small| yôon_prefix + small })
     end
   end
 end
 
-BaseChars = {
-  ?⇧   => Column.new(nil, 'ぁ', 'ぃ', 'ぅ', 'ぇ', 'ぉ'),
-  ?b   => Column.new(:i,  'ば', 'び', 'ぶ', 'べ', 'ぼ'),
-  ?c   => Column.new(nil, 'つぁ', 'つぃ', 'つ', 'つぇ', 'つぉ'),
-  ?d   => Column.new(:e,  'だ', 'でぃ', 'どぅ', 'で', 'ど'),
-  'dc' => Column.new(nil, nil, nil, 'づ', nil, nil),
-  'dj' => Column.new(nil, 'ぢゃ', 'ぢ', 'ぢゅ', 'ぢぇ', 'ぢょ'),
-  'dw' => Column.new(nil, 'どぁ', 'どぃ', 'どぅ', 'どぇ', 'どぉ'),
-  ?f   => Column.new(:u,  'ふぁ', 'ふぃ', 'ふ', 'ふぇ', 'ふぉ'),
-  ?g   => Column.new(:i,  'が', 'ぎ', 'ぐ', 'げ', 'ご'),
-  'gw' => Column.new(nil, 'ぐゎ', 'ぐぃ', 'ぐぅ', 'ぐぇ', 'ぐぉ'),
-  ?h   => Column.new(:i,  'は', 'ひ', nil, 'へ', 'ほ'),
-  ?j   => Column.new(nil, 'じゃ', 'じ', 'じゅ', 'じぇ', 'じょ'),
-  ?k   => Column.new(:i,  'か', 'き', 'く', 'け', 'こ'),
-  'kw' => Column.new(nil, 'くゎ', 'くぃ', 'くぅ', 'くぇ', 'くぉ'),
-  ?K   => Column.new(nil, ?ヵ, nil, nil, ?ヶ, nil),
-  ?l   => Column.new(nil, 'あ', 'い', 'う', 'え', 'お'),
-  ?m   => Column.new(:i,  'ま', 'み', 'む', 'め', 'も'),
-  ?n   => Column.new(:i,  'な', 'に', 'ぬ', 'ね', 'の'),
-  ?p   => Column.new(:i,  'ぱ', 'ぴ', 'ぷ', 'ぺ', 'ぽ'),
-  ?q   => Column.new(nil, 'ちゃ', 'ち', 'ちゅ', 'ちぇ', 'ちょ'),
-  ?r   => Column.new(:i,  'ら', 'り', 'る', 'れ', 'ろ'),
-  ?s   => Column.new('し', 'さ', 'すぃ', 'す', 'せ', 'そ'),
-  'sw' => Column.new(nil, 'すぁ', nil, 'すぅ', 'すぇ', 'すぉ'),
-  ?t   => Column.new(:e,  'た', 'てぃ', 'とぅ', 'て', 'と'),
-  'tw' => Column.new(nil, 'とぁ', 'とぃ', nil, 'とぇ', 'とぉ'),
-  ?v   => Column.new(:u,  'ゔぁ', 'ゔぃ', 'ゔ', 'ゔぇ', 'ゔぉ'),
-  ?w   => Column.new(nil, 'わ', 'うぃ', nil, 'うぇ', 'を'),
-  ?W   => Column.new(nil, ?ゎ, nil, nil, nil, nil),
-  'wh' => Column.new(nil, 'うぁ', nil, nil, nil, 'うぉ'),
-  'wy' => Column.new(nil, nil, 'ゑ', nil, 'ゐ', nil),
-  ?x   => Column.new(nil, 'しゃ', 'し', 'しゅ', 'しぇ', 'しょ'),
-  ?y   => Column.new(nil, 'や', nil, 'ゆ', 'いぇ', 'よ'),
-  ?Y   => Column.new(nil, ?ゃ, nil, ?ゅ, nil, ?ょ),
-  ?z   => Column.new(nil, 'ざ', 'ずぃ', 'ず', 'ぜ', 'ぞ'),
-  'zw' => Column.new(nil, 'ずぁ', nil, 'ずぅ', 'ずぇ', 'ずぉ'),
-  '@l' => Column.new(nil, 'ぁ', 'ぃ', 'ぅ', 'ぇ', 'ぉ'),
-  '@lk' => Column.new(nil, 'ヵ', nil, nil, 'ヶ', nil),
-  '@lw' => Column.new(nil, 'ゎ', nil, nil, nil, nil),
-  '@ly' => Column.new(nil, 'ゃ', nil, 'ゅ', nil, 'ょ'),
-}
+BASIC_COLUMNS = [
+  Column.new(?⇧,   nil, 'ぁ', 'ぃ', 'ぅ', 'ぇ', 'ぉ'),
+  Column.new(?b,   :i,  'ば', 'び', 'ぶ', 'べ', 'ぼ'),
+  Column.new(?c,   nil, 'つぁ', 'つぃ', 'つ', 'つぇ', 'つぉ'),
+  Column.new(?d,   :e,  'だ', 'でぃ', 'どぅ', 'で', 'ど'),
+  Column.new('dc', nil, nil, nil, 'づ', nil, nil),
+  Column.new('dj', nil, 'ぢゃ', 'ぢ', 'ぢゅ', 'ぢぇ', 'ぢょ'),
+  Column.new('dw', nil, 'どぁ', 'どぃ', 'どぅ', 'どぇ', 'どぉ'),
+  Column.new(?f,   :u,  'ふぁ', 'ふぃ', 'ふ', 'ふぇ', 'ふぉ'),
+  Column.new(?g,   :i,  'が', 'ぎ', 'ぐ', 'げ', 'ご'),
+  Column.new('gw', nil, 'ぐゎ', 'ぐぃ', 'ぐぅ', 'ぐぇ', 'ぐぉ'),
+  Column.new(?h,   :i,  'は', 'ひ', nil, 'へ', 'ほ'),
+  Column.new(?j,   nil, 'じゃ', 'じ', 'じゅ', 'じぇ', 'じょ'),
+  Column.new(?k,   :i,  'か', 'き', 'く', 'け', 'こ'),
+  Column.new('kw', nil, 'くゎ', 'くぃ', 'くぅ', 'くぇ', 'くぉ'),
+  Column.new(?K,   nil, ?ヵ, nil, nil, ?ヶ, nil),
+  Column.new(?l,   nil, 'あ', 'い', 'う', 'え', 'お'),
+  Column.new(?m,   :i,  'ま', 'み', 'む', 'め', 'も'),
+  Column.new(?n,   :i,  'な', 'に', 'ぬ', 'ね', 'の'),
+  Column.new(?p,   :i,  'ぱ', 'ぴ', 'ぷ', 'ぺ', 'ぽ'),
+  Column.new(?q,   nil, 'ちゃ', 'ち', 'ちゅ', 'ちぇ', 'ちょ'),
+  Column.new(?r,   :i,  'ら', 'り', 'る', 'れ', 'ろ'),
+  Column.new(?s,   'し', 'さ', 'すぃ', 'す', 'せ', 'そ'),
+  Column.new('sw', nil, 'すぁ', nil, 'すぅ', 'すぇ', 'すぉ'),
+  Column.new(?t,   :e,  'た', 'てぃ', 'とぅ', 'て', 'と'),
+  Column.new('tw', nil, 'とぁ', 'とぃ', nil, 'とぇ', 'とぉ'),
+  Column.new(?v,   :u,  'ゔぁ', 'ゔぃ', 'ゔ', 'ゔぇ', 'ゔぉ'),
+  Column.new(?w,   nil, 'わ', 'うぃ', nil, 'うぇ', 'を'),
+  Column.new(?W,   nil, ?ゎ, nil, nil, nil, nil),
+  Column.new('wh', nil, 'うぁ', nil, nil, nil, 'うぉ'),
+  Column.new('wy', nil, nil, 'ゑ', nil, 'ゐ', nil),
+  Column.new(?x,   nil, 'しゃ', 'し', 'しゅ', 'しぇ', 'しょ'),
+  Column.new(?y,   nil, 'や', nil, 'ゆ', 'いぇ', 'よ'),
+  Column.new(?Y,   nil, ?ゃ, nil, ?ゅ, nil, ?ょ),
+  Column.new(?z,   nil, 'ざ', 'ずぃ', 'ず', 'ぜ', 'ぞ'),
+  Column.new('zw', nil, 'ずぁ', nil, 'ずぅ', 'ずぇ', 'ずぉ'),
+  Column.new('@l', nil, 'ぁ', 'ぃ', 'ぅ', 'ぇ', 'ぉ'),
+  Column.new('@lk', nil, 'ヵ', nil, nil, 'ヶ', nil),
+  Column.new('@lw', nil, 'ゎ', nil, nil, nil, nil),
+  Column.new('@ly', nil, 'ゃ', nil, 'ゅ', nil, 'ょ'),
+]
 
 GREEKS = 'αβψδεφγηιξκλμνοπθρστθωςχυζ'
 
@@ -73,37 +73,37 @@ def insert k, v
   $table[k] = v
 end
 
-def add_cons cons, column
+def add_column column
   'aiueo'.chars.each do |vowel|
-    insert cons + vowel, column[vowel]
+    insert column.onset + vowel, column[vowel]
   end
 
   {
-    d: cons != '⇧' && [:e, ?ん],
-    h: cons != '⇧' && [:u, ?っ],
-    j: cons != '⇧' && [:u, ?ん],
-    k: cons != '⇧' && [:i, ?ん],
-    l: cons != '⇧' && [:o, ?ん],
-    m: cons != '⇧' && [:i, ?っ],
-    p: cons != '⇧' && [:o, ?っ],
-    q: cons != '⇧' && [:a, ?い],
-    r: cons != '⇧' && [:e, ?っ],
-    s: cons != '⇧' && [:a, ?っ],
-    z: cons != '⇧' && [:a, ?ん],
+    d: column.onset != '⇧' && [:e, ?ん],
+    h: column.onset != '⇧' && [:u, ?っ],
+    j: column.onset != '⇧' && [:u, ?ん],
+    k: column.onset != '⇧' && [:i, ?ん],
+    l: column.onset != '⇧' && [:o, ?ん],
+    m: column.onset != '⇧' && [:i, ?っ],
+    p: column.onset != '⇧' && [:o, ?っ],
+    q: column.onset != '⇧' && [:a, ?い],
+    r: column.onset != '⇧' && [:e, ?っ],
+    s: column.onset != '⇧' && [:a, ?っ],
+    z: column.onset != '⇧' && [:a, ?ん],
     1 => [:a, ?う],
     2 => [:a, ?う],
     3 => [:e, ?い],
     7 => [:u, ?う],
     8 => [:u, ?う],
-    0 => cons != 'ny' && [:o, ?う],
+    0 => column.onset != 'ny' && [:o, ?う],
   }.each do |rime, (original_vowel, suffix)|
-    insert "#{cons}#{rime}", column[original_vowel]&.+(suffix) if original_vowel
+    insert "#{column.onset}#{rime}", column[original_vowel]&.+(suffix) if original_vowel
   end
 end
 
-BaseChars.each do |cons, column|
-  add_cons cons, column
-  add_cons cons + ?y, column.yôon_column if column.yôon_column
+BASIC_COLUMNS.each do |column|
+  add_column column
+  add_column column.yôon_column if column.yôon_column
 end
 
 GREEKS.chars.zip (?a..?z).to_a do |g, l|
