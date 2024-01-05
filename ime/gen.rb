@@ -28,17 +28,15 @@ Table = Data.define :mappings do
 
   # @param column [Column]
   # @return [void]
-  def add_column column
+  def add_columns column
     {
       a: [:a, ''],
       d: [:e, ?ん],
       e: [:e, ''],
-      h: [:u, ?っ],
       i: [:i, ''],
       j: [:u, ?ん],
       k: [:i, ?ん],
       l: [:o, ?ん],
-      m: [:i, ?っ],
       o: [:o, ''],
       p: [:o, ?っ],
       q: [:a, ?い],
@@ -46,17 +44,19 @@ Table = Data.define :mappings do
       s: [:a, ?っ],
       u: [:u, ''],
       z: [:a, ?ん],
-      # '1': [:a, ?う],
       '2': [:a, ?う],
       '3': [:e, ?い],
-      # '7': [:u, ?う],
-      '8': [:u, ?う],
+      '7': [:u, ?う],
+      '8': [:u, ?っ],
+      '9': [:i, ?っ],
       '0': [:o, ?う],
     }.each do |rime, (original_vowel, suffix)|
       if column.allowed_rimes =~ rime && column.allowed_vowels =~ original_vowel
         insert "#{column.onset}#{rime}", column[original_vowel]&.+(suffix) if original_vowel
       end
     end
+
+    add_columns column.yôon_column if column.yôon_column
   end
 
   # @return [String]
@@ -86,7 +86,7 @@ Column = Data.define :onset, :a, :i, :u, :e, :o, :allowed_vowels, :allowed_rimes
       | (?<kana>
           [\p{Hiragana}\p{Katakana}]
           (?:
-            (?<! [ぁぃぅぇぉヵヶゃゅょゎ])
+            (?<! [ぁぃぅぇぉヵヶゃゅょゎ]) # 小さい文字同士の連続は、ひとまとまりにしない
             [ぁぃぅぇぉヵヶゃゅょゎ]
           )?+
         )
@@ -169,8 +169,7 @@ GREEKS = 'αβψδεφγηιξκλμνοπθρστθωςχυζ'
 table = Table.from_data
 
 BASIC_COLUMNS.each do |column|
-  table.add_column column
-  table.add_column column.yôon_column if column.yôon_column
+  table.add_columns column
 end
 
 GREEKS.chars.zip (?a..?z).to_a do |g, l|
@@ -180,8 +179,10 @@ end
 
 File.write 'romantable.tsv', table.to_tsv
 
-table.mappings.group_by(&:last).sort.each do |value, keys|
-  $stderr.puts "#{value.inspect} is associated with multiple romanizations: #{keys.map(&:first)}" if keys.size > 1
+if $DEBUG
+  table.mappings.group_by(&:last).sort.each do |value, keys|
+    $stderr.puts "#{value.inspect} is associated with multiple romanizations: #{keys.map(&:first)}" if keys.size > 1
+  end
 end
 
 $stderr.puts "Generated #{table.mappings.size} entries."
