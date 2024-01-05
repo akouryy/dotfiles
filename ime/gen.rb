@@ -1,5 +1,30 @@
 require 'strscan'
 
+ROWS = {
+  a: [:a, ''],
+  d: [:e, ?ん],
+  e: [:e, ''],
+  i: [:i, ''],
+  j: [:u, ?ん],
+  k: [:i, ?ん],
+  l: [:o, ?ん],
+  o: [:o, ''],
+  p: [:o, ?っ],
+  q: [:a, ?い],
+  r: [:e, ?っ],
+  s: [:a, ?っ],
+  u: [:u, ''],
+  z: [:a, ?ん],
+  '2': [:a, ?う],
+  '3': [:e, ?い],
+  '7': [:u, ?う],
+  '8': [:u, ?っ],
+  '9': [:i, ?っ],
+  '0': [:o, ?う],
+}
+RIMES_IN_DOCUMENT = %i[a i u e o z k j d l q 2 7 3 0 s 9 8 r p]
+raise if RIMES_IN_DOCUMENT.to_set != ROWS.keys.to_set
+
 Table = Data.define :mappings do
   # @param data [#each_line]
   # @return [Table]
@@ -19,7 +44,7 @@ Table = Data.define :mappings do
   def insert k, v
     return unless v
 
-    k = k.gsub(/⇧(\w)/) { $1.upcase }
+    k = Column.normalize_roman k
 
     raise "tried to set table[#{k.inspect}] (currently #{mappings[k].inspect}) to #{v.inspect}" if mappings[k]
 
@@ -29,28 +54,7 @@ Table = Data.define :mappings do
   # @param column [Column]
   # @return [void]
   def add_columns column
-    {
-      a: [:a, ''],
-      d: [:e, ?ん],
-      e: [:e, ''],
-      i: [:i, ''],
-      j: [:u, ?ん],
-      k: [:i, ?ん],
-      l: [:o, ?ん],
-      o: [:o, ''],
-      p: [:o, ?っ],
-      q: [:a, ?い],
-      r: [:e, ?っ],
-      s: [:a, ?っ],
-      u: [:u, ''],
-      z: [:a, ?ん],
-      '2': [:a, ?う],
-      '3': [:e, ?い],
-      '7': [:u, ?う],
-      '8': [:u, ?っ],
-      '9': [:i, ?っ],
-      '0': [:o, ?う],
-    }.each do |rime, (original_vowel, suffix)|
+    ROWS.each do |rime, (original_vowel, suffix)|
       if column.allowed_rimes =~ rime && column.allowed_vowels =~ original_vowel
         insert "#{column.onset}#{rime}", column[original_vowel]&.+(suffix) if original_vowel
       end
@@ -62,6 +66,16 @@ Table = Data.define :mappings do
   # @return [String]
   def to_tsv
     mappings.map{|k, v| [k, *v.split].join(?\t) + ?\n }.sort.join
+  end
+
+  # @return [String]
+  def to_document_tsv
+    header = [nil, *RIMES_IN_DOCUMENT]
+    body = ONSETS_IN_DOCUMENT.map do |onset|
+      [Column.normalize_roman(onset), *RIMES_IN_DOCUMENT.map { |rime| mappings[Column.normalize_roman "#{onset}#{rime}"] }]
+    end
+
+    [header, *body].map { |row| row.join(?\t) + ?\n }.join
   end
 end
 
@@ -99,6 +113,12 @@ Column = Data.define :onset, :a, :i, :u, :e, :o, :allowed_vowels, :allowed_rimes
     aiueo => [a, i, u, e, o]
 
     Column.new onset:, a:, i:, u:, e:, o:, **kwargs
+  end
+
+  # @param roman [String]
+  # @return [String]
+  def self.normalize_roman roman
+    roman.gsub(/⇧([a-z])/) { $1.upcase }
   end
 
   def initialize onset:, a:, i:, u:, e:, o:, allowed_vowels: /./, allowed_rimes: /./, yôon_key: nil, yôon_column_properties: {}
@@ -163,6 +183,14 @@ BASIC_COLUMNS = [
   Column.parse('@lk', 'ヵ××ヶ×'),
   Column.parse('@lw', 'ゎ××××'),
 ]
+ONSETS_IN_DOCUMENT = %W[
+  #{''} l ⇧ @l k K @lk ky kw g gy gw s sw x z j zw t q c ty tw d dj dc dy dw n ny h hy f fy b by p py m my y ⇧y @ly r ry w W @lw wh wy v vy
+]
+begin
+  all_onsets = BASIC_COLUMNS.flat_map { |column| [column.onset, column.yôon_column&.onset].compact }.to_set
+  onset_diff = (all_onsets - ONSETS_IN_DOCUMENT.to_set) | (ONSETS_IN_DOCUMENT.to_set - all_onsets)
+  raise "onsets mismatch: #{onset_diff.join ?,}" if onset_diff.any?
+end
 
 GREEKS = 'αβψδεφγηιξκλμνοπθρστθωςχυζ'
 
@@ -178,6 +206,7 @@ GREEKS.chars.zip (?a..?z).to_a do |g, l|
 end
 
 File.write 'romantable.tsv', table.to_tsv
+File.write 'document.tsv', table.to_document_tsv
 
 if $DEBUG
   table.mappings.group_by(&:last).sort.each do |value, keys|
