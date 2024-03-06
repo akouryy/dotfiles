@@ -10,55 +10,50 @@
 [commit]
 	template = .stCommitMsg
 	gpgsign = true
-[merge]
-	ff = false
-[pull]
-	ff = only
 [credential]
 	helper = osxkeychain
+[merge]
+	; ff = false
+[pull]
+	ff = only
 [alias]
 	a = add
 	aa = add .
-	b = checkout
 	bd = branch -d
-	bn = checkout -b
 	br = branch
-	bs = branch
+	bv = branch -vv
 	c = commit
 	ca = commit -a
 	cam = commit -am
-	cb = checkout -b
-	ch = checkout
-	chb = checkout -b
+	cb = switch -c
+	ch = switch
 	cl = clone
 	cm = commit -m
 	d = icdiff
-	del = branch -d
-	dev = checkout develop
+	dev = switch develop
+	ds = icdiff --staged
+	fp = fetch -p
 	h = help
 	lf = log --pretty=fuller
 	lol = log --graph --decorate --pretty=oneline --abbrev-commit
 	lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
 	m = merge
-	mas = checkout master
+	mas = !git switch $(basename $(git symbolic-ref refs/remotes/origin/HEAD --short))
 	md = merge develop
 	mf = merge --ff-only
-	mm = merge main
-	mmai = merge main
-	mmas = merge master
-	mom = merge origin/main
-	momas = merge origin/master
+	mm = !git merge $(basename $(git symbolic-ref refs/remotes/origin/HEAD --short))
+	mom = !git merge $(git symbolic-ref refs/remotes/origin/HEAD --short)
 	n = checkout -b
 	nb = checkout -b
 	p = push
-  pa = push --all
+	pa = push --all
+	pf = push --force-with-lease --force-if-includes
 	pl = pull
-	pu = push
-	puom = push -u origin master
 	s = status --short --branch
+	sl = stash list
 	st = status
 	ta = tag -a
-  top = rev-parse --show-toplevel
+	top = rev-parse --show-toplevel
 [gpg]
 	program = gpg
 [init]
