@@ -50,6 +50,7 @@
 	pf = push --force-with-lease --force-if-includes
 	pl = pull
 	s = status --short --branch
+	sd = "!git d stash@{$1}~ stash@{$1} #"
 	sl = stash list
 	st = status
 	ta = tag -a
