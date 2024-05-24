@@ -24,6 +24,7 @@ setopt share_history
 export DROPBOX="$HOME/Dropbox"
 
 export EDITOR=vim
+export WORDCHARS="_"
 bindkey -e
 autoload history-search-end
 zle -N history-beginning-search-backward-end history-search-end
@@ -32,6 +33,7 @@ predict-toggle() { ((predict_on=1-predict_on)) && predict-on || predict-off }
 zle -N predict-toggle
 bindkey '^P' history-beginning-search-backward-end
 bindkey '^N' history-beginning-search-forward-end
+bindkey '^Q' kill-word
 bindkey '^R' history-incremental-search-backward
 bindkey '^S' history-incremental-search-forward
 bindkey '^K' kill-line
@@ -69,22 +71,31 @@ alias ....='cd ../../..'
 alias .....='cd ../../../..'
 alias ......='cd ../../../../..'
 alias .......='cd ../../../../../..'
+alias .zshrc='source ~/.zshrc'                                                              
+alias aa='g aa'                                                                             
+alias bd='g bd'                                                                             
+alias bv='g bv'
 alias bx='bundle exec'
 alias bxc='bundle exec rubocop'
 alias bxr='bundle exec rails'
 alias c='code .'
 alias cal='cal -y'
+alias cb='g cb'
 alias cdr='git top && cd $(git top)'
+alias ch='g ch'
 alias cl='cd -P'
+alias cm='g cm'
 alias co='cargo compete'
 alias cp='cp -i'
 alias drpbi='xattr -w com.dropbox.ignored 1'
-alias f='open .'
+alias fp='g fp --all && g pl'
 alias g='git'
 alias g++='g++ -std=c++20 -I$DROPBOX/b/codes/comp -Wall -Wno-logical-op-parentheses -fsanitize=address -O2'
 alias g++d='g++ -std=c++20 -I$DROPBOX/b/codes/comp -Wall -Wno-logical-op-parentheses -fsanitize=address -DEBUG -DDEBUG'
 alias ls=$'ls -hlaFv --color' # =auto --time-style=\'+%Y-%m-%d %H:%M:%S\''
+alias mas='g mas'
 function md() { mkdir -p "$@" && eval cd "\"\$$#\"" }
+alias mm='g mm'
 alias mv='mv -i'
 alias pn='pnpm'
 alias pna='pnpm add'
@@ -98,8 +109,8 @@ alias pnrs='pnpm run start'
 alias poff='predict-off'
 alias pon='predict-on'
 alias rm='rm -i'
-alias u+x='chmod u+x'
 alias s='stree .'
+alias u+x='chmod u+x'
 alias wh='command -v'
 alias x='chmod u+x'
 alias zshrc='code `readlink ~/.zshrc`/../..'
