@@ -7,6 +7,10 @@ indent_style = space
 root = true
 trim_trailing_whitespace = true
 
+[{Makefile,.gitconfig}]
+indent_size = 8
+indent_style = tab
+
 [*.tsv{,.txt}]
 indent_size = 8
 indent_style = tab
