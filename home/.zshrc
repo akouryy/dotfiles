@@ -53,7 +53,7 @@ export TIMEFMT=$'\nreal\t%E\nuser\t%U\nsys\t%S'
     # export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
     # export PATH="/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH"
     # export PATH="~/.local/bin:$PATH"
-    # export PATH="$DROPBOX/e/code/bin:$DROPBOX/a/c/bin:$DROPBOX/a/c/bin/public:$PATH"
+    export PATH="$DROPBOX/e/code/bin:$DROPBOX/a/c/bin:$DROPBOX/a/c/bin/public:$PATH"
 }
 
 () { # Other PATHs
@@ -109,6 +109,9 @@ alias pnrs='pnpm run start'
 alias poff='predict-off'
 alias pon='predict-on'
 alias rm='rm -i'
+alias tf='terraform -chdir=terraform'
+alias tfa='tf apply plan~'
+alias tfp='tf plan -out plan~'
 alias s='stree .'
 alias u+x='chmod u+x'
 alias wh='command -v'
