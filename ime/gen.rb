@@ -22,8 +22,8 @@ ROWS = {
   '9': [:i, ?っ],
   '0': [:o, ?う],
 }
-RIMES_IN_DOCUMENT = %i[a i u e o z k j d l q 2 7 3 0 s 9 8 r p]
-raise if RIMES_IN_DOCUMENT.to_set != ROWS.keys.to_set
+RIMES_IN_DOCUMENT = %I[#{''} a i u e o z k j d l q 2 7 3 0 s 9 8 r p n]
+raise if RIMES_IN_DOCUMENT.to_set != ROWS.keys.to_set + [:'', :n]
 
 Table = Data.define :mappings do
   # @param data [#each_line]
@@ -184,10 +184,11 @@ BASIC_COLUMNS = [
   Column.parse('@lw', 'ゎ××××'),
 ]
 ONSETS_IN_DOCUMENT = %W[
-  #{''} l ⇧ @l k K @lk ky kw g gy gw s sw x z j zw t q c ty tw d dj dc dy dw n ny h hy f fy b by p py m my y ⇧y @ly r ry w W @lw wh wy v vy
+  #{''} l ⇧ @l k K @lk ky kw g gy gw s sw x z j zw t q c @lc ; ty tw d dj dc dy dw n ny
+  h hy f fy b by p py m my y ⇧y @ly r ry w W @lw wh wy v vy
 ]
 begin
-  all_onsets = BASIC_COLUMNS.flat_map { |column| [column.onset, column.yôon_column&.onset].compact }.to_set
+  all_onsets = BASIC_COLUMNS.flat_map { |column| [column.onset, column.yôon_column&.onset].compact }.to_set + %w[@lc ;]
   onset_diff = (all_onsets - ONSETS_IN_DOCUMENT.to_set) | (ONSETS_IN_DOCUMENT.to_set - all_onsets)
   raise "onsets mismatch: #{onset_diff.join ?,}" if onset_diff.any?
 end
