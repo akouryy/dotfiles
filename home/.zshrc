@@ -50,16 +50,12 @@ export TIMEFMT=$'\nreal\t%E\nuser\t%U\nsys\t%S'
 }
 
 () { # Other PATHs
-    # export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-    # export PATH="/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH"
-    # export PATH="~/.local/bin:$PATH"
-    export PATH="$DROPBOX/e/code/bin:$DROPBOX/a/c/bin:$DROPBOX/a/c/bin/public:$PATH"
-}
+  export PATH="$DROPBOX/e/code/bin:$DROPBOX/a/c/bin:$DROPBOX/a/c/bin/public:$PATH"
 
-() { # Other PATHs
-  export PATH="$DROPBOX/e/code/bin:$PATH"
   zshrc_path=$(readlink $HOME/.zshrc || echo $HOME/.zshrc)
   export PATH="${zshrc_path:a:h}/../bin:$PATH"
+
+  export LIBRARY_PATH="$LIBRARY_PATH:$(brew --prefix zstd)/lib/"
 }
 
 hash -d db="$DROPBOX"
@@ -71,9 +67,9 @@ alias ....='cd ../../..'
 alias .....='cd ../../../..'
 alias ......='cd ../../../../..'
 alias .......='cd ../../../../../..'
-alias .zshrc='source ~/.zshrc'                                                              
-alias aa='g aa'                                                                             
-alias bd='g bd'                                                                             
+alias .zshrc='source ~/.zshrc'
+alias aa='g aa'
+alias bd='g bd'
 alias bv='g bv'
 alias bx='bundle exec'
 alias bxc='bundle exec rubocop'
@@ -169,3 +165,5 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
+
+export RUST_BACKTRACE=1
