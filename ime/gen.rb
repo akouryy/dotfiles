@@ -1,3 +1,4 @@
+require 'cgi'
 require 'strscan'
 
 ROWS = {
@@ -39,7 +40,14 @@ ROWS = {
 RIMES_IN_DOCUMENT = %I[#{''} a i u e o z k j d l q 2 3 0 A I U E O s 9 8 r p Z K J D L S ) ( R P n]
 raise if RIMES_IN_DOCUMENT.to_set != ROWS.keys.to_set + [:'', :n]
 
-Table = Data.define :mappings do
+KEYBOARD_LAYOUT = [
+  { false => %W[1 2 3 4 5 6 7 8 9 0 - ^ \\], true => %W[! " # $ % & ' ( ) #{''} = ~ |] },
+  { false => %W[q w e r t y u i o p @ \[], true => %W[Q W E R T Y U I O P ` {] },
+  { false => %W[a s d f g h j k l ; : \]], true => %W[A S D F G H J K L + * }] },
+  { false => %W[z x c v b n m , . / _], true => %W[Z X C V B N M < > ? _] },
+]
+
+Table = Data.define :mappings, :columns do
   # @param data [#each_line]
   # @return [Table]
   def self.from_data data = DATA
@@ -48,7 +56,7 @@ Table = Data.define :mappings do
 
   # @param mappings [Hash<String, String>]
   # @return [void]
-  def initialize mappings: {}
+  def initialize mappings: {}, columns: []
     super
   end
 
@@ -68,6 +76,8 @@ Table = Data.define :mappings do
   # @param column [Column]
   # @return [void]
   def add_columns column
+    columns << column
+
     ROWS.each do |rime, (original_vowel, suffix)|
       if column.allowed_rimes =~ rime && column.allowed_vowels =~ original_vowel
         insert "#{column.onset}#{rime}", column[original_vowel]&.+(suffix) if original_vowel
@@ -91,9 +101,79 @@ Table = Data.define :mappings do
 
     [header, *body].map { |row| row.join(?\t) + ?\n }.join
   end
+
+  # @return [String]
+  def to_keyboard_svg
+    highlight = '#c93965'
+    ordinary = '#000'
+    printed = '#ccc'
+    special_rows = { ?_ => 'TeX', ?@ =>'特殊', ?# => "ギリ\nシャ" }
+
+    <<~SVG
+      <?xml version="1.0" encoding="UTF-8"?>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="-20 -20 2680 880">
+        #{[false, true].map { |rime|
+          <<~SVG
+            <g transform="translate(0, #{rime ? 450 : 0})">
+              <text x="-10" y="-10" font-size="30" alignment-baseline="text-after-edge" fill="#000">
+                #{rime ? '母音' : '子音'}
+              </text>
+              #{[false, true].map { |shift|
+                <<~SVG
+                  <g transform="translate(#{shift ? 1325 : 0}, 0)">
+                    <rect x="-10" y="-10" width="1310" height="410" fill="#fff3f3" />
+                    #{KEYBOARD_LAYOUT.map.with_index { |row, y|
+                      row[shift].map.with_index do |key, x|
+                        color, label =
+                          if rime
+                            row = ROWS[key.to_sym]
+                            if row
+                              l = row.join
+                              [l == key ? ordinary : highlight, l]
+                            else
+                              [printed, key]
+                            end
+                          else
+                            column = columns.find { Column.normalize_roman(_1.onset) == key }
+
+                            if column&.label
+                              [column.label == key ? '#000' : highlight, column.label]
+                            elsif special_rows[key]
+                              [highlight, special_rows[key]]
+                            elsif mappings[key]
+                              [ordinary, mappings[key]]
+                            else
+                              [printed, key]
+                            end
+                          end
+
+                        <<~SVG
+                          <rect x="#{x * 100 + y * 50}" y="#{y * 100}" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+                          #{label.lines.map.with_index { |line, i|
+                            <<~SVG
+                              <text
+                                x="#{x * 100 + y * 50 + 45}" y="#{y * 100 + 70 + 40 * (i - label.lines.size * 0.5)}"
+                                font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#{color}"
+                              >
+                                #{CGI.escapeHTML line.chomp}
+                              </text>
+                            SVG
+                          }.join}
+                        SVG
+                      end
+                    }.join}
+                  </g>
+                SVG
+              }.join}
+            </g>
+          SVG
+        }.join}
+      </svg>
+    SVG
+  end
 end
 
-Column = Data.define :onset, :a, :i, :u, :e, :o, :allowed_vowels, :allowed_rimes, :yôon_key, :yôon_column_properties do
+Column = Data.define :onset, :a, :i, :u, :e, :o, :allowed_vowels, :allowed_rimes, :label, :yôon_key, :yôon_column_properties do
   alias_method :[], :send
 
   # "あいうえお" という文字列を a: "あ", i: "い", ... という Column に変換する。
@@ -135,7 +215,7 @@ Column = Data.define :onset, :a, :i, :u, :e, :o, :allowed_vowels, :allowed_rimes
     roman.gsub(/⇧([a-z])/) { $1.upcase }
   end
 
-  def initialize onset:, a:, i:, u:, e:, o:, allowed_vowels: /./, allowed_rimes: /./, yôon_key: nil, yôon_column_properties: {}
+  def initialize onset:, a:, i:, u:, e:, o:, allowed_vowels: /./, allowed_rimes: /./, label: nil, yôon_key: nil, yôon_column_properties: {}
     super
   end
 
@@ -159,39 +239,39 @@ end
 
 BASIC_COLUMNS = [
   Column.parse('', 'あいうえお', allowed_rimes: /[aiueo]/),
-  Column.parse(?⇧, 'ぁぃぅぇぉ', allowed_rimes: /[aiueo]/, yôon_key: '', yôon_column_properties: { allowed_vowels: /[auo]/ }),
-  Column.parse(?b, 'ばびぶべぼ', yôon_key: :i),
-  Column.parse(?c, 'つぁつぃつつぇつぉ'),
-  Column.parse(?d, 'だでぃどぅでど', yôon_key: :e, yôon_column_properties: { allowed_vowels: /[aueo]/ }),
+  Column.parse(?⇧, 'ぁぃぅぇぉ', allowed_rimes: /[aiueo]/, yôon_key: '', yôon_column_properties: { allowed_vowels: /[auo]/, label: 'y小' }),
+  Column.parse(?b, 'ばびぶべぼ', label: 'b', yôon_key: :i),
+  Column.parse(?c, 'つぁつぃつつぇつぉ', label: 'ts'),
+  Column.parse(?d, 'だでぃどぅでど', label: 'd', yôon_key: :e, yôon_column_properties: { allowed_vowels: /[aueo]/ }),
   Column.parse('dc', 'づぁづぃづづぇづぉ'),
   Column.parse('dj', 'ぢゃぢぢゅぢぇぢょ'),
   Column.parse('dw', 'どぁどぃ×どぇどぉ'),
-  Column.parse(?f, 'ふぁふぃふふぇふぉ', yôon_key: :u, yôon_column_properties: { allowed_vowels: /[auo]/ }),
-  Column.parse(?g, 'がぎぐげご', yôon_key: :i),
+  Column.parse(?f, 'ふぁふぃふふぇふぉ', label: 'f', yôon_key: :u, yôon_column_properties: { allowed_vowels: /[auo]/ }),
+  Column.parse(?g, 'がぎぐげご', label: 'g', yôon_key: :i),
   Column.parse('gw', 'ぐゎぐぃぐぅぐぇぐぉ'),
-  Column.parse(?h, 'はひ×へほ', yôon_key: :i),
-  Column.parse(?j, 'じゃじじゅじぇじょ'),
-  Column.parse(?k, 'かきくけこ', yôon_key: :i),
+  Column.parse(?h, 'はひ×へほ', label: 'h', yôon_key: :i),
+  Column.parse(?j, 'じゃじじゅじぇじょ', label: 'j'),
+  Column.parse(?k, 'かきくけこ', label: 'k', yôon_key: :i),
   Column.parse('kw', 'くゎくぃくぅくぇくぉ'),
   Column.parse(?K, 'ヵ××ヶ×'),
-  Column.parse(?l, 'あいうえお'),
-  Column.parse(?m, 'まみむめも', yôon_key: :i),
-  Column.parse(?n, 'なにぬねの', yôon_key: :i, yôon_column_properties: { allowed_rimes: /[^0]/ }),
-  Column.parse(?p, 'ぱぴぷぺぽ', yôon_key: :i),
-  Column.parse(?q, 'ちゃちちゅちぇちょ'),
-  Column.parse(?r, 'らりるれろ', yôon_key: :i),
-  Column.parse(?s, 'さすぃすせそ'),
+  Column.parse(?l, 'あいうえお', label: '∅'),
+  Column.parse(?m, 'まみむめも', label: 'm', yôon_key: :i),
+  Column.parse(?n, 'なにぬねの', label: 'n', yôon_key: :i, yôon_column_properties: { allowed_rimes: /[^0]/ }),
+  Column.parse(?p, 'ぱぴぷぺぽ', label: 'p', yôon_key: :i),
+  Column.parse(?q, 'ちゃちちゅちぇちょ', label: 'ch'),
+  Column.parse(?r, 'らりるれろ', label: 'r', yôon_key: :i),
+  Column.parse(?s, 'さすぃすせそ', label: 's'),
   Column.parse('sw', 'すぁ×すぅすぇすぉ'),
-  Column.parse(?t, 'たてぃとぅてと', yôon_key: :e, yôon_column_properties: { allowed_vowels: /[aueo]/ }),
+  Column.parse(?t, 'たてぃとぅてと', label: 't', yôon_key: :e, yôon_column_properties: { allowed_vowels: /[aueo]/ }),
   Column.parse('tw', 'とぁとぃ×とぇとぉ'),
-  Column.parse(?v, 'ゔぁゔぃゔゔぇゔぉ', yôon_key: :u, yôon_column_properties: { allowed_vowels: /[auo]/ }),
-  Column.parse(?w, 'わうぃ×うぇを'),
-  Column.parse(?W, 'ゎ××××'),
+  Column.parse(?v, 'ゔぁゔぃゔゔぇゔぉ', label: 'v', yôon_key: :u, yôon_column_properties: { allowed_vowels: /[auo]/ }),
+  Column.parse(?w, 'わうぃ×うぇを', label: 'w'),
+  Column.parse(?W, 'ゎ××××', label: 'w小'),
   Column.parse('wh', 'うぁ×××うぉ'),
   Column.parse('wy', '×ゑ×ゐ×'),
-  Column.parse(?x, 'しゃししゅしぇしょ'),
-  Column.parse(?y, 'や×ゆいぇよ'),
-  Column.parse(?z, 'ざずぃずぜぞ'),
+  Column.parse(?x, 'しゃししゅしぇしょ', label: 'sh'),
+  Column.parse(?y, 'や×ゆいぇよ', label: 'y'),
+  Column.parse(?z, 'ざずぃずぜぞ', label: 'z'),
   Column.parse('zw', 'ずぁ×ずぅずぇずぉ'),
   Column.parse('@l', 'ぁぃぅぇぉ', yôon_key: '', yôon_column_properties: { allowed_vowels: /[auo]/ }),
   Column.parse('@lk', 'ヵ××ヶ×'),
@@ -222,6 +302,7 @@ end
 
 File.write 'romantable.tsv', table.to_tsv
 File.write 'document.tsv', table.to_document_tsv
+File.write 'keyboard.svg', table.to_keyboard_svg
 
 if $DEBUG
   table.mappings.group_by(&:last).sort.each do |value, keys|

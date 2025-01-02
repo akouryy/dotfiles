@@ -1,0 +1,1562 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-20 -20 2680 880">
+  <g transform="translate(0, 0)">
+  <text x="-10" y="-10" font-size="30" alignment-baseline="text-after-edge" fill="#000">
+    子音
+  </text>
+  <g transform="translate(0, 0)">
+  <rect x="-10" y="-10" width="1310" height="410" fill="#fff3f3" />
+  <rect x="0" y="0" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="45" y="50.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  1
+</text>
+
+<rect x="100" y="0" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="145" y="50.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  2
+</text>
+
+<rect x="200" y="0" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="245" y="50.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  3
+</text>
+
+<rect x="300" y="0" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="345" y="50.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  4
+</text>
+
+<rect x="400" y="0" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="445" y="50.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  5
+</text>
+
+<rect x="500" y="0" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="545" y="50.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  6
+</text>
+
+<rect x="600" y="0" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="645" y="50.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  7
+</text>
+
+<rect x="700" y="0" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="745" y="50.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  8
+</text>
+
+<rect x="800" y="0" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="845" y="50.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  9
+</text>
+
+<rect x="900" y="0" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="945" y="50.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  0
+</text>
+
+<rect x="1000" y="0" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="1045" y="50.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#000"
+>
+  ー
+</text>
+
+<rect x="1100" y="0" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="1145" y="50.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  ^
+</text>
+
+<rect x="1200" y="0" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="1245" y="50.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  \
+</text>
+
+<rect x="50" y="100" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="95" y="150.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#c93965"
+>
+  ch
+</text>
+
+<rect x="150" y="100" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="195" y="150.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#000"
+>
+  w
+</text>
+
+<rect x="250" y="100" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="295" y="150.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#000"
+>
+  え
+</text>
+
+<rect x="350" y="100" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="395" y="150.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#000"
+>
+  r
+</text>
+
+<rect x="450" y="100" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="495" y="150.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#000"
+>
+  t
+</text>
+
+<rect x="550" y="100" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="595" y="150.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#000"
+>
+  y
+</text>
+
+<rect x="650" y="100" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="695" y="150.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#000"
+>
+  う
+</text>
+
+<rect x="750" y="100" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="795" y="150.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#000"
+>
+  い
+</text>
+
+<rect x="850" y="100" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="895" y="150.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#000"
+>
+  お
+</text>
+
+<rect x="950" y="100" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="995" y="150.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#000"
+>
+  p
+</text>
+
+<rect x="1050" y="100" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="1095" y="150.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#c93965"
+>
+  特殊
+</text>
+
+<rect x="1150" y="100" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="1195" y="150.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#000"
+>
+  「
+</text>
+
+<rect x="100" y="200" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="145" y="250.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#000"
+>
+  あ
+</text>
+
+<rect x="200" y="200" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="245" y="250.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#000"
+>
+  s
+</text>
+
+<rect x="300" y="200" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="345" y="250.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#000"
+>
+  d
+</text>
+
+<rect x="400" y="200" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="445" y="250.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#000"
+>
+  f
+</text>
+
+<rect x="500" y="200" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="545" y="250.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#000"
+>
+  g
+</text>
+
+<rect x="600" y="200" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="645" y="250.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#000"
+>
+  h
+</text>
+
+<rect x="700" y="200" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="745" y="250.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#000"
+>
+  j
+</text>
+
+<rect x="800" y="200" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="845" y="250.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#000"
+>
+  k
+</text>
+
+<rect x="900" y="200" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="945" y="250.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#c93965"
+>
+  ∅
+</text>
+
+<rect x="1000" y="200" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="1045" y="250.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#000"
+>
+  っ
+</text>
+
+<rect x="1100" y="200" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="1145" y="250.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  :
+</text>
+
+<rect x="1200" y="200" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="1245" y="250.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#000"
+>
+  」
+</text>
+
+<rect x="150" y="300" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="195" y="350.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#000"
+>
+  z
+</text>
+
+<rect x="250" y="300" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="295" y="350.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#c93965"
+>
+  sh
+</text>
+
+<rect x="350" y="300" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="395" y="350.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#c93965"
+>
+  ts
+</text>
+
+<rect x="450" y="300" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="495" y="350.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#000"
+>
+  v
+</text>
+
+<rect x="550" y="300" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="595" y="350.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#000"
+>
+  b
+</text>
+
+<rect x="650" y="300" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="695" y="350.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#000"
+>
+  n
+</text>
+
+<rect x="750" y="300" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="795" y="350.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#000"
+>
+  m
+</text>
+
+<rect x="850" y="300" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="895" y="350.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#000"
+>
+  、
+</text>
+
+<rect x="950" y="300" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="995" y="350.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#000"
+>
+  。
+</text>
+
+<rect x="1050" y="300" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="1095" y="350.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  /
+</text>
+
+<rect x="1150" y="300" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="1195" y="350.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#c93965"
+>
+  TeX
+</text>
+
+
+</g>
+<g transform="translate(1325, 0)">
+  <rect x="-10" y="-10" width="1310" height="410" fill="#fff3f3" />
+  <rect x="0" y="0" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="45" y="50.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  !
+</text>
+
+<rect x="100" y="0" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="145" y="50.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  &quot;
+</text>
+
+<rect x="200" y="0" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="245" y="30.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#c93965"
+>
+  ギリ
+</text>
+<text
+  x="245" y="70.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#c93965"
+>
+  シャ
+</text>
+
+<rect x="300" y="0" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="345" y="50.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  $
+</text>
+
+<rect x="400" y="0" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="445" y="50.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  %
+</text>
+
+<rect x="500" y="0" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="545" y="50.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  &amp;
+</text>
+
+<rect x="600" y="0" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="645" y="50.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  &#39;
+</text>
+
+<rect x="700" y="0" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="745" y="50.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  (
+</text>
+
+<rect x="800" y="0" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="845" y="50.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  )
+</text>
+
+<rect x="900" y="0" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+
+<rect x="1000" y="0" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="1045" y="50.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  =
+</text>
+
+<rect x="1100" y="0" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="1145" y="50.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#000"
+>
+  〜
+</text>
+
+<rect x="1200" y="0" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="1245" y="50.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  |
+</text>
+
+<rect x="50" y="100" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="95" y="150.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  Q
+</text>
+
+<rect x="150" y="100" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="195" y="150.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#c93965"
+>
+  w小
+</text>
+
+<rect x="250" y="100" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="295" y="150.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#000"
+>
+  ぇ
+</text>
+
+<rect x="350" y="100" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="395" y="150.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  R
+</text>
+
+<rect x="450" y="100" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="495" y="150.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  T
+</text>
+
+<rect x="550" y="100" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="595" y="150.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#c93965"
+>
+  y小
+</text>
+
+<rect x="650" y="100" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="695" y="150.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#000"
+>
+  ぅ
+</text>
+
+<rect x="750" y="100" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="795" y="150.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#000"
+>
+  ぃ
+</text>
+
+<rect x="850" y="100" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="895" y="150.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#000"
+>
+  ぉ
+</text>
+
+<rect x="950" y="100" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="995" y="150.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  P
+</text>
+
+<rect x="1050" y="100" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="1095" y="150.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  `
+</text>
+
+<rect x="1150" y="100" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="1195" y="150.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  {
+</text>
+
+<rect x="100" y="200" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="145" y="250.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#000"
+>
+  ぁ
+</text>
+
+<rect x="200" y="200" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="245" y="250.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  S
+</text>
+
+<rect x="300" y="200" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="345" y="250.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  D
+</text>
+
+<rect x="400" y="200" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="445" y="250.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  F
+</text>
+
+<rect x="500" y="200" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="545" y="250.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  G
+</text>
+
+<rect x="600" y="200" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="645" y="250.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  H
+</text>
+
+<rect x="700" y="200" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="745" y="250.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  J
+</text>
+
+<rect x="800" y="200" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="845" y="250.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  K
+</text>
+
+<rect x="900" y="200" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="945" y="250.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  L
+</text>
+
+<rect x="1000" y="200" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="1045" y="250.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  +
+</text>
+
+<rect x="1100" y="200" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="1145" y="250.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  *
+</text>
+
+<rect x="1200" y="200" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="1245" y="250.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  }
+</text>
+
+<rect x="150" y="300" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="195" y="350.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  Z
+</text>
+
+<rect x="250" y="300" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="295" y="350.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  X
+</text>
+
+<rect x="350" y="300" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="395" y="350.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  C
+</text>
+
+<rect x="450" y="300" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="495" y="350.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  V
+</text>
+
+<rect x="550" y="300" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="595" y="350.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  B
+</text>
+
+<rect x="650" y="300" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="695" y="350.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  N
+</text>
+
+<rect x="750" y="300" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="795" y="350.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  M
+</text>
+
+<rect x="850" y="300" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="895" y="350.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  &lt;
+</text>
+
+<rect x="950" y="300" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="995" y="350.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  &gt;
+</text>
+
+<rect x="1050" y="300" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="1095" y="350.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  ?
+</text>
+
+<rect x="1150" y="300" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="1195" y="350.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#c93965"
+>
+  TeX
+</text>
+
+
+</g>
+
+</g>
+<g transform="translate(0, 450)">
+  <text x="-10" y="-10" font-size="30" alignment-baseline="text-after-edge" fill="#000">
+    母音
+  </text>
+  <g transform="translate(0, 0)">
+  <rect x="-10" y="-10" width="1310" height="410" fill="#fff3f3" />
+  <rect x="0" y="0" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="45" y="50.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  1
+</text>
+
+<rect x="100" y="0" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="145" y="50.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#c93965"
+>
+  aう
+</text>
+
+<rect x="200" y="0" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="245" y="50.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#c93965"
+>
+  eい
+</text>
+
+<rect x="300" y="0" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="345" y="50.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  4
+</text>
+
+<rect x="400" y="0" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="445" y="50.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  5
+</text>
+
+<rect x="500" y="0" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="545" y="50.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  6
+</text>
+
+<rect x="600" y="0" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="645" y="50.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  7
+</text>
+
+<rect x="700" y="0" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="745" y="50.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#c93965"
+>
+  uっ
+</text>
+
+<rect x="800" y="0" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="845" y="50.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#c93965"
+>
+  iっ
+</text>
+
+<rect x="900" y="0" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="945" y="50.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#c93965"
+>
+  oう
+</text>
+
+<rect x="1000" y="0" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="1045" y="50.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  -
+</text>
+
+<rect x="1100" y="0" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="1145" y="50.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  ^
+</text>
+
+<rect x="1200" y="0" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="1245" y="50.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  \
+</text>
+
+<rect x="50" y="100" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="95" y="150.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#c93965"
+>
+  aい
+</text>
+
+<rect x="150" y="100" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="195" y="150.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  w
+</text>
+
+<rect x="250" y="100" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="295" y="150.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#000"
+>
+  e
+</text>
+
+<rect x="350" y="100" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="395" y="150.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#c93965"
+>
+  eっ
+</text>
+
+<rect x="450" y="100" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="495" y="150.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  t
+</text>
+
+<rect x="550" y="100" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="595" y="150.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  y
+</text>
+
+<rect x="650" y="100" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="695" y="150.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#000"
+>
+  u
+</text>
+
+<rect x="750" y="100" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="795" y="150.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#000"
+>
+  i
+</text>
+
+<rect x="850" y="100" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="895" y="150.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#000"
+>
+  o
+</text>
+
+<rect x="950" y="100" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="995" y="150.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#c93965"
+>
+  oっ
+</text>
+
+<rect x="1050" y="100" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="1095" y="150.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  @
+</text>
+
+<rect x="1150" y="100" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="1195" y="150.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  [
+</text>
+
+<rect x="100" y="200" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="145" y="250.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#000"
+>
+  a
+</text>
+
+<rect x="200" y="200" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="245" y="250.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#c93965"
+>
+  aっ
+</text>
+
+<rect x="300" y="200" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="345" y="250.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#c93965"
+>
+  eん
+</text>
+
+<rect x="400" y="200" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="445" y="250.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  f
+</text>
+
+<rect x="500" y="200" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="545" y="250.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  g
+</text>
+
+<rect x="600" y="200" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="645" y="250.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  h
+</text>
+
+<rect x="700" y="200" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="745" y="250.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#c93965"
+>
+  uん
+</text>
+
+<rect x="800" y="200" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="845" y="250.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#c93965"
+>
+  iん
+</text>
+
+<rect x="900" y="200" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="945" y="250.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#c93965"
+>
+  oん
+</text>
+
+<rect x="1000" y="200" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="1045" y="250.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  ;
+</text>
+
+<rect x="1100" y="200" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="1145" y="250.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  :
+</text>
+
+<rect x="1200" y="200" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="1245" y="250.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  ]
+</text>
+
+<rect x="150" y="300" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="195" y="350.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#c93965"
+>
+  aん
+</text>
+
+<rect x="250" y="300" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="295" y="350.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  x
+</text>
+
+<rect x="350" y="300" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="395" y="350.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  c
+</text>
+
+<rect x="450" y="300" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="495" y="350.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  v
+</text>
+
+<rect x="550" y="300" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="595" y="350.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  b
+</text>
+
+<rect x="650" y="300" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="695" y="350.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  n
+</text>
+
+<rect x="750" y="300" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="795" y="350.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  m
+</text>
+
+<rect x="850" y="300" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="895" y="350.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  ,
+</text>
+
+<rect x="950" y="300" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="995" y="350.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  .
+</text>
+
+<rect x="1050" y="300" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="1095" y="350.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  /
+</text>
+
+<rect x="1150" y="300" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="1195" y="350.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  _
+</text>
+
+
+</g>
+<g transform="translate(1325, 0)">
+  <rect x="-10" y="-10" width="1310" height="410" fill="#fff3f3" />
+  <rect x="0" y="0" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="45" y="50.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  !
+</text>
+
+<rect x="100" y="0" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="145" y="50.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  &quot;
+</text>
+
+<rect x="200" y="0" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="245" y="50.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  #
+</text>
+
+<rect x="300" y="0" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="345" y="50.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  $
+</text>
+
+<rect x="400" y="0" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="445" y="50.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  %
+</text>
+
+<rect x="500" y="0" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="545" y="50.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  &amp;
+</text>
+
+<rect x="600" y="0" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="645" y="50.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  &#39;
+</text>
+
+<rect x="700" y="0" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="745" y="50.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#c93965"
+>
+  uつ
+</text>
+
+<rect x="800" y="0" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="845" y="50.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#c93965"
+>
+  iつ
+</text>
+
+<rect x="900" y="0" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+
+<rect x="1000" y="0" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="1045" y="50.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  =
+</text>
+
+<rect x="1100" y="0" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="1145" y="50.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  ~
+</text>
+
+<rect x="1200" y="0" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="1245" y="50.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  |
+</text>
+
+<rect x="50" y="100" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="95" y="150.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  Q
+</text>
+
+<rect x="150" y="100" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="195" y="150.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  W
+</text>
+
+<rect x="250" y="100" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="295" y="150.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#c93965"
+>
+  eー
+</text>
+
+<rect x="350" y="100" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="395" y="150.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#c93965"
+>
+  eつ
+</text>
+
+<rect x="450" y="100" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="495" y="150.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  T
+</text>
+
+<rect x="550" y="100" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="595" y="150.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  Y
+</text>
+
+<rect x="650" y="100" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="695" y="150.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#c93965"
+>
+  uー
+</text>
+
+<rect x="750" y="100" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="795" y="150.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#c93965"
+>
+  iー
+</text>
+
+<rect x="850" y="100" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="895" y="150.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#c93965"
+>
+  oー
+</text>
+
+<rect x="950" y="100" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="995" y="150.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#c93965"
+>
+  oつ
+</text>
+
+<rect x="1050" y="100" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="1095" y="150.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  `
+</text>
+
+<rect x="1150" y="100" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="1195" y="150.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  {
+</text>
+
+<rect x="100" y="200" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="145" y="250.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#c93965"
+>
+  aー
+</text>
+
+<rect x="200" y="200" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="245" y="250.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#c93965"
+>
+  aつ
+</text>
+
+<rect x="300" y="200" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="345" y="250.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#c93965"
+>
+  eく
+</text>
+
+<rect x="400" y="200" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="445" y="250.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  F
+</text>
+
+<rect x="500" y="200" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="545" y="250.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  G
+</text>
+
+<rect x="600" y="200" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="645" y="250.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  H
+</text>
+
+<rect x="700" y="200" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="745" y="250.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#c93965"
+>
+  uく
+</text>
+
+<rect x="800" y="200" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="845" y="250.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#c93965"
+>
+  iく
+</text>
+
+<rect x="900" y="200" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="945" y="250.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#c93965"
+>
+  oく
+</text>
+
+<rect x="1000" y="200" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="1045" y="250.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  +
+</text>
+
+<rect x="1100" y="200" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="1145" y="250.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  *
+</text>
+
+<rect x="1200" y="200" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="1245" y="250.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  }
+</text>
+
+<rect x="150" y="300" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="195" y="350.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#c93965"
+>
+  aく
+</text>
+
+<rect x="250" y="300" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="295" y="350.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  X
+</text>
+
+<rect x="350" y="300" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="395" y="350.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  C
+</text>
+
+<rect x="450" y="300" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="495" y="350.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  V
+</text>
+
+<rect x="550" y="300" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="595" y="350.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  B
+</text>
+
+<rect x="650" y="300" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="695" y="350.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  N
+</text>
+
+<rect x="750" y="300" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="795" y="350.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  M
+</text>
+
+<rect x="850" y="300" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="895" y="350.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  &lt;
+</text>
+
+<rect x="950" y="300" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="995" y="350.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  &gt;
+</text>
+
+<rect x="1050" y="300" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="1095" y="350.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  ?
+</text>
+
+<rect x="1150" y="300" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
+<text
+  x="1195" y="350.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+>
+  _
+</text>
+
+
+</g>
+
+</g>
+
+</svg>
