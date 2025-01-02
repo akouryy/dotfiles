@@ -839,9 +839,9 @@
 <rect x="600" y="0" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
 <text
   x="645" y="50.0"
-  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#c93965"
 >
-  7
+  uう
 </text>
 
 <rect x="700" y="0" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />

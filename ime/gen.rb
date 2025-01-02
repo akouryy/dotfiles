@@ -31,13 +31,14 @@ ROWS = {
   Z: [:a, ?く],
   '2': [:a, ?う],
   '3': [:e, ?い],
+  '7': [:u, ?う],
   '8': [:u, ?っ],
   '(': [:u, ?つ],
   '9': [:i, ?っ],
   ')': [:i, ?つ],
   '0': [:o, ?う],
 }
-RIMES_IN_DOCUMENT = %I[#{''} a i u e o z k j d l q 2 3 0 A I U E O s 9 8 r p Z K J D L S ) ( R P n]
+RIMES_IN_DOCUMENT = %I[#{''} a i u e o z k j d l q 2 7 3 0 A I U E O s 9 8 r p Z K J D L S ) ( R P n]
 raise if RIMES_IN_DOCUMENT.to_set != ROWS.keys.to_set + [:'', :n]
 
 KEYBOARD_LAYOUT = [
