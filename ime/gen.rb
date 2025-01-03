@@ -262,6 +262,9 @@ BASIC_COLUMNS = [
   Column.parse('kw', 'くゎくぃくぅくぇくぉ'),
   Column.parse(?K, 'ヵ××ヶ×'),
   Column.parse(?l, 'あいうえお', label: '∅'),
+  Column.parse(?L, 'ぁぃぅぇぉ', label: '小', yôon_key: '', yôon_column_properties: { allowed_vowels: /[auo]/ }),
+  Column.parse('Lk', 'ヵ××ヶ×'),
+  Column.parse('Lw', 'ゎ××××'),
   Column.parse(?m, 'まみむめも', label: 'm', yôon_key: :i),
   Column.parse(?n, 'なにぬねの', label: 'n', yôon_key: :i, yôon_column_properties: { allowed_rimes: /[^0]/ }),
   Column.parse(?p, 'ぱぴぷぺぽ', label: 'p', yôon_key: :i),
@@ -280,16 +283,13 @@ BASIC_COLUMNS = [
   Column.parse(?y, 'や×ゆいぇよ', label: 'y'),
   Column.parse(?z, 'ざずぃずぜぞ', label: 'z'),
   Column.parse('zw', 'ずぁ×ずぅずぇずぉ'),
-  Column.parse('@l', 'ぁぃぅぇぉ', yôon_key: '', yôon_column_properties: { allowed_vowels: /[auo]/ }),
-  Column.parse('@lk', 'ヵ××ヶ×'),
-  Column.parse('@lw', 'ゎ××××'),
 ]
 ONSETS_IN_DOCUMENT = %W[
-  #{''} l ⇧ @l k K @lk ky kw g gy gw s sw x z j zw t q c @lc ; ty tw d dj dc dy dw n ny
-  h hy f fy b by p py m my y ⇧y @ly r ry w W @lw wh wy v vy
+  #{''} l ⇧ L k K Lk ky kw g gy gw s sw x z j zw t q c Lc ; ty tw d dj dc dy dw n ny
+  h hy f fy b by p py m my y ⇧y Ly r ry w W Lw wh wy v vy
 ]
 begin
-  all_onsets = BASIC_COLUMNS.flat_map { |column| [column.onset, column.yôon_column&.onset].compact }.to_set + %w[@lc ;]
+  all_onsets = BASIC_COLUMNS.flat_map { |column| [column.onset, column.yôon_column&.onset].compact }.to_set + %w[Lc ;]
   onset_diff = (all_onsets - ONSETS_IN_DOCUMENT.to_set) | (ONSETS_IN_DOCUMENT.to_set - all_onsets)
   raise "onsets mismatch: #{onset_diff.join ?,}" if onset_diff.any?
 end
@@ -369,11 +369,21 @@ _vDash ⊨
 @.ng ŋ
 @.Ng Ŋ
 @@ @
-@a ←
-@d →
-@lcu っ
-@s ↓
-@w ↑
+@^- ⁻
+@^( ⁽
+@^) ⁾
+@^+ ⁺
+@^= ⁼
+@^0 ⁰
+@^1 ¹
+@^2 ²
+@^3 ³
+@^4 ⁴
+@^5 ⁵
+@^6 ⁶
+@^7 ⁷
+@^8 ⁸
+@^9 ⁹
 @^a ᵃ
 @^A ᴬ
 @^b ᵇ
@@ -415,22 +425,12 @@ _vDash ⊨
 @^x ˣ
 @^y ʸ
 @^z ᶻ
-@^0 ⁰
-@^1 ¹
-@^2 ²
-@^3 ³
-@^4 ⁴
-@^5 ⁵
-@^6 ⁶
-@^7 ⁷
-@^8 ⁸
-@^9 ⁹
-@^+ ⁺
-@^- ⁻
-@^= ⁼
-@^( ⁽
-@^) ⁾
+@a ←
+@d →
+@s ↓
+@w ↑
 ~ 〜
+Lcu っ
 n ん
 nn ん
 www w ww
