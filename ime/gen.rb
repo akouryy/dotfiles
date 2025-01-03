@@ -109,15 +109,19 @@ Table = Data.define :mappings, :columns do
     ordinary = '#000'
     printed = '#ccc'
     special_rows = { ?_ => 'TeX', ?@ =>'特殊', ?# => "ギリ\nシャ" }
+    ordinary_rows = { ?/ => '・' }
 
     <<~SVG
       <?xml version="1.0" encoding="UTF-8"?>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="-20 -20 2680 880">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="-20 -60 2680 920">
         #{[false, true].map { |rime|
           <<~SVG
             <g transform="translate(0, #{rime ? 450 : 0})">
               <text x="-10" y="-10" font-size="30" alignment-baseline="text-after-edge" fill="#000">
                 #{rime ? '母音' : '子音'}
+              </text>
+              <text x="1315" y="-10" font-size="20" alignment-baseline="text-after-edge" fill="#000">
+                Shift
               </text>
               #{[false, true].map { |shift|
                 <<~SVG
@@ -143,6 +147,8 @@ Table = Data.define :mappings, :columns do
                               [highlight, special_rows[key]]
                             elsif mappings[key]
                               [ordinary, mappings[key]]
+                            elsif ordinary_rows[key]
+                              [ordinary, ordinary_rows[key]]
                             else
                               [printed, key]
                             end

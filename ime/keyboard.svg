@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-20 -20 2680 880">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-20 -60 2680 920">
   <g transform="translate(0, 0)">
   <text x="-10" y="-10" font-size="30" alignment-baseline="text-after-edge" fill="#000">
     子音
+  </text>
+  <text x="1315" y="-10" font-size="20" alignment-baseline="text-after-edge" fill="#000">
+    Shift
   </text>
   <g transform="translate(0, 0)">
   <rect x="-10" y="-10" width="1310" height="410" fill="#fff3f3" />
@@ -377,9 +380,9 @@
 <rect x="1050" y="300" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
 <text
   x="1095" y="350.0"
-  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#000"
 >
-  /
+  ・
 </text>
 
 <rect x="1150" y="300" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
@@ -785,6 +788,9 @@
 <g transform="translate(0, 450)">
   <text x="-10" y="-10" font-size="30" alignment-baseline="text-after-edge" fill="#000">
     母音
+  </text>
+  <text x="1315" y="-10" font-size="20" alignment-baseline="text-after-edge" fill="#000">
+    Shift
   </text>
   <g transform="translate(0, 0)">
   <rect x="-10" y="-10" width="1310" height="410" fill="#fff3f3" />
