@@ -90,7 +90,7 @@ Table = Data.define :mappings, :columns do
 
   # @return [String]
   def to_tsv
-    mappings.map{|k, v| [k, *v.split].join(?\t) + ?\n }.sort.join
+    mappings.map{|k, v| [k, *v.split].tap { it.fill(nil, it.size...3) }.join(?\t) + ?\n }.sort.join
   end
 
   # @return [String]
