@@ -40,6 +40,12 @@ bindkey '^K' kill-line
 bindkey '^W' backward-kill-word
 bindkey '^Z' predict-toggle
 
+zstyle ':completion:*' matcher-list \
+  '' \
+  '+m:{a-z}={A-Z}' \
+  '+r:|[._-]=*' \
+  '+m:{A-Z}={a-z}'
+
 export LSCOLORS=exfxcxdxbxegedabagacad
 export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
 chpwd() { ls -hlaFv --color } # =auto --time-style='+%Y-%m-%d %H:%M:%S'
@@ -94,9 +100,11 @@ alias mas='g mas'
 function md() { mkdir -p "$@" && eval cd "\"\$$#\"" }
 alias mm='g mm'
 alias mv='mv -i'
+alias pl='g pl'
 alias pn='pnpm'
 alias pna='pnpm add'
 alias pnd='pnpm add -D'
+alias pni='pnpm i'
 alias pnr='pnpm run'
 alias pnrb='pnpm run build'
 alias pnrd='pnpm run dev'
