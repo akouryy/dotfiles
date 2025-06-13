@@ -3,6 +3,9 @@
 
 set -euxC
 
+# Terminal.app
+defaults write com.Apple.Terminal ShowTabBar 1
+
 # Homebrew
 /bin/zsh -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 
