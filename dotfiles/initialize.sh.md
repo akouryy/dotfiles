@@ -18,3 +18,7 @@ brew install tag
 # zinit
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zinit/master/doc/install.sh)"
 ```
+
+## 手動設定
+- BTT向け
+  - トラックパッド → その他のジェスチャ → Mission Control = 4本指で上にスワイプ

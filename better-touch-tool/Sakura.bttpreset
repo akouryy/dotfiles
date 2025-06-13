@@ -158,7 +158,7 @@
     "BTTNotchBarNotchMenubarModeHideRightScrollable" : true,
     "BSTSnapAreaDefaultPictoDistanceFromLeft" : 0.10000000149011612
   },
-  "BTTPresetUUID" : "EDDCC09C-1127-4DCC-A961-E5FA6FA0DDEF",
+  "BTTPresetUUID" : "4583D682-D056-48A4-956C-F7726D003725",
   "BTTPresetContent" : [
     {
       "BTTAppBundleIdentifier" : "com.apple.finder",
@@ -181,7 +181,34 @@
       "BTTAppName" : "Global",
       "BTTAppAutoInvertIcon" : 1,
       "BTTTriggers" : [
-
+        {
+          "BTTActionCategory" : 0,
+          "BTTLastUpdatedAt" : 1749779035.290544,
+          "BTTTriggerType" : 102,
+          "BTTTriggerTypeDescriptionReadOnly" : "3本指で上にスワイプ",
+          "BTTTriggerClass" : "BTTTriggerTypeTouchpadAll",
+          "BTTUUID" : "C2F414A1-B728-45DF-9045-33F0D8903D53",
+          "BTTPredefinedActionType" : 366,
+          "BTTPredefinedActionName" : "空のプレースホルダ",
+          "BTTEnabled" : 1,
+          "BTTEnabled2" : 1,
+          "BTTOrder" : 0,
+          "BTTAdditionalActions" : [
+            {
+              "BTTActionCategory" : 0,
+              "BTTLastUpdatedAt" : 1749779041.002516,
+              "BTTTriggerParentUUID" : "C2F414A1-B728-45DF-9045-33F0D8903D53",
+              "BTTIsPureAction" : true,
+              "BTTTriggerClass" : "BTTTriggerTypeTouchpadAll",
+              "BTTUUID" : "1FC7F4ED-0FB2-4E45-AB2E-24530AA1D81E",
+              "BTTPredefinedActionType" : 21,
+              "BTTPredefinedActionName" : "ウィンドウを最大化",
+              "BTTEnabled" : 1,
+              "BTTEnabled2" : 1,
+              "BTTOrder" : 1
+            }
+          ]
+        }
       ]
     }
   ],
