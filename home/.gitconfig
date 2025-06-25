@@ -32,7 +32,7 @@
 	d = icdiff
 	dev = switch develop
 	ds = icdiff --staged
-	fp = fetch -p
+	fp = "!git fetch -p && git branch -vv | awk '/: gone]/{print $1}' | xargs -r git branch -d"
 	h = help
 	lf = log --pretty=fuller
 	lol = log --graph --decorate --pretty=oneline --abbrev-commit
