@@ -438,6 +438,7 @@ _vDash ⊨
 Lcu っ
 n ん
 nn ん
+t. てください。
 www w ww
 z, ‥
 z/ ・
