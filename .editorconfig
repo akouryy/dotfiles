@@ -11,6 +11,9 @@ trim_trailing_whitespace = true
 indent_size = 8
 indent_style = tab
 
+[*.rs]
+indent_size = 4
+
 [*.tsv{,.txt}]
 indent_size = 8
 indent_style = tab
