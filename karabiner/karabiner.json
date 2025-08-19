@@ -25,6 +25,15 @@
                                 "type": "basic"
                             },
                             {
+                                "description": "Open Kiro by Fn + K",
+                                "from": {
+                                    "key_code": "k",
+                                    "modifiers": { "mandatory": ["fn"] }
+                                },
+                                "to": [{ "shell_command": "open -a Kiro" }],
+                                "type": "basic"
+                            },
+                            {
                                 "description": "Open VS Code by Fn + V",
                                 "from": {
                                     "key_code": "v",
