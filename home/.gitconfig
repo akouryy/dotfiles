@@ -32,6 +32,8 @@
 	d = icdiff
 	dev = switch develop
 	ds = icdiff --staged
+	dt = -c diff.external=difft diff
+	dts = -c diff.external=difft diff --staged
 	fp = "!git fetch -p && git branch -vv | awk '/: gone]/{print $1}' | xargs -r git branch -d"
 	h = help
 	lf = log --pretty=fuller
