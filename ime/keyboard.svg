@@ -909,7 +909,7 @@
 <rect x="150" y="100" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
 <text
   x="195" y="150.0"
-  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#000"
 >
   w
 </text>
@@ -941,7 +941,7 @@
 <rect x="550" y="100" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
 <text
   x="595" y="150.0"
-  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#000"
 >
   y
 </text>
@@ -1037,17 +1037,23 @@
 <rect x="600" y="200" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
 <text
   x="645" y="250.0"
-  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#c93965"
 >
-  h
+  (wh)
 </text>
 
 <rect x="700" y="200" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
 <text
-  x="745" y="250.0"
+  x="745" y="230.0"
   font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#c93965"
 >
   uん
+</text>
+<text
+  x="745" y="270.0"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#c93965"
+>
+  (dj)
 </text>
 
 <rect x="800" y="200" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
@@ -1109,9 +1115,9 @@
 <rect x="350" y="300" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />
 <text
   x="395" y="350.0"
-  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#ccc"
+  font-size="40" text-anchor="middle" alignment-baseline="middle" fill="#c93965"
 >
-  c
+  (dc)
 </text>
 
 <rect x="450" y="300" width="90" height="90" rx="5" ry="5" fill="#fff" stroke="#000" stroke-width="1" />

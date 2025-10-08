@@ -108,8 +108,14 @@ Table = Data.define :mappings, :columns do
     highlight = '#c93965'
     ordinary = '#000'
     printed = '#ccc'
-    special_rows = { ?_ => 'TeX', ?@ =>'特殊', ?# => "ギリ\nシャ" }
-    ordinary_rows = { ?/ => '・' }
+    special_rows = {
+      onset: { ?_ => 'TeX', ?@ =>'特殊', ?# => "ギリ\nシャ" },
+      rime: { ?c => '(dc)', ?h => '(wh)', ?j => "uん\n(dj)" }
+    }
+    ordinary_rows = {
+      rime: { ?w => 'w', ?y => 'y' },
+      onset: { ?/ => '・'},
+    }
 
     <<~SVG
       <?xml version="1.0" encoding="UTF-8"?>
@@ -132,7 +138,11 @@ Table = Data.define :mappings, :columns do
                         color, label =
                           if rime
                             row = ROWS[key.to_sym]
-                            if row
+                            if special_rows[:rime][key]
+                              [highlight, special_rows[:rime][key]]
+                            elsif ordinary_rows[:rime][key]
+                              [ordinary, ordinary_rows[:rime][key]]
+                            elsif row
                               l = row.join
                               [l == key ? ordinary : highlight, l]
                             else
@@ -143,12 +153,12 @@ Table = Data.define :mappings, :columns do
 
                             if column&.label
                               [column.label == key ? '#000' : highlight, column.label]
-                            elsif special_rows[key]
-                              [highlight, special_rows[key]]
+                            elsif special_rows[:onset][key]
+                              [highlight, special_rows[:onset][key]]
                             elsif mappings[key]
                               [ordinary, mappings[key]]
-                            elsif ordinary_rows[key]
-                              [ordinary, ordinary_rows[key]]
+                            elsif ordinary_rows[:onset][key]
+                              [ordinary, ordinary_rows[:onset][key]]
                             else
                               [printed, key]
                             end
