@@ -1,12 +1,12 @@
 [include]
-  path = .gitconfig.local
+	path = .gitconfig.local
 [push]
 	default = simple
 [core]
 	excludesfile = .gitignore_global
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
+	path =
 [commit]
 	template = .stCommitMsg
 	gpgsign = true
@@ -23,8 +23,7 @@
 	br = branch
 	bv = branch -vv
 	c = commit
-	ca = commit -a
-	cam = commit -am
+	ca = commit --amend
 	cb = switch -c
 	ch = switch
 	cl = clone
