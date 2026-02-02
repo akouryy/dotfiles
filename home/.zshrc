@@ -6,6 +6,7 @@ autoload -Uz terminfo
 setopt auto_cd
 setopt auto_pushd
 setopt correct
+setopt extendedglob
 setopt ignoreeof
 setopt list_packed
 setopt notify
