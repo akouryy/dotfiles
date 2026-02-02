@@ -40,6 +40,7 @@ bindkey '^K' kill-line
 bindkey '^W' backward-kill-word
 bindkey '^Z' predict-toggle
 
+zstyle ':completion:*' ignored-patterns 'sndfile-*'
 zstyle ':completion:*' matcher-list \
   '' \
   '+m:{a-z}={A-Z}' \
