@@ -177,3 +177,5 @@ unset __conda_setup
 # <<< conda initialize <<<
 
 export RUST_BACKTRACE=1
+
+[ -f ~/.zshrc.local ] && source ~/.zshrc.local
