@@ -50,7 +50,11 @@ zstyle ':completion:*' matcher-list \
 
 export LSCOLORS=exfxcxdxbxegedabagacad
 export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
-chpwd() { ls -hlaFv --color } # =auto --time-style='+%Y-%m-%d %H:%M:%S'
+chpwd() {
+  if [[ -z "$CLAUDECODE" ]]; then
+    ls -hlaFv --color=auto
+  fi
+}
 export TIMEFMT=$'\nreal\t%E\nuser\t%U\nsys\t%S'
 
 () { # Languages
