@@ -72,7 +72,6 @@ export TIMEFMT=$'\nreal\t%E\nuser\t%U\nsys\t%S'
 
 hash -d db="$DROPBOX"
 hash -d dl="$HOME/Downloads"
-source $HOME/.zshrc.local
 
 alias ...='cd ../..'
 alias ....='cd ../../..'
