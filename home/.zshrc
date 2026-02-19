@@ -1,4 +1,3 @@
-autoload -Uz compinit && compinit
 autoload -Uz colors && colors
 # autoload -Uz predict-on; predict-on
 autoload -Uz terminfo
@@ -157,6 +156,9 @@ zinit ice atload'FAST_HIGHLIGHT[chroma-ruby]='
 zinit light zdharma-continuum/fast-syntax-highlighting
 
 zinit light zsh-users/zsh-completions
+autoload -Uz compinit && compinit
+
+zinit light zsh-users/zsh-autosuggestions
 
 # pnpm
 export PNPM_HOME="$HOME/Library/pnpm"
