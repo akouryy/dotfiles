@@ -166,6 +166,8 @@ case ":$PATH:" in
 esac
 # pnpm end
 
+export RIPGREP_CONFIG_PATH="$(dirname $0)/.ripgreprc"
+
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$("$HOME/.anyenv/envs/pyenv/versions/anaconda3-2022.10/bin/conda" 'shell.zsh' 'hook' 2> /dev/null)"
