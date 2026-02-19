@@ -6,7 +6,7 @@
 	excludesfile = .gitignore_global
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path =
+	path = 
 [commit]
 	template = .stCommitMsg
 	gpgsign = true
@@ -33,7 +33,7 @@
 	ds = icdiff --staged
 	dt = -c diff.external=difft diff
 	dts = -c diff.external=difft diff --staged
-	fp = "!git fetch -p && git branch -vv | awk '/: gone]/{print $1}' | xargs -r git branch -d"
+	fp = "!git fetch -p --all && git pull && git branch -vv | awk '/: gone]/ { if($1==\"+\") { print $2 } else { print $1 } }' | xargs -r git branch -d"
 	h = help
 	lf = log --pretty=fuller
 	lol = log --graph --decorate --pretty=oneline --abbrev-commit
