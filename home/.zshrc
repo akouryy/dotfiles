@@ -49,7 +49,19 @@ zstyle ':completion:*' matcher-list \
 
 export LSCOLORS=exfxcxdxbxegedabagacad
 export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
-chpwd() {
+iterm2_tabcolor() {
+  if [[ -n "$ITERM2_TABCOLOR" ]]; then
+    local r g b
+    IFS=, read -r r g b <<< "$ITERM2_TABCOLOR"
+    echo -ne "\033]6;1;bg;red;brightness;$r\a"
+    echo -ne "\033]6;1;bg;green;brightness;$g\a"
+    echo -ne "\033]6;1;bg;blue;brightness;$b\a"
+  else
+    echo -ne "\033]6;1;bg;*;default\a"
+  fi
+}
+my_chpwd() {
+  iterm2_tabcolor
   if [[ -z "$CLAUDECODE" ]]; then
     ls -hlaFv --color=auto
   fi
@@ -58,6 +70,12 @@ export TIMEFMT=$'\nreal\t%E\nuser\t%U\nsys\t%S'
 
 () { # Languages
     eval "$(anyenv init -)"
+}
+
+() { # mise
+    eval "$(mise activate zsh)"
+    chpwd_functions+=( my_chpwd )
+    my_chpwd
 }
 
 () { # Other PATHs
@@ -81,6 +99,7 @@ alias .zshrc='source ~/.zshrc'
 alias aa='g aa'
 alias ag='ag --hidden'
 alias bd='g bd'
+alias bm='g bm'
 alias bv='g bv'
 alias bx='bundle exec'
 alias bxc='bundle exec rubocop'
