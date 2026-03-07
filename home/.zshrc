@@ -74,10 +74,7 @@ export TIMEFMT=$'\nreal\t%E\nuser\t%U\nsys\t%S'
 }
 
 () { # Other PATHs
-  export PATH="$DROPBOX/e/code/bin:$DROPBOX/a/c/bin:$DROPBOX/a/c/bin/public:$PATH"
-
-  zshrc_path=$(readlink "$HOME/.zshrc" || echo "$HOME/.zshrc")
-  export PATH="${zshrc_path:a:h}/../bin:$PATH"
+  export PATH="${${(%):-%x}:A:h}/../bin:$DROPBOX/e/code/bin:$DROPBOX/a/c/bin:$DROPBOX/a/c/bin/public:$PATH"
 
   export LIBRARY_PATH="$LIBRARY_PATH:$(brew --prefix zstd)/lib/"
 }
