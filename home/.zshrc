@@ -15,7 +15,6 @@ eval "$(starship init zsh)"
 HISTFILE="$HOME/.zsh_history"
 HISTSIZE=50000
 SAVEHIST=50000
-setopt hist_ignore_dups
 setopt hist_ignore_all_dups
 setopt hist_ignore_space
 setopt hist_reduce_blanks
@@ -77,7 +76,7 @@ export TIMEFMT=$'\nreal\t%E\nuser\t%U\nsys\t%S'
 () { # Other PATHs
   export PATH="$DROPBOX/e/code/bin:$DROPBOX/a/c/bin:$DROPBOX/a/c/bin/public:$PATH"
 
-  zshrc_path=$(readlink $HOME/.zshrc || echo $HOME/.zshrc)
+  zshrc_path=$(readlink "$HOME/.zshrc" || echo "$HOME/.zshrc")
   export PATH="${zshrc_path:a:h}/../bin:$PATH"
 
   export LIBRARY_PATH="$LIBRARY_PATH:$(brew --prefix zstd)/lib/"
@@ -192,7 +191,7 @@ case ":$PATH:" in
 esac
 # pnpm end
 
-export RIPGREP_CONFIG_PATH="$(dirname $0)/.ripgreprc"
+export RIPGREP_CONFIG_PATH="${${(%):-%x}:A:h}/.ripgreprc"
 
 export RUST_BACKTRACE=1
 
