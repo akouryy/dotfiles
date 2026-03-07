@@ -34,6 +34,11 @@ link "$BASE/home/.config/starship.toml" "$HOME/.config/starship.toml"
 # Reload karabiner
 launchctl kickstart -k "gui/$(id -u)/org.pqrs.service.agent.karabiner_console_user_server" || true
 
+# ~/.claude/
+mkdir -p "$HOME/.claude/hooks"
+link "$BASE/home/_claude/hooks/pre_tool_use.rb" "$HOME/.claude/hooks/pre_tool_use.rb"
+link "$BASE/home/_claude/settings.json"         "$HOME/.claude/settings.json"
+
 # ~/.zshrc: source-based (not symlink)
 ZSHRC_SRC="$BASE/home/.zshrc"
 if [ -e "$HOME/.zshrc" ]; then
