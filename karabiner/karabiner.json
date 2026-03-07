@@ -12,7 +12,7 @@
                                     "key_code": "t",
                                     "modifiers": { "mandatory": ["fn"] }
                                 },
-                                "to": [{ "shell_command": "open -a Terminal" }],
+                                "to": [{ "shell_command": "open -a iTerm" }],
                                 "type": "basic"
                             },
                             {
@@ -67,15 +67,6 @@
                                     "modifiers": { "mandatory": ["fn", "shift"] }
                                 },
                                 "to": [{ "shell_command": "open -a Sourcetree" }],
-                                "type": "basic"
-                            },
-                            {
-                                "description": "Open Slack by Fn + S",
-                                "from": {
-                                    "key_code": "s",
-                                    "modifiers": { "mandatory": ["fn"] }
-                                },
-                                "to": [{ "shell_command": "open -a Slack" }],
                                 "type": "basic"
                             },
                             {
