@@ -341,6 +341,7 @@ _forall ∀
 _in ∈
 _infty ∞
 _land ∧
+_lceil ⌈
 _lnot ¬
 _lor ∨
 _neq ≠
@@ -354,6 +355,7 @@ _otimes ⊗
 _pm ±
 _prec ≺
 _preceq ⪯
+_rceil ⌉
 _simeq ≃
 _subset ⊂
 _subseteq ⊆
