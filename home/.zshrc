@@ -68,10 +68,6 @@ my_chpwd() {
 }
 export TIMEFMT=$'\nreal\t%E\nuser\t%U\nsys\t%S'
 
-() { # Languages
-    eval "$(anyenv init -)"
-}
-
 () { # mise
     eval "$(mise activate zsh)"
     chpwd_functions+=( my_chpwd )
@@ -197,21 +193,6 @@ esac
 # pnpm end
 
 export RIPGREP_CONFIG_PATH="$(dirname $0)/.ripgreprc"
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$("$HOME/.anyenv/envs/pyenv/versions/anaconda3-2022.10/bin/conda" 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "$HOME/.anyenv/envs/pyenv/versions/anaconda3-2022.10/etc/profile.d/conda.sh" ]; then
-        . "$HOME/.anyenv/envs/pyenv/versions/anaconda3-2022.10/etc/profile.d/conda.sh"
-    else
-        export PATH="$HOME/.anyenv/envs/pyenv/versions/anaconda3-2022.10/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
 
 export RUST_BACKTRACE=1
 
