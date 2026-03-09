@@ -103,7 +103,7 @@ alias cdr='git top && cd $(git top)'
 alias ch='g ch'
 alias cl='cd -P'
 alias cm='g cm'
-alias co='cargo compete'
+# alias co='cargo compete'
 [[ -z "$CLAUDECODE" ]] && alias cp='cp -i'
 alias drpbi='xattr -w com.dropbox.ignored 1'
 alias fp='g fp'
@@ -114,7 +114,7 @@ alias g++d='g++ -std=c++20 -I$DROPBOX/b/codes/comp -Wall -Wno-logical-op-parenth
 alias lf='g lf'
 alias lol='g lol'
 alias lola='g lola'
-alias ls=$'ls -hlaFv --color' # =auto --time-style=\'+%Y-%m-%d %H:%M:%S\''
+[[ -z "$CLAUDECODE" ]] && alias ls=$'ls -hlaFv --color' # =auto --time-style=\'+%Y-%m-%d %H:%M:%S\''
 alias mas='g mas'
 function md() { mkdir -p "$@" && eval cd "\"\$$#\"" }
 alias mm='g mm'
@@ -140,7 +140,6 @@ alias s='stree .'
 alias sl='g sl'
 alias u+x='chmod u+x'
 alias wh='command -v'
-alias x='chmod u+x'
 alias ya='yarn add'
 alias yd='yarn add -D'
 alias yrb='yarn build'
@@ -191,5 +190,3 @@ esac
 export RIPGREP_CONFIG_PATH="${${(%):-%x}:A:h}/.ripgreprc"
 
 export RUST_BACKTRACE=1
-
-[ -f ~/.zshrc.local ] && source ~/.zshrc.local
