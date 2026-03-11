@@ -179,6 +179,8 @@ autoload -Uz compinit && compinit
 
 zinit light zsh-users/zsh-autosuggestions
 
+export CLAUDE_BASH_MAINTAIN_PROJECT_WORKING_DIR=1
+
 # pnpm
 export PNPM_HOME="$HOME/Library/pnpm"
 case ":$PATH:" in
