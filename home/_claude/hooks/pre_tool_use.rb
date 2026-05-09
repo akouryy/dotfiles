@@ -5,7 +5,7 @@ input = JSON.parse($stdin.read)
 command = input.dig('tool_input', 'command') || ''
 
 if command.include?('2>/dev/null')
-  $stderr.puts 'No ignoring stderr'
+  $stderr.puts 'Never ignore stderr'
   exit 2
 end
 
