@@ -180,6 +180,7 @@ autoload -Uz compinit && compinit
 zinit light zsh-users/zsh-autosuggestions
 
 export CLAUDE_BASH_MAINTAIN_PROJECT_WORKING_DIR=1
+export CLAUDE_AFK_TIMEOUT_MS=999999999999999
 
 # pnpm
 export PNPM_HOME="$HOME/Library/pnpm"
