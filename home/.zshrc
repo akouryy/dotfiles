@@ -9,6 +9,7 @@ setopt extendedglob
 setopt ignoreeof
 setopt list_packed
 setopt notify
+[[ -n $CLAUDECODE ]] && setopt no_equals
 
 eval "$(starship init zsh)"
 
