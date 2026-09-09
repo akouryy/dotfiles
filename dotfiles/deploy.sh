@@ -22,6 +22,7 @@ link() {
 }
 
 # ~/
+link "$BASE/home/.gitconfig.github" "$HOME/.gitconfig.github"
 link "$BASE/home/.gitignore_global" "$HOME/.gitignore_global"
 link "$BASE/home/.ripgreprc"        "$HOME/.ripgreprc"
 link "$BASE/home/.vimrc"            "$HOME/.vimrc"
