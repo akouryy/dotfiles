@@ -172,7 +172,7 @@ zinit light-mode for \
 ### End of Zinit's installer chunk
 
 zinit light Tarrasch/zsh-autoenv
-zinit ice atload'FAST_HIGHLIGHT[chroma-ruby]='
+zinit ice atload'FAST_HIGHLIGHT[chroma-ruby]=; FAST_HIGHLIGHT_STYLES[subtle-bg]=bg=195'
 zinit light zdharma-continuum/fast-syntax-highlighting
 
 zinit light zsh-users/zsh-completions
