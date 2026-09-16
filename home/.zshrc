@@ -183,6 +183,7 @@ zinit light zsh-users/zsh-autosuggestions
 export CLAUDE_BASH_MAINTAIN_PROJECT_WORKING_DIR=1
 export CLAUDE_AFK_TIMEOUT_MS=999999999999999
 export CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY=1
+export CLAUDE_CODE_THRIFTY_SONIC=0
 
 # pnpm
 export PNPM_HOME="$HOME/Library/pnpm"
