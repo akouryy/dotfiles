@@ -23,3 +23,11 @@ if command.include?('$(')
   $stderr.puts 'Command contains $() command substitution. Use separate commands, pipes, and/or multiline single quote literals.'
   exit 2
 end
+
+minamo = File.expand_path("../../../minamo/target/release/minamo", __dir__)
+if File.executable?(minamo)
+  rewritten = command.gsub(/'[^']*'|"(?:\\.|[^"\\])*"|\\.|(?<![|])\|(?![|])(?<sep>&?\s*)(?=(?:grep|head|tail|sed)(?:\s|\z))/) { $~[:sep] ? "|#{$~[:sep]}#{minamo} " : $~[0] }
+  if rewritten != command
+    puts JSON.generate(hookSpecificOutput: { hookEventName: "PreToolUse", updatedInput: (input["tool_input"] || {}).merge("command" => rewritten) })
+  end
+end
