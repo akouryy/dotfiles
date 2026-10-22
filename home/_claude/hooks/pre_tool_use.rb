@@ -9,18 +9,23 @@ if command.include?('2>/dev/null')
   exit 2
 end
 
-if command.match?(/\bgit\s+stash\b/)
-  $stderr.puts 'git stash is prohibited'
+if command.match?(/\bgh\s+api\b/) && !command.match?(/\bgh\s+api\s+--method\s+\S+/)
+  $stderr.puts 'gh api must be followed by --method <VERB>'
   exit 2
 end
 
-if command.match?(/<<\S/)
-  $stderr.puts 'Command contains a heredoc. Use a multiline single quote literal instead.'
+if (m = command.match(/\bgit\s+(stash|checkout|restore|reset)\b/))
+  $stderr.puts "git #{m[1]} is strictly prohibited"
   exit 2
 end
 
-if command.include?('$(')
-  $stderr.puts 'Command contains $() command substitution. Use separate commands, pipes, and/or multiline single quote literals.'
+#if command.match?(/<<\S/)
+#  $stderr.puts 'Command contains a heredoc. Use a multiline single quote literal instead.'
+#  exit 2
+#end
+
+if command.match?(/\b(?:ruby|perl)\b/) && command.split(/\s+/).any? { |token| token.match?(/\A-[a-zA-Z]*p/) }
+  $stderr.puts 'The -p option of ruby/perl is prohibited: `next` skips its implicit print and silently deletes every non-matching line. Read the file, edit it, and write it back instead.'
   exit 2
 end
 
