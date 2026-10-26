@@ -1,0 +1,25 @@
+#!/bin/zsh
+# launchd/com.github.akouryy.cleanup-build-caches.plist から毎日起動される。
+# 非対話 zsh なので ~/.zshenv しか読まれず、cargo の PATH と DROPBOX はそこに依存する。
+# mise はシェル統合なしで呼ぶため、Homebrew の場所を明示しておく必要がある。
+
+set -u
+export PATH="/opt/homebrew/bin:$PATH"
+
+print "=== $(date '+%F %T') ==="
+
+overall_exit_status=0
+
+# launchd の作業ディレクトリは読み取り専用の / で、pnpm はカレントに一時ファイルを書こうとして EROFS で落ちる。
+# $HOME に移るとプロジェクト固有の設定を拾わず、mise のグローバル設定にある pnpm が使われる。
+cd "$HOME"
+mise exec -- pnpm store prune || overall_exit_status=$?
+
+if [[ -n ${DROPBOX:-} ]]; then
+  # cargo clean と違い、30 日以内に使われたビルド成果物は残すので作業中のプロジェクトを再ビルドせずに済む。
+  cargo sweep --recursive --time 30 "$DROPBOX/e" || overall_exit_status=$?
+else
+  print -u2 'DROPBOX が未設定なので Rust プロジェクトの掃除は省略する'
+fi
+
+exit $overall_exit_status
