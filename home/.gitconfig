@@ -33,7 +33,6 @@
 	ds = icdiff --staged
 	dt = -c diff.external=difft diff
 	dts = -c diff.external=difft diff --staged
-	fp = "!git fetch -p --all && git pull && git branch -vv | awk '/: gone]/ { if($1==\"+\") { print $2 } else { print $1 } }' | xargs -r git branch -d"
 	h = help
 	lf = log --pretty=fuller
 	lol = log --graph --decorate --pretty=oneline --abbrev-commit
@@ -56,6 +55,7 @@
 	st = status
 	ta = tag -a
 	top = rev-parse --show-toplevel
+	z = "!before=$(git rev-parse HEAD) && canonical=$(basename $(git symbolic-ref refs/remotes/origin/HEAD --short)) && branch=${GIT_CANONICAL_BRANCH:-$canonical} && git switch \"$branch\" && git fetch -p --all && { if git rev-parse --abbrev-ref --symbolic-full-name '@{upstream}' >/dev/null 2>&1; then git pull; else git merge --ff-only origin/HEAD; fi; } && { git diff --quiet \"$before\" HEAD -- Gemfile Gemfile.lock || bundle install; } && git branch -vv | awk '/: gone]/ { if($1==\"+\") { print $2 } else { print $1 } }' | xargs -r git branch -d"
 [gpg]
 	program = gpg
 [init]
