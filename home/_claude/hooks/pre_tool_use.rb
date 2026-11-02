@@ -29,6 +29,11 @@ when "Bash"
     exit 2
   end
 
+  if command.match?(/\b(?:ruby|perl)\b/) && command.split(/\s+/).any? { |token| token.match?(/\A-[a-zA-Z]*p/) }
+    $stderr.puts "The -p option of ruby/perl is prohibited: `next` skips its implicit print and silently deletes every non-matching line. Read the file, edit it, and write it back instead."
+    exit 2
+  end
+
   git_write_plumbing_commands = [
     "commit-tree", "fast-import", "filter-branch", "gc", "hash-object", "maintenance", "mktag",
     "mktree", "prune", "prune-packed", "reflog delete", "reflog expire", "repack", "replace",
@@ -40,8 +45,8 @@ when "Bash"
     exit 2
   end
 
-  if command.match?(/\bgit\s+stash\b/)
-    $stderr.puts "git stash is prohibited"
+  if (m = command.match(/\bgit\s+(stash|checkout|restore|reset)\b/))
+    $stderr.puts "git #{m[1]} is strictly prohibited"
     exit 2
   end
 

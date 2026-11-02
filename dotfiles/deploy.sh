@@ -40,6 +40,21 @@ mkdir -p "$HOME/.claude/hooks"
 link "$BASE/home/_claude/hooks/pre_tool_use.rb" "$HOME/.claude/hooks/pre_tool_use.rb"
 link "$BASE/home/_claude/settings.json"         "$HOME/.claude/settings.json"
 
+# ~/.local/bin/
+mkdir -p "$HOME/.local/bin"
+link "$BASE/bin/cleanup-build-caches" "$HOME/.local/bin/cleanup-build-caches"
+
+# ~/Library/LaunchAgents/
+mkdir -p "$HOME/Library/LaunchAgents"
+for label in com.github.akouryy.cleanup-build-caches; do
+  link "$BASE/launchd/$label.plist" "$HOME/Library/LaunchAgents/$label.plist"
+  # Reload so that plist edits take effect
+  if launchctl print "gui/$(id -u)/$label" >/dev/null 2>&1; then
+    launchctl bootout "gui/$(id -u)/$label"
+  fi
+  launchctl bootstrap "gui/$(id -u)" "$HOME/Library/LaunchAgents/$label.plist"
+done
+
 # ~/.zshrc: source-based (not symlink)
 ZSHRC_SRC="$BASE/home/.zshrc"
 if [ -e "$HOME/.zshrc" ]; then
