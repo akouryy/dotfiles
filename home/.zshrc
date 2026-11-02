@@ -44,6 +44,7 @@ bindkey '^S' history-incremental-search-forward
 bindkey '^K' kill-line
 bindkey '^W' backward-kill-word
 bindkey '^Z' predict-toggle
+stty discard undef
 
 zstyle ':completion:*' ignored-patterns 'sndfile-*'
 zstyle ':completion:*' matcher-list \
