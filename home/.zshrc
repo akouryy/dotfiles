@@ -13,6 +13,11 @@ setopt notify
 
 eval "$(starship init zsh)"
 
+TMOUT=5
+_reset_prompt_widget() { zle reset-prompt }
+zle -N _reset_prompt_widget
+TRAPALRM() { zle _reset_prompt_widget }
+
 HISTFILE="$HOME/.zsh_history"
 HISTSIZE=50000
 SAVEHIST=50000
@@ -180,6 +185,7 @@ zinit light zdharma-continuum/fast-syntax-highlighting
 zinit light zsh-users/zsh-completions
 autoload -Uz compinit && compinit
 
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=250'
 zinit light zsh-users/zsh-autosuggestions
 
 export CLAUDE_BASH_MAINTAIN_PROJECT_WORKING_DIR=1
