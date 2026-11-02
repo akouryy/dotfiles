@@ -1,9 +1,8 @@
-[include]
-	path = .gitconfig.local
 [push]
 	default = simple
+	autoSetupRemote = true
 [core]
-	excludesfile = .gitignore_global
+	excludesfile = ~/.gitignore_global
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
@@ -61,7 +60,11 @@
 	program = gpg
 [init]
 	defaultBranch = main
+[include]
+	path = ~/.gitconfig.local
 [includeIf "hasconfig:remote.*.url:git@github.com:*/*"]
 	path = ~/.gitconfig.github
 [includeIf "hasconfig:remote.*.url:https://github.com/**"]
 	path = ~/.gitconfig.github
+[branch]
+	autoSetupMerge = simple
