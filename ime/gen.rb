@@ -94,6 +94,17 @@ Table = Data.define :mappings, :columns do
   end
 
   # @return [String]
+  def to_azookey_tsv
+    [
+      *mappings.except('n', 'www').transform_keys do
+        it.tr(%q{!"#$%&'()=~|`{+*}<>?_\-^\\\\¥@[;:],./}, '！”＃＄％＆’（）＝〜｜｀『＋＊』＜＞？＿ー＾＼￥＠「；：」、。・')
+      end,
+      ['n{any character}', 'ん{any character}'],
+      ['n{composition-separator}', 'ん'],
+    ].map { it.join(?\t) + ?\n }.sort.join
+  end
+
+  # @return [String]
   def to_document_tsv
     header = [nil, *RIMES_IN_DOCUMENT]
     body = ONSETS_IN_DOCUMENT.map do |onset|
@@ -318,6 +329,7 @@ GREEKS.chars.zip (?a..?z).to_a do |g, l|
 end
 
 File.write 'romantable.tsv', table.to_tsv
+File.write 'romantable.azookey.tsv', table.to_azookey_tsv
 File.write 'document.tsv', table.to_document_tsv
 File.write 'keyboard.svg', table.to_keyboard_svg
 
