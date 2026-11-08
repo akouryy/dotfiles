@@ -95,10 +95,23 @@ Table = Data.define :mappings, :columns do
 
   # @return [String]
   def to_azookey_tsv
-    [
-      *mappings.except('n', 'www').transform_keys do
+    mappings_with_nya_row_guard = {
+      **mappings.except('n', 'www').transform_keys do
         it.tr(%q{!"#$%&'()=~|`{+*}<>?_\-^\\\\¥@[;:],./}, '！”＃＄％＆’（）＝〜｜｀『＋＊』＜＞？＿ー＾＼￥＠「；：」、。・')
       end,
+      'ny' => 'ny',
+    }
+    rewritten_keys_by_original_key = mappings_with_nya_row_guard.keys.to_h do |key|
+      shadowing_prefix = (key.size - 1).downto(1).map { key[0, it] }.find { mappings_with_nya_row_guard.key? it }
+      [key, shadowing_prefix ? mappings_with_nya_row_guard[shadowing_prefix] + key[shadowing_prefix.size..] : key]
+    end
+
+    entries = mappings_with_nya_row_guard.map { |key, value| [rewritten_keys_by_original_key.fetch(key), value] }
+    duplicated_keys = entries.map(&:first).tally.select { |_, count| count > 1 }.keys
+    raise "duplicated azooKey keys after rewriting: #{duplicated_keys.inspect}" if duplicated_keys.any?
+
+    [
+      *entries,
       ['n{any character}', 'ん{any character}'],
       ['n{composition-separator}', 'ん'],
     ].map { it.join(?\t) + ?\n }.sort.join
