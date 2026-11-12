@@ -95,26 +95,51 @@ Table = Data.define :mappings, :columns do
 
   # @return [String]
   def to_azookey_tsv
-    mappings_with_nya_row_guard = {
+    mappings_with_ny_guard = {
       **mappings.except('n', 'www').transform_keys do
         it.tr(%q{!"#$%&'()=~|`{+*}<>?_\-^\\\\¥@[;:],./}, '！”＃＄％＆’（）＝〜｜｀『＋＊』＜＞？＿ー＾＼￥＠「；：」、。・')
       end,
       'ny' => 'ny',
     }
-    rewritten_keys_by_original_key = mappings_with_nya_row_guard.keys.to_h do |key|
-      shadowing_prefix = (key.size - 1).downto(1).map { key[0, it] }.find { mappings_with_nya_row_guard.key? it }
-      [key, shadowing_prefix ? mappings_with_nya_row_guard[shadowing_prefix] + key[shadowing_prefix.size..] : key]
+    # キーが打鍵列ではないため書き換えられず、単独のnはキーではないため書き換える必要もない。
+    entries_exempt_from_rewriting = {
+      'n{any character}' => 'ん{any character}',
+      'n{composition-separator}' => 'ん',
+    }
+
+    # azooKeyは1文字入力するたびに入力済みの文字列の末尾と最長一致するキーを置換するため、キーを途中まで打った時点で別のキーに置換されてしまうことがある。
+    # そこで、各キーを「最後の1文字を除いた部分を実際に打ったときの文字列」と最後の1文字の連結に書き換える。
+    # 書き換えたキーが別のキーの入力途中の置換に影響しうるので、変化しなくなるまで繰り返す。
+    simulate_azookey_typing = lambda do |table, input|
+      input.each_char.reduce('') do |acc, input_char|
+        text = acc + input_char
+
+        text.size.downto(1).lazy.map { |size|
+          suffix = text[-size..]
+          output = table[suffix] || table["#{suffix.chop}{any character}"]&.sub('{any character}', suffix[-1])
+          text[...-size] + output if output
+        }.find(&:itself) ||
+        text
+      end
     end
 
-    entries = mappings_with_nya_row_guard.map { |key, value| [rewritten_keys_by_original_key.fetch(key), value] }
+    rewritten_keys = mappings_with_ny_guard.keys.to_h { [it, it] }
+    begin
+      previous_rewritten_keys = rewritten_keys
+      table = {
+        **previous_rewritten_keys.to_h { |original, rewritten| [rewritten, mappings_with_ny_guard[original]] },
+        **entries_exempt_from_rewriting,
+      }
+      rewritten_keys = previous_rewritten_keys.to_h do |original, _|
+        [original, simulate_azookey_typing.(table, original.chop) + original[-1]]
+      end
+    end while rewritten_keys != previous_rewritten_keys
+
+    entries = rewritten_keys.map { |original, rewritten| [rewritten, mappings_with_ny_guard[original]] }
     duplicated_keys = entries.map(&:first).tally.select { |_, count| count > 1 }.keys
     raise "duplicated azooKey keys after rewriting: #{duplicated_keys.inspect}" if duplicated_keys.any?
 
-    [
-      *entries,
-      ['n{any character}', 'ん{any character}'],
-      ['n{composition-separator}', 'ん'],
-    ].map { it.join(?\t) + ?\n }.sort.join
+    [*entries, *entries_exempt_from_rewriting].map { it.join(?\t) + ?\n }.sort.join
   end
 
   # @return [String]
