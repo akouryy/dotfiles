@@ -1,4 +1,5 @@
 require 'cgi'
+require 'optparse'
 require 'strscan'
 
 ROWS = {
@@ -355,7 +356,8 @@ end
 
 GREEKS = 'αβψδεφγηιξκλμνοπθρστθωςχυζ'
 
-table = Table.from_data
+options = ARGV.getopts '', 'additional-data:'
+table = Table.from_data(options['additional-data'] ? DATA.read + File.read(options['additional-data']) : DATA)
 
 BASIC_COLUMNS.each do |column|
   table.add_columns column
